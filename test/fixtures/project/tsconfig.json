@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "target": "ES2024",
+    "module": "NodeNext",
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@one/*": [
+        "packages/one/src/*"
+      ]
+    },
+    "ignoreDeprecations": "6.0"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "packages/one"
+    },
+    {
+      "path": "packages/two"
+    }
+  ]
+}

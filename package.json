@@ -1,0 +1,75 @@
+{
+  "name": "@brandonramsey/eslint",
+  "version": "0.1.0",
+  "description": "Strict, opinionated ESLint flat configuration for Node TypeScript projects",
+  "license": "ISC",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "examples",
+    "docs",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "GLOSSARY.md"
+  ],
+  "engines": {
+    "node": "^22.13.0 || >=24.0.0"
+  },
+  "peerDependencies": {
+    "eslint": "^10.4.0",
+    "typescript": ">=5.9.0 <6.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "references": "node scripts/generate-reference.js",
+    "references:check": "node scripts/generate-reference.js --check",
+    "test:consumer": "node scripts/test-consumer.js",
+    "check": "npm run typecheck && npm run lint && npm test && npm run references:check",
+    "prepublishOnly": "npm run check && npm run test:consumer"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "typescript",
+    "node",
+    "flat-config"
+  ],
+  "dependencies": {
+    "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "eslint-import-resolver-typescript": "4.4.5",
+    "eslint-plugin-import-x": "4.17.1",
+    "eslint-plugin-n": "18.4.1",
+    "eslint-plugin-unicorn": "77.0.0",
+    "globals": "17.13.0",
+    "tinyglobby": "0.2.17",
+    "type-fest": "5.10.0",
+    "typescript-eslint": "8.71.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.1",
+    "eslint": "10.12.0",
+    "typescript": "6.0.3"
+  },
+  "author": "Brandon Ramsey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonramsey/bramsey-eslint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brandonramsey/bramsey-eslint/issues"
+  },
+  "homepage": "https://github.com/brandonramsey/bramsey-eslint#readme"
+}

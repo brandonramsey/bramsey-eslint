@@ -1,0 +1,11 @@
+{
+  "name": "fixture-project",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

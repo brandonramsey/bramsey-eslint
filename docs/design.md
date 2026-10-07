@@ -1,6 +1,6 @@
 # Shared ESLint package design
 
-Status: design confirmed and implemented locally. Public npm publication awaits account authentication and trusted-publisher setup.
+Status: implemented and released publicly as `@brandonramsey/eslint@0.1.0` through GitHub trusted publishing. A clean registry consumer verified linting and public types with only the library, ESLint, and project TypeScript installed directly.
 
 ## Goal
 

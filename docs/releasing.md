@@ -19,3 +19,7 @@ Use npm's current [trusted publishing documentation](https://docs.npmjs.com/trus
 4. Verify the GitHub publish job, npm package metadata/provenance, and installation from the public registry. A configured workflow alone does not establish that the package is published.
 
 Ordinary branch pushes never publish. Tags must match package.json's version. After `1.0`, tighter defaults and raised runtime requirements are major changes; optional additions are minor and nonbreaking fixes are patch changes.
+
+## First-release verification
+
+`v0.1.0` was published by the [successful GitHub workflow](https://github.com/brandonramsey/bramsey-eslint/actions/runs/37699395248). Its output confirmed a direct public publish and signed provenance. npm initially returned 404 while processing the package; a subsequent clean installation from the public registry passed linting, public declaration type checks, and rejection of a floating promise. The consumer explicitly installed only `@brandonramsey/eslint@0.1.0`, `eslint@10.12.0`, and `typescript@6.0.3`.

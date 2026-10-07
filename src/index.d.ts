@@ -13,7 +13,7 @@ export type ConfigOptions = {
   /** Additional global ignore patterns. */
   ignores?: string[];
   /** Resolver customization, including nonstandard tsconfig filenames. */
-  resolverOptions?: Parameters<typeof createTypeScriptImportResolver>[0];
+  resolverOptions?: NonNullable<Parameters<typeof createTypeScriptImportResolver>[0]>;
   /** Override inferred package mode for files without dedicated extensions. */
   commonjsFiles?: string[];
   moduleFiles?: string[];

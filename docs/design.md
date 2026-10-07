@@ -46,8 +46,9 @@ The complete design was confirmed for implementation. No interview decisions rem
 
 ## Remaining branches
 
-- Push the verified source to the public GitHub repository and verify CI.
 - Authenticate npm, configure trusted publishing, and verify the first public release.
+
+The source is public and [the compatibility matrix passed](https://github.com/brandonramsey/bramsey-eslint/actions/runs/37692745103): Node 22.13/24 with packed consumers using ESLint 10.4/10.12 and TypeScript 5.9/6.0. Local lint, type checking, 29 behavior tests, and exhaustive-reference drift checks pass.
 
 The [exhaustive generated references](../examples/README.md) resolve the executable configuration and list every available core and shipped-plugin rule. The package exports its default array and createConfig factory, with representative behavior tests and packed-consumer validation.
 

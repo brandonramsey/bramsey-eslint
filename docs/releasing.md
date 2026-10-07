@@ -4,8 +4,8 @@ The intended public package is `@brandonramsey/eslint`, version `0.1.0`, from th
 
 ## One-time setup
 
-1. Verify the npm account has publishing permission for the `@brandonramsey` scope. Bootstrap the package with an authenticated npm direct or staged publish if no package exists. Keep credentials out of source and logs.
-2. Configure an npm trusted publisher for the exact GitHub owner, `bramsey-eslint` repository, `publish.yml` workflow filename, and `npm` environment. Allow direct publishing for this workflow if npm initially permits only staged publishing. Current npm setup may expire if no successful publish occurs within two days.
+1. Verify the npm account has publishing permission for the `@brandonramsey` scope and enable account-level 2FA. If no package exists, reserve its name using a disposable bootstrap version through npm staging. Do not stage the intended release version: staged versions reserve their version number. Never approve the disposable bootstrap; the real release comes from GitHub Actions. Keep credentials out of source and logs.
+2. Configure an npm trusted publisher for `brandonramsey/bramsey-eslint`, `publish.yml`, and the `npm` environment. With a recent npm CLI, run `npm trust github @brandonramsey/eslint --repo brandonramsey/bramsey-eslint --file publish.yml --env npm --allow-publish --yes`, completing any 2FA challenge in npm's own interface. Verify it with `npm trust list @brandonramsey/eslint`. Current npm setup may expire if no successful publish occurs within two days.
 3. Configure the GitHub `npm` environment and any desired reviewer protection. The workflow requires `id-token: write`; no npm token secret is needed for trusted publishing.
 4. Ensure package.json's repository URL matches the public GitHub repository and review all files in `npm pack --dry-run`.
 

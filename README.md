@@ -2,7 +2,7 @@
 
 A strict, opinionated ESLint configuration for framework-neutral Node TypeScript projects, including JavaScript, JSX, TSX, and handwritten declarations. ESLint owns formatting. Parsers, plugins, and import resolution are installed automatically with this package.
 
-The initial version is `0.1.0`, awaiting its first npm publication. The policy is being validated before `1.0`; review upgrades before adopting them.
+The initial version is `0.1.0`. The policy is being validated before `1.0`; review upgrades before adopting them.
 
 ## Install
 

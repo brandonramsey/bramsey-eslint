@@ -4,16 +4,16 @@
     "noUncheckedIndexedAccess": true,
     "module": "NodeNext",
     "target": "ES2024",
-    "allowJs": true,
-    "checkJs": false,
-    "noEmit": true,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
     "skipLibCheck": false,
     "types": [
       "node"
-    ]
+    ],
+    "noEmitOnError": true
   },
   "include": [
-    "src/**/*.ts",
-    "test/types.ts"
+    "src/**/*.ts"
   ]
 }

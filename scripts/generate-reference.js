@@ -7,7 +7,7 @@ import { ESLint } from 'eslint';
 // Development-only inventory API, pinned by the lockfile and checked in CI.
 import { builtinRules } from 'eslint/use-at-your-own-risk';
 
-import { createConfig, plugins } from '../src/index.js';
+import { createConfig, plugins } from './legacy-eslint/index.js';
 
 const root = fileURLToPath(new URL('../test/fixtures/project', import.meta.url));
 const output = fileURLToPath(new URL('../examples/rules', import.meta.url));
@@ -52,7 +52,7 @@ for (const [name, file] of Object.entries(profiles)) {
   rows.push(`| [${name}](rules/${name}.mjs) | ${file} | ${Object.values(rules).filter(([severity]) => severity === 'error').length} |`);
 }
 const manifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
-const summary = `# Exhaustive rule references\n\nGenerated with ESLint ${manifest.devDependencies.eslint} and the exact plugin versions in package.json. Each of the ${Object.keys(profiles).length} profiles lists all ${inventory.length} available core and shipped-plugin rules, including disabled and deprecated rules. Settings come from ESLint's resolved configuration; ESLint may normalize default options. Omitted rule-internal defaults are not expanded. JSX uses the JavaScript profile; TSX uses the TypeScript profile.\n\n| Profile | Representative file | Enabled rules |\n| --- | --- | --- |\n${rows.join('\n')}\n\nThese modules export executable rules objects for inspection. They require the plugins registered by the library, and should only be appended as overrides with suitable file patterns. The normal consumer entry point is the package's default config or createConfig, not these snapshots. Additional consumer overrides change the effective settings. Regenerate with npm run references; verify with npm run references:check.\n`;
+const summary = `# Exhaustive rule references\n\nGenerated with ESLint ${manifest.dependencies.eslint} and the exact plugin versions in package.json. Each of the ${Object.keys(profiles).length} profiles lists all ${inventory.length} available core and shipped-plugin rules, including disabled and deprecated rules. Settings come from ESLint's resolved configuration; ESLint may normalize default options. Omitted rule-internal defaults are not expanded. JSX uses the JavaScript profile; TSX uses the TypeScript profile.\n\n| Profile | Representative file | Enabled rules |\n| --- | --- | --- |\n${rows.join('\n')}\n\nThese modules export executable rules objects for inspection. They require the plugins registered by the library, and should only be appended as overrides with suitable file patterns. The normal consumer entry point is the package's default config or createConfig, not these snapshots. Additional consumer overrides change the effective settings. Regenerate with npm run references; verify with npm run references:check.\n`;
 const summaryPath = resolve(output, '..', 'README.md');
 if (checking) {
   if (await readFile(summaryPath, 'utf8') !== summary) {

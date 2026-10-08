@@ -1,15 +1,18 @@
-import config, { createConfig } from '../src/index.js';
+import config, { createConfig } from '@brandonramsey/eslint';
 
-import type { ConfigOptions } from '../src/index.js';
+import type { ConfigOptions, OxlintConfig, OxlintOverride } from '@brandonramsey/eslint';
+import type style from '@brandonramsey/eslint/plugins/style';
 
+const override: OxlintOverride = { files: ['fixtures/**'], rules: { 'typescript/no-explicit-any': 'off' } };
 const options: ConfigOptions = {
-  projectRoot: '/project',
-  syntaxOnlyFiles: ['eslint.config.ts'],
+  projectRoot: import.meta.dirname,
+  syntaxOnlyFiles: ['tools/**/*.ts'],
   testFiles: ['fixtures/**'],
   tests: false,
-  resolverOptions: { project: ['packages/*/tsconfig.json'] },
   commonjsFiles: ['legacy/**/*.js'],
   moduleFiles: ['modern/**/*.ts'],
+  overrides: [override],
 };
 
-export const configurations = [config, createConfig(options)];
+export const configurations: OxlintConfig[] = [config, createConfig(options)];
+export type StylePlugin = typeof style;

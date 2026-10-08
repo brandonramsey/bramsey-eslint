@@ -1,0 +1,171 @@
+{
+  "scope": "Focused package preflight compatibility experiment; not an upstream-engine test suite.",
+  "results": [
+    {
+      "name": "first-line",
+      "expected": 1,
+      "diagnostics": [
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "described",
+      "expected": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "self-suppression",
+      "expected": 2,
+      "diagnostics": [
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 47
+            }
+          }
+        },
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "inline",
+      "expected": 1,
+      "diagnostics": [
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 44
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "next-line",
+      "expected": 1,
+      "diagnostics": [
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 39
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "eslint-alias",
+      "expected": 1,
+      "diagnostics": [
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "lookalikes",
+      "expected": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "unicode-crlf",
+      "expected": 1,
+      "diagnostics": [
+        {
+          "code": "preflight(require-description)",
+          "severity": "error",
+          "filename": "input.js",
+          "message": "Unexpected undescribed directive comment. Include descriptions to explain why the comment is necessary.",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

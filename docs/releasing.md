@@ -60,6 +60,23 @@ Verified on October 8, 2026 against reviewed workflow commit [`965039d973ccf7dbe
 
 Local typechecking, self-lint, all 21 tests, reference drift checks and actionlint 1.7.12 also passed. These runs establish gate behavior for the recorded commit. Every authorized version-tag release must rerun the matrix for its own SHA. npm bootstrap and the new package's trusted-publisher account binding were still unverified at this rehearsal; the later [0.2.0 publication evidence](#published-020-evidence) supersedes that pending status.
 
+## Issue #5 completion audit
+
+Rechecked on October 9, 2026 after [issue #4](https://github.com/brandonramsey/lint/issues/4) closed and merged in `38a520e`. The release gate implementation (`965039d`) and rehearsal evidence (`a711868`) were already ancestors of that merged base. The validation/publishing workflows and version guard are unchanged since the rehearsals and the published `0.2.0` release.
+
+| Issue #5 requirement | Implementation and verification |
+| --- | --- |
+| Clean builds, strict checking, combined lint, package tests and reference drift | Every job in [ci.yml](../.github/workflows/ci.yml) starts with `npm ci` and runs `npm run check`. The [validation matrix](#release-validation-matrix) describes the commands and public package checks. |
+| Supported runtime, engine and compiler combinations | Four Node 22.13.0/24 × TypeScript 5.9.3/6.0.3 jobs retain Oxlint 1.87.0 with bundled tsgolint 7.0.2003. Installed versions are asserted. The embedded compiler is separate from the selected build compiler; [support boundaries](support.md#runtime-and-compiler-contracts) distinguishes contracts, measured compatibility and the assessed typescript-eslint upgrade ceiling. |
+| Full-matrix validation of the exact tagged commit | [publish.yml](../.github/workflows/publish.yml) calls the local reusable workflow and pins checkouts to `github.sha`. `release-ready` needs both `version` and `validate`; `publish` needs `release-ready`. The [published tag run](#published-020-evidence) records all four passing jobs at its own SHA. |
+| Exact version tag, public access, trusted publisher and provenance | The release CLI requires the exact `v${package.version}` tag. Publication also requires a tag push in `brandonramsey/lint`, uses environment `npm` and OIDC, and requests public access and provenance. The [identity audit](#october-9-completion-audit) records the verified publisher binding; the published release records artifact/provenance evidence. |
+| Reviewable success and failure gates without a test publication | The [three recorded rehearsals](#recorded-gate-evidence) exercise success, one failed matrix job and a mismatched tag. Their result assertions passed; publication was skipped in all three. |
+| Current release and bootstrap instructions | [Each release](#each-release) requires explicit release authorization and validation for the new tag. [One-time setup](#one-time-npm-setup) records completed bootstrap, and [historical release evidence](#historical-brandonramseyeslint-release) preserves the separate old package identity. |
+
+The ticket's original references to behavior tests and packed-consumer validation are governed by the later maintainer decision in [ADR 0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md): permanent tests inspect public configuration, packed exports/declarations/assets and plugin specifiers without installing a consumer or exercising upstream lint rules. Repository self-lint still runs the combined engine and plugins. This audit follows that approved scope.
+
+The completion audit re-read all three rehearsal runs and the published tag run through GitHub's API, confirming their recorded SHAs and job outcomes. Local `npm run check` passed on Node 24.21.0 with TypeScript 6.0.3: strict checking, combined self-lint, all 21 tests (including packed declarations and release-tag rejection), and drift checks for 14 profiles with 982 rules each. The release CLI's two tests also passed independently. This documentation-only audit adds no hosted matrix run or publication; the linked runs remain evidence for their recorded commits.
+
 ## Identity cutover evidence
 
 Checks on October 8, 2026:

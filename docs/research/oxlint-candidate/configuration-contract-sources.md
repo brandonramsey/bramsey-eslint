@@ -1,5 +1,7 @@
 # Configuration-contract source evidence
 
+Coverage scope update, October 8, 2026: [ADR 0018](../../adr/0018-use-native-typed-project-coverage.md) supersedes the package-owned coverage-warning and compiler-inspection requirements below. Native project selection and diagnostics are accepted; the source findings and probes remain historical evidence.
+
 Checked October 8, 2026 for issue #1 against Oxlint 1.87.0, oxlint-tsgolint 7.0.2003, Oxc parser 0.153.0 and TypeScript 7.0.2. This note records source evidence and implementation constraints; executable evidence belongs to the configuration-contract probes. It supplements [the public interface](public-interface.md) and [upstream evidence](../oxlint-candidate-upstream.md).
 
 ## Native configuration and composition

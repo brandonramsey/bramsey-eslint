@@ -25,7 +25,6 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
     assert.equal(manifest.dependencies['@stylistic/eslint-plugin'], '5.10.0');
     assert.equal(manifest.dependencies.eslint, '10.12.0');
     assert.equal(manifest.dependencies['oxc-parser'], '0.153.0');
-    assert.equal(manifest.dependencies['typescript-coverage'], 'npm:typescript@7.0.2');
     for (const [name, version] of Object.entries({ 'eslint-import-resolver-typescript': '4.4.5', 'eslint-plugin-import-x': '4.17.1', 'eslint-plugin-n': '18.4.1', 'eslint-plugin-unicorn': '77.0.0', 'unrs-resolver': '1.12.2' })) {
       assert.equal(manifest.dependencies[name], version);
       assert.equal(manifest.devDependencies[name], undefined);
@@ -41,9 +40,6 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
     for (const path of ['dist/export-parser.js', 'dist/export-parser.d.ts', 'dist/export-graph.js', 'dist/export-graph.d.ts']) {
       assert.ok(contents.has(path), `Missing export-inspection asset ${path}`);
     }
-    for (const path of ['dist/coverage.js', 'dist/coverage.d.ts', 'docs/typed-coverage.md']) {
-      assert.ok(contents.has(path), `Missing coverage-warning asset ${path}`);
-    }
     const publicModule = await import(pathToFileURL(join(packageRoot, 'dist/index.js')).href);
     assert.deepEqual(Object.keys(publicModule).sort(), ['createConfig', 'default']);
     const config = publicModule.createConfig({ projectRoot: repository });
@@ -54,11 +50,7 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
       const { default: bundled } = await import(pathToFileURL(plugin.specifier).href);
       if (plugin.name === 'policy') {
         assert.equal(typeof bundled.rules.export.create, 'function');
-        assert.equal(typeof bundled.rules['inferred-typed-coverage'].create, 'function');
         assert.equal(config.rules['policy/export'], 'error');
-        const typed = config.overrides.find((entry) => entry.rules?.['policy/inferred-typed-coverage'] === 'warn');
-        assert.deepEqual(typed.files, ['**/*.{ts,tsx,mts,cts}']);
-        assert.deepEqual(typed.excludeFiles, ['**/*.d.{ts,mts,cts}']);
         assert.deepEqual(config.settings['import-x/extensions'], ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts']);
       }
       for (const id of Object.keys(config.rules).filter((name) => name.startsWith(`${plugin.name}/`))) {

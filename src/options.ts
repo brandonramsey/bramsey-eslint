@@ -9,7 +9,7 @@ export type ResolverOptions = Omit<TypeScriptResolverOptions, 'tsconfig'>;
 export type ConfigOptions = {
   /** Absolute project root, canonicalized before discovery; defaults to cwd. */
   projectRoot?: string;
-  /** Disable typed rules and inferred-coverage warnings for these exceptions. */
+  /** Disable typed rules for these explicit syntax-only exceptions. */
   syntaxOnlyFiles?: string[];
   testFiles?: string[];
   /** Apply the relaxed test profile, including testFiles; defaults to true. */

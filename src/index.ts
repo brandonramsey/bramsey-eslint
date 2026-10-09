@@ -71,14 +71,14 @@ export function createConfig(options: ConfigOptions = {}): OxlintConfig {
     { files: ['**/*.{cjs,cts}'], globals: moduleGlobals(true) },
     { files: ['**/*.{mjs,mts}'], globals: moduleGlobals(false) },
     { files: [...typescriptFiles], rules: structuredClone(syntaxRules) },
-    { files: [...typescriptFiles], excludeFiles: [...declarations, ...options.syntaxOnlyFiles ?? []], rules: { ...structuredClone(typedRules), 'policy/inferred-typed-coverage': 'warn' } },
+    { files: [...typescriptFiles], excludeFiles: [...declarations, ...options.syntaxOnlyFiles ?? []], rules: structuredClone(typedRules) },
     { files: [...declarations], rules: structuredClone(declarationRules) },
   );
   if (options.tests !== false) {
     overrides.push({ files: [...standardTests, ...options.testFiles ?? []], excludeFiles: [...declarations], rules: structuredClone(testRules) });
   }
   // Test relaxations precede syntax-only disabling; consumers have final precedence.
-  overrides.push({ files: [...declarations, ...options.syntaxOnlyFiles ?? []], rules: { ...Object.fromEntries(Object.keys(typedRules).filter((id) => id.startsWith('typescript/')).map((id) => [id, 'off'])), 'policy/inferred-typed-coverage': 'off' } });
+  overrides.push({ files: [...declarations, ...options.syntaxOnlyFiles ?? []], rules: Object.fromEntries(Object.keys(typedRules).filter((id) => id.startsWith('typescript/')).map((id) => [id, 'off'])) });
   overrides.push(...structuredClone(options.overrides ?? []));
   return {
     categories: { correctness: 'off' },

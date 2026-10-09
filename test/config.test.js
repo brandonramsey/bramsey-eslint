@@ -45,7 +45,7 @@ test('bundled compatibility plugin exports configured import, runtime, polyfill 
   const { default: plugin } = await import('@brandonramsey/eslint/plugins/policy');
   const policy = createConfig({ projectRoot: root });
   const required = ['export', 'no-dupe-args', 'no-octal', 'no-unresolved', 'no-useless-path-segments', 'no-extraneous-dependencies', 'order', 'no-deprecated-api', 'node-builtins', 'es-builtins', 'no-process-exit', 'prefer-node-protocol', 'no-unnecessary-polyfills'];
-  assert.deepEqual(Object.keys(plugin.rules).sort(), [...required, 'no-restricted-syntax', 'inferred-typed-coverage'].sort());
+  assert.deepEqual(Object.keys(plugin.rules).sort(), [...required, 'no-restricted-syntax'].sort());
   for (const name of required) {
     assert.equal(typeof plugin.rules[name].create, 'function');
     assert.equal(Array.isArray(policy.rules[`policy/${name}`]) ? policy.rules[`policy/${name}`][0] : policy.rules[`policy/${name}`], 'error');
@@ -94,7 +94,7 @@ test('typed safety, declaration exemptions and syntax-only exemptions compose', 
   assert.equal(typed.rules['typescript/no-unsafe-member-access'], 'error');
   const exempt = policy.overrides.at(-1);
   assert.deepEqual(exempt.files, ['**/*.d.{ts,mts,cts}', 'tools/**/*.ts']);
-  assert.equal(Object.keys(exempt.rules).length, 49);
+  assert.equal(Object.keys(exempt.rules).length, 48);
   assert.ok(Object.values(exempt.rules).every((setting) => setting === 'off'));
   const declaration = policy.overrides.find((entry) => entry.rules?.['typescript/no-namespace'] === 'off');
   assert.deepEqual(declaration.files, ['**/*.d.{ts,mts,cts}']);
@@ -104,22 +104,6 @@ test('typed safety, declaration exemptions and syntax-only exemptions compose', 
   const syntax = policy.overrides.find((entry) => entry.rules?.['eslint/id-match']);
   assert.deepEqual(syntax.rules['eslint/id-match'], ['error', '^_?(?:[a-z][a-zA-Z0-9]*|[A-Z][a-zA-Z0-9]*|[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*)$', { onlyDeclarations: true, properties: false, ignoreDestructuring: true }]);
   assert.equal(syntax.rules['typescript/no-explicit-any'], 'error');
-});
-
-test('inferred coverage warns on typed files, exempts declarations and syntax-only files, and permits consumer overrides', async () => {
-  const { default: plugin } = await import('@brandonramsey/eslint/plugins/policy');
-  assert.equal(typeof plugin.rules['inferred-typed-coverage']?.create, 'function');
-  const policy = createConfig({ projectRoot: root, syntaxOnlyFiles: ['tools/**/*.ts'] });
-  const typed = policy.overrides.find((entry) => entry.rules?.['typescript/no-floating-promises']?.[0] === 'error');
-  assert.equal(typed.rules['policy/inferred-typed-coverage'], 'warn');
-  assert.deepEqual(typed.excludeFiles, ['**/*.d.{ts,mts,cts}', 'tools/**/*.ts']);
-  assert.equal(policy.overrides.at(-1).rules['policy/inferred-typed-coverage'], 'off');
-  assert.equal(policy.rules['policy/inferred-typed-coverage'], undefined);
-  assert.equal(policy.options.typeAware, true);
-  assert.equal(policy.options.denyWarnings, undefined);
-  assert.equal(policy.options.maxWarnings, undefined);
-  const override = { files: ['tools/**'], rules: { 'policy/inferred-typed-coverage': 'off' } };
-  assert.deepEqual(createConfig({ projectRoot: root, overrides: [override] }).overrides.at(-1), override);
 });
 
 test('test profile is automatic, extensible and optional while retaining promise checks', () => {

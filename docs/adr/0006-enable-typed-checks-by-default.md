@@ -4,4 +4,4 @@ TypeScript receives type-aware checks by default to support the strict correctne
 
 See the official [typed-linting setup](https://typescript-eslint.io/getting-started/typed-linting/) and [out-of-project file constraints](https://typescript-eslint.io/troubleshooting/typed-linting/).
 
-For the planned Oxlint implementation, [ADR 0015](0015-warn-for-inferred-typescript-coverage.md) replaces the out-of-project hard failure with a visible warning and continued inferred checks. The current ESLint implementation still enforces the original setup error.
+For the Oxlint implementation, [ADR 0018](0018-use-native-typed-project-coverage.md) accepts native project selection and inferred checks without a package-owned coverage warning or compiler inspection. It supersedes [ADR 0015](0015-warn-for-inferred-typescript-coverage.md)'s intermediate warning requirement. The legacy ESLint implementation still enforces the original setup error.

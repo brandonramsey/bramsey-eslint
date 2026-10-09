@@ -6,6 +6,8 @@ The plan covers actual engine migration, all maintained code in TypeScript, the 
 
 ## Summary
 
+Scope update, October 8, 2026: the maintainer withdrew issue #11's custom inferred-coverage warning and independent compiler inspection. [ADR 0018](adr/0018-use-native-typed-project-coverage.md) accepts native Oxlint/tsgolint coverage and diagnostics, retaining typed rules and declaration/syntax-only exemptions. Issue #11 is no longer planned, and #12 now depends only on #10. Earlier coverage-warning requirements below are historical.
+
 During decomposition of issues #2 and #3 on October 8, 2026, the maintainer limited the package to configuration and bundled plugins, with Oxlint as a peer dependency, accepted unenforced disable-comment explanations as a configuration-only limitation, and narrowed tests to the public package surface. [ADR 0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md) supersedes runner, independent preflight, repeated-fix and consumer-harness obligations in the historical drafts and handoff. The maintainer approved the revised seven-child breakdown, published as issues #8–#14 with verified bodies, labels, parent links and seven native blocking relationships. The parent bodies/states and original drafts below have not been rewritten.
 
 During issue #1 validation on October 8, 2026, the maintainer approved warning and continuing for inferred TypeScript coverage rather than a hard setup error. [ADR 0015](adr/0015-warn-for-inferred-typescript-coverage.md) records that revision, and issue #1's live acceptance criterion has been updated. The original approved drafts below retain their historical wording.
@@ -193,8 +195,8 @@ Status: approved and published on October 8, 2026. Section numbers below identif
 | 1 | [#8: Ship the typed Oxlint configuration and packaged plugins](https://github.com/brandonramsey/bramsey-eslint/issues/8) | #2 | None |
 | 2 | [#9: Preserve workspace import resolution and compatibility policy](https://github.com/brandonramsey/bramsey-eslint/issues/9) | #2 | #8 |
 | 3 | [#10: Detect conflicting re-exports safely](https://github.com/brandonramsey/bramsey-eslint/issues/10) | #2 | #9 |
-| 4 | [#11: Warn when typed linting uses inferred compiler settings](https://github.com/brandonramsey/bramsey-eslint/issues/11) | #2 | #8 |
-| 5 | [#12: Verify public package contents and document support](https://github.com/brandonramsey/bramsey-eslint/issues/12) | #2 | #10, #11 |
+| 4 (withdrawn) | [#11: Warn when typed linting uses inferred compiler settings](https://github.com/brandonramsey/bramsey-eslint/issues/11) | #2 | No longer planned |
+| 5 | [#12: Verify public package contents and document support](https://github.com/brandonramsey/bramsey-eslint/issues/12) | #2 | #10 |
 | 6 | [#13: Run repository configuration and contract tests in TypeScript](https://github.com/brandonramsey/bramsey-eslint/issues/13) | #3 | #2 |
 | 7 | [#14: Generate an editable Oxlint configuration example matching package defaults](https://github.com/brandonramsey/bramsey-eslint/issues/14) | #3 | #13 |
 
@@ -233,6 +235,8 @@ Status: approved and published on October 8, 2026. Section numbers below identif
 
 ### 4. Warn when typed linting uses inferred compiler settings
 
+**Status:** Withdrawn under ADR 0018. Accept native Oxlint behavior; do not implement the original draft below.
+
 **Parent:** #2. **Blocked by:** #8.
 
 **What to build:** A bundled warning rule identifies non-exempt TypeScript receiving inferred coverage during consumer-owned Oxlint execution while typed safety checks remain enabled.
@@ -244,7 +248,7 @@ Status: approved and published on October 8, 2026. Section numbers below identif
 
 ### 5. Verify public package contents and document support
 
-**Parent:** #2. **Blocked by:** #10, #11 (#10 already requires #9).
+**Parent:** #2. **Blocked by:** #10 (#10 already requires #9).
 
 **What to build:** The published package exposes its promised configuration, types and plugin assets with the correct core peer and bundled dependencies, and documents how consumers use it.
 
@@ -275,6 +279,6 @@ Status: approved and published on October 8, 2026. Section numbers below identif
 - [ ] Include disabled rules, configured severity/options and all reference profiles; retain declaration/test/syntax-only distinctions without expanding omitted internal defaults.
 - [ ] Generate a usable editable example file, not only inventory snapshots. Use public package exports and consumer-derived paths, preserving bundled-plugin loading and profile overrides without repository/fixture-specific roots.
 - [ ] Verify the unedited example's effective rules, options and profile settings match the normal package configuration. Document how users change explicit entries while retaining default plugin setup.
-- [ ] Produce deterministic committed outputs and a drift command that fails for stale inventory, settings or summary. Distinguish configured policy from runtime coverage warnings and accepted unenforced descriptions.
+- [ ] Produce deterministic committed outputs and a drift command that fails for stale inventory, settings or summary. Document native typed-project coverage and accepted unenforced descriptions.
 - [ ] Preserve generated consumer-format examples in their appropriate formats; avoid executing a per-rule probe suite to generate references.
 - [ ] Verify the complete documented development check after conversion, including generation drift, using only the public-surface test scope in ADR 0017.

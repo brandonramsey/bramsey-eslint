@@ -3,7 +3,6 @@ import importPlugin from 'eslint-plugin-import-x';
 import nodePlugin from 'eslint-plugin-n';
 import unicorn from 'eslint-plugin-unicorn';
 
-import { inferredCoverageRule } from '../coverage.js';
 import { createExportGraphRule } from '../export-graph.js';
 import { validateOptions } from '../options.js';
 import { createProjectResolver } from '../resolver.js';
@@ -77,5 +76,5 @@ const rules = Object.fromEntries(Object.entries(selected).map(([name, [owner, id
   return [name, bridge(rule, owner === 'import', name === 'export')];
 }));
 
-const plugin: ESLint.Plugin & { rules: Record<string, Rule.RuleModule> } = { meta: { name: '@brandonramsey/eslint/policy' }, rules: { ...rules, 'inferred-typed-coverage': inferredCoverageRule } };
+const plugin: ESLint.Plugin & { rules: Record<string, Rule.RuleModule> } = { meta: { name: '@brandonramsey/eslint/policy' }, rules };
 export default plugin;

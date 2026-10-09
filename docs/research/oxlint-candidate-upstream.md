@@ -2,6 +2,8 @@
 
 Checked October 8, 2026 for migration issue #1. This note distinguishes upstream documentation and tagged source from runtime verification. It does not establish full rule or fix parity.
 
+Scope update, October 8, 2026: [ADR 0018](../adr/0018-use-native-typed-project-coverage.md) withdraws the custom inferred-coverage warning and independent compiler inspection. Native Oxlint/tsgolint project selection and diagnostics are accepted. Earlier warning and discovery recommendations below remain historical research, not implementation obligations.
+
 ## Candidate versions and compiler coupling
 
 | Component | Evidence-backed candidate | Evidence |

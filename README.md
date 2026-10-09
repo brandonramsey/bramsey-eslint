@@ -19,7 +19,7 @@ Requirements:
 - Node `^22.13.0 || >=24.0.0` for the package and its bundled providers. TypeScript config execution requires Node 22.18+ or 24+; use an explicit `.mjs` config on earlier supported Node 22.
 - Oxlint exactly `1.87.0`. Dependency upgrades require policy and public contract review.
 - Application APIs target Node **24+**, independently of the linting runtime.
-- Checking the public declarations requires TypeScript 5.9+ through their bundled provider types; verification uses 6.0.3.
+- Supported public declaration checking uses TypeScript 5.9+; repository checks use 6.0.3, and independent packed consumer checks pass at 5.9.3, 6.0.3 and 7.0.2.
 - Supported projects use `strict: true` and `noUncheckedIndexedAccess: true`. Run the project's compiler separately for diagnostics.
 
 The consumer's TypeScript compiler is separate from tsgolint's embedded TypeScript 7.0.2 target. Public types/builds are checked with TypeScript 6.0.3, the newest stable compiler supported by the retained repository toolchain; typescript-eslint is the upgrade-blocking family. See [support boundaries and evidence](docs/support.md).

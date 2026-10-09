@@ -1,0 +1,78 @@
+
+> @brandonramsey/lint@0.2.0 check
+> npm run typecheck && npm run lint && npm test && npm run references:check
+
+
+> @brandonramsey/lint@0.2.0 typecheck
+> npm run build && tsc --noEmit
+
+
+> @brandonramsey/lint@0.2.0 build
+> node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });" && tsc -p tsconfig.build.json
+
+
+> @brandonramsey/lint@0.2.0 lint
+> npm run build:tools && oxlint --config oxlint.config.js .
+
+
+> @brandonramsey/lint@0.2.0 build:tools
+> npm run build && node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('.tooling', { recursive: true, force: true }); rmSync('oxlint.config.js', { force: true });" && tsc -p tsconfig.tools.json && node --input-type=module -e "import { copyFileSync } from 'node:fs'; copyFileSync('.tooling/oxlint.config.js', 'oxlint.config.js');"
+
+
+> @brandonramsey/lint@0.2.0 build
+> node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });" && tsc -p tsconfig.build.json
+
+
+> @brandonramsey/lint@0.2.0 test
+> npm run build:tools && node --test .tooling/test/*.test.js
+
+
+> @brandonramsey/lint@0.2.0 build:tools
+> npm run build && node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('.tooling', { recursive: true, force: true }); rmSync('oxlint.config.js', { force: true });" && tsc -p tsconfig.tools.json && node --input-type=module -e "import { copyFileSync } from 'node:fs'; copyFileSync('.tooling/oxlint.config.js', 'oxlint.config.js');"
+
+
+> @brandonramsey/lint@0.2.0 build
+> node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });" && tsc -p tsconfig.build.json
+
+✔ the basic consumer example preserves the public default configuration (0.777375ms)
+✔ resolver options are rooted, discover workspace projects and retain consumer settings (1.838125ms)
+✔ explicit resolver projects accept custom filenames and reject empty matches and malformed options (3.195333ms)
+✔ independent roots expose only their own resolver projects and an empty fallback list (1.116917ms)
+✔ bundled compatibility plugin exports configured import, runtime, polyfill and CommonJS rules (421.088042ms)
+✔ factory rejects unsupported and malformed native override shapes (0.132667ms)
+✔ factory rejects malformed plugin lists in native overrides (0.08775ms)
+✔ native defaults and all validated Stylistic settings are explicit (1.145584ms)
+✔ typed safety, declaration exemptions and syntax-only exemptions compose (1.04325ms)
+✔ test profile is automatic, extensible and optional while retaining promise checks (1.909375ms)
+✔ package-aware globals and explicit patterns respect dedicated extensions (0.959125ms)
+✔ ignore extension and consumer overrides are last without sharing mutable policy (1.917166ms)
+✔ factory rejects ESLint fields, root-only override fields and invalid options (0.173ms)
+✔ symlink project roots produce the same canonical public configuration (6.510708ms)
+✔ packed public modules, declarations, dependencies and plugin specifiers are self-contained (1562.983666ms)
+✔ the complete editable example preserves defaults, profiles and consumer-derived paths (19.772625ms)
+✔ reference drift checks reject stale inventory, options, example and summary (3329.908666ms)
+✔ all native reference profiles include disabled inventory, configured options and distinct exemptions (379.642083ms)
+✔ the editable example retains public factory validation for consumer overrides (0.222ms)
+✔ the release CLI accepts the exact package version tag (25.3965ms)
+✔ the release CLI rejects mismatched, unprefixed and missing tags (74.338833ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3796.068958
+
+> @brandonramsey/lint@0.2.0 references:check
+> npm run build:tools && node .tooling/scripts/generate-reference.js --check
+
+
+> @brandonramsey/lint@0.2.0 build:tools
+> npm run build && node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('.tooling', { recursive: true, force: true }); rmSync('oxlint.config.js', { force: true });" && tsc -p tsconfig.tools.json && node --input-type=module -e "import { copyFileSync } from 'node:fs'; copyFileSync('.tooling/oxlint.config.js', 'oxlint.config.js');"
+
+
+> @brandonramsey/lint@0.2.0 build
+> node --input-type=module -e "import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });" && tsc -p tsconfig.build.json
+
+Verified editable example and 14 profiles with 982 rules each.

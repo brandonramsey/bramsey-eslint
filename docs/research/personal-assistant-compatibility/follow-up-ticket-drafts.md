@@ -1,12 +1,12 @@
 # Package follow-up draft and deferred consumer notes
 
-Prepared from [issue #6's assessment](README.md). **No GitHub submission or consumer implementation is authorized by this document.** The lint package defect in section 1 remains a ticket draft for review; check existing issues before publishing it with the canonical triage label.
+Prepared from [issue #6's assessment](README.md). **No GitHub submission or consumer implementation is authorized by this document.** Section 1 records the package defect resolved by the authorized local fix; it is no longer awaiting issue publication.
 
-On October 9, 2026, the user deferred personal-assistant-project issues until after installing `@brandonramsey/lint@1.0.0` and retained responsibility for creating those issues. Sections 2–5 are reference notes for that later work, not tickets awaiting publication. Consumer policy violations and consumer issue creation are not prerequisites for the lint package's v1 release. The package declaration defect remains separate release-readiness work.
+On October 9, 2026, the user deferred personal-assistant-project issues until after installing `@brandonramsey/lint@1.0.0` and retained responsibility for creating those issues. Sections 2–5 are reference notes for that later work, not tickets awaiting publication. Consumer policy violations and consumer issue creation are not prerequisites for the lint package's v1 release. The package declaration defect has been resolved and [independently verified](declaration-fix.md).
 
 ## 1. Make packed public declarations independent of undeclared provider types
 
-Repository: `brandonramsey/lint`. Priority: P1. Proposed triage: `ready-for-agent`. Origin: #6. If accepted, block permanent consumer adoption and the #7 v1 decision on this issue.
+Repository: `brandonramsey/lint`. Origin: #6. Status: resolved locally on October 9, 2026; all criteria below were verified in the [declaration-fix follow-up](declaration-fix.md). No issue was created.
 
 ### Problem
 
@@ -14,11 +14,11 @@ An independent installation of `@brandonramsey/lint@0.2.0` exposes a resolver de
 
 ### Acceptance criteria
 
-- [ ] Resolve the public declaration dependency boundary without depending on consumer hoisting, optional undeclared types or `skipLibCheck`.
-- [ ] Preserve the public factory/options contract. Prefer keeping private provider types behind the package boundary; if adding a compiler-dependent family, explicitly reassess its TypeScript ceiling before choosing it.
-- [ ] Repack and repeat the isolated strict declaration assessment against the consumer's existing Jest dependency graph, with all required dependencies supplied by the package's public metadata.
-- [ ] Retest the intended compiler support boundaries, including the consumer's TypeScript 7.0.2, and revise support claims according to evidence.
-- [ ] Keep permanent regression coverage within ADR 0017's public declarations/metadata surface; this draft does not request a permanent consumer-execution harness.
+- [x] Resolve the public declaration dependency boundary without depending on consumer hoisting, optional undeclared types or `skipLibCheck`.
+- [x] Preserve the public factory/options contract. Prefer keeping private provider types behind the package boundary; if adding a compiler-dependent family, explicitly reassess its TypeScript ceiling before choosing it.
+- [x] Repack and repeat the isolated strict declaration assessment against the consumer's existing Jest dependency graph, with all required dependencies supplied by the package's public metadata.
+- [x] Retest the intended compiler support boundaries, including the consumer's TypeScript 7.0.2, and revise support claims according to evidence.
+- [x] Keep permanent regression coverage within ADR 0017's public declarations/metadata surface; this draft does not request a permanent consumer-execution harness.
 
 Evidence: [TS7 errors](evidence/compiler-public-ts7.stdout), [TS6 errors](evidence/compiler-public-ts6.stdout), [fixture/config](README.md#reproduction-and-next-work), [dependency graph](toolchain.md#actual-public-declaration-blocker).
 

@@ -1,10 +1,15 @@
 import { ResolverFactory } from 'unrs-resolver';
 
-import type { TypeScriptResolverOptions } from 'eslint-import-resolver-typescript';
 import type { OxlintOverride } from 'oxlint';
+import type { NapiResolveOptions } from 'unrs-resolver';
 
 /** Project discovery is package-owned; native tsconfig overrides are unsupported. */
-export type ResolverOptions = Omit<TypeScriptResolverOptions, 'tsconfig'>;
+export type ResolverOptions = Omit<NapiResolveOptions, 'tsconfig'> & {
+  project?: string | string[];
+  alwaysTryTypes?: boolean;
+  bun?: boolean;
+  noWarnOnMultipleProjects?: boolean;
+};
 
 export type ConfigOptions = {
   /** Absolute project root, canonicalized before discovery; defaults to cwd. */

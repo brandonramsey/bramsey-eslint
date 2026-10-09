@@ -56,7 +56,7 @@ await test('packed public modules, declarations, dependencies and plugin specifi
     assert.equal(manifest.dependencies['@stylistic/eslint-plugin'], '5.10.0');
     assert.equal(manifest.dependencies.eslint, '10.12.0');
     assert.equal(manifest.dependencies['oxc-parser'], '0.153.0');
-    assert.equal(manifest.dependencies['type-fest'], '5.10.0', 'Public resolver declarations need type-fest without dev dependencies');
+    assert.equal(manifest.dependencies['type-fest'], '5.10.0', 'Retain the pinned resolver provider declaration dependency');
     assert.equal(manifest.dependencies['@types/picomatch'], '4.0.3', 'Public provider declarations need picomatch types without dev dependencies');
     assert.equal(manifest.devDependencies['type-fest'], undefined);
     assert.equal(manifest.devDependencies['@types/picomatch'], undefined);
@@ -141,8 +141,9 @@ await test('packed public modules, declarations, dependencies and plugin specifi
       },
       files: [join(repository, 'test/types.ts')],
     }));
-    const declarations = spawnSync(process.execPath, [join(repository, 'node_modules/typescript/bin/tsc'), '-p', tsconfig], { cwd: repository, encoding: 'utf8' });
+    const declarations = spawnSync(process.execPath, [join(repository, 'node_modules/typescript/bin/tsc'), '-p', tsconfig, '--listFiles'], { cwd: repository, encoding: 'utf8' });
     assert.equal(declarations.status, 0, `${declarations.stdout}${declarations.stderr}`);
+    assert.doesNotMatch(declarations.stdout, /[\\/]node_modules[\\/](?:eslint-import-context|@typescript-eslint[\\/]utils)[\\/]/, 'Public declarations must not require private resolver provider types');
   }
   finally {
     rmSync(directory, { recursive: true, force: true });

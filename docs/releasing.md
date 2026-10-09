@@ -1,8 +1,20 @@
 # Release setup
 
-The next public package is `@brandonramsey/lint@0.2.0`, from GitHub `brandonramsey/lint`, with public access. This is a new npm identity, not a rename of a registry package. Version `0.2.0` continues the pre-v1 sequence and avoids reusing the existing historical `v0.1.0` Git tag. Keep historical `@brandonramsey/eslint` releases intact.
+`@brandonramsey/lint@0.2.0` was published from GitHub `brandonramsey/lint` on October 9, 2026 with public access. This is a new npm identity, not a rename of a registry package. Version `0.2.0` continues the pre-v1 sequence and avoids reusing the existing historical `v0.1.0` Git tag. Keep historical `@brandonramsey/eslint` releases intact.
 
 Publication requires the full compatibility matrix to pass for the exact tagged commit and a separate explicit release action. The [publish workflow](../.github/workflows/publish.yml) calls the [reusable validation workflow](../.github/workflows/ci.yml) from the same commit, with every checkout pinned to `github.sha`. Its `release-ready` job depends on both the version guard and the entire validation matrix; publication depends on that gate. A failed, cancelled or skipped prerequisite prevents publication. A successful unrelated branch run is never release evidence.
+
+## Published 0.2.0 evidence
+
+Verified on October 9, 2026:
+
+- The [GitHub release](https://github.com/brandonramsey/lint/releases/tag/v0.2.0) identifies tag `v0.2.0` and commit `36941f4cd6e71966786fd6ca608ef773a348e355`.
+- The [tag publication workflow](https://github.com/brandonramsey/lint/actions/runs/37959634490) reports that exact `headSha`. Its version guard, all four Node 22.13.0/24 and TypeScript 5.9.3/6.0.3 validation jobs, release-ready gate and public publication job passed.
+- [Public registry metadata](https://registry.npmjs.org/@brandonramsey%2flint/0.2.0) reports version `0.2.0`, the same `gitHead`, the three promised export paths, exact Oxlint peer and bundled providers. The registry recorded publication at `2026-10-09T16:35:15.421Z`; the package's `latest` tag resolves to `0.2.0`.
+- The [registry tarball](https://registry.npmjs.org/@brandonramsey/lint/-/lint-0.2.0.tgz) matches the registry's SHA-512 integrity. Direct archive inspection found all six public JavaScript/declaration export targets, compiled supporting modules, README/license/changelog/glossary, support/interface docs and editable/reference examples. It contains no root source, test or tooling directories and declares no executable. Historical research remains under `docs/research/`.
+- The [registry provenance statement](https://registry.npmjs.org/-/npm/v1/attestations/@brandonramsey%2flint@0.2.0) names this repository, `.github/workflows/publish.yml`, tag `v0.2.0`, the same commit and workflow run. Its subject digest matches the downloaded tarball. This audit inspected the statement and digest; the [release record](https://github.com/brandonramsey/lint/releases/tag/v0.2.0) separately records npm signature/attestation verification and a fresh registry smoke check performed during release verification.
+
+This establishes publication of `0.2.0`; bootstrap is complete. The one-time instructions below are retained as setup history, and future releases still require explicit authorization and verification of their own tag, matrix and publisher binding. The issue #12 audit installs no consumer and adds no lint-engine behavior tests.
 
 ## Release validation matrix
 
@@ -46,7 +58,7 @@ Verified on October 8, 2026 against reviewed workflow commit [`965039d973ccf7dbe
 | [Matrix-failure rehearsal](https://github.com/brandonramsey/lint/actions/runs/37884209987) | Only the deliberate failure step in Node 22.13.0 / TS 5.9.3 failed; the other three matrix jobs and version guard passed. Gate and publish skipped; result assertion passed. |
 | [Tag-mismatch rehearsal](https://github.com/brandonramsey/lint/actions/runs/37884212640) | Version guard failed at the tag check; all four matrix jobs passed. Gate and publish skipped; result assertion passed. |
 
-Local typechecking, self-lint, all 21 tests, reference drift checks and actionlint 1.7.12 also passed. These runs establish gate behavior for the recorded commit. Every authorized version-tag release must rerun the matrix for its own SHA. npm bootstrap and the new package's trusted-publisher account binding remain unverified maintainer prerequisites.
+Local typechecking, self-lint, all 21 tests, reference drift checks and actionlint 1.7.12 also passed. These runs establish gate behavior for the recorded commit. Every authorized version-tag release must rerun the matrix for its own SHA. npm bootstrap and the new package's trusted-publisher account binding were still unverified at this rehearsal; the later [0.2.0 publication evidence](#published-020-evidence) supersedes that pending status.
 
 ## Identity cutover evidence
 
@@ -62,7 +74,7 @@ Checks on October 8, 2026:
 
 ## One-time npm setup
 
-Complete these steps after the GitHub rename and issue #5, close to the intended release. A new publisher currently expires unless its first successful publish occurs within two days. Verify the current [trusted publishing instructions](https://docs.npmjs.com/trusted-publishers/) and [staging instructions](https://docs.npmjs.com/staged-publishing/) when executing account steps.
+The following procedure records the setup path for the first release. `0.2.0` is now public; do not repeat the name-reservation/bootstrap steps for this package. A new publisher was subject to a two-day first-publication deadline during setup. Verify the current [trusted publishing instructions](https://docs.npmjs.com/trusted-publishers/) and [staging instructions](https://docs.npmjs.com/staged-publishing/) before reusing this procedure for another identity or reconfiguring a publisher.
 
 1. Run `npm login` in your terminal, complete the browser/2FA challenge in npm's own interface, and verify `npm whoami`. Verify that account controls the `@brandonramsey` scope and enable account-level 2FA. Keep credentials out of source and chat.
 2. Check `npm view @brandonramsey/lint name version` again. If the name remains absent, reserve it through staging with a disposable bootstrap version. Create a temporary directory outside the checkout containing only this `package.json`:
@@ -95,9 +107,9 @@ Complete these steps after the GitHub rename and issue #5, close to the intended
 
 ## Each release
 
-1. Review policy/runtime changes against the versioning contract. Update package.json and lockfile versions together; the first new-name release is planned as `0.2.0` with tag `v0.2.0`.
+1. Review policy/runtime changes against the versioning contract. Update package.json and lockfile versions together; choose a new version and matching tag after the published `0.2.0` / `v0.2.0` release.
 2. Run `npm run check`, review generated assets and inspect `npm pack --dry-run`. `npm run test:package` runs packed module/declaration inspection alone without installing a consumer or invoking a lint engine.
-3. Verify the non-publishing gate rehearsals for the reviewed workflow. Complete npm bootstrap and verify the exact trusted-publisher binding described above. Only after explicit release authorization, commit the reviewed release and create/push its matching version tag. The tag workflow reruns all four validation jobs for that exact commit before publishing; prior branch or rehearsal runs cannot replace it.
+3. Verify the non-publishing gate rehearsals for the reviewed workflow and the exact trusted-publisher binding described above. The existing package needs no new bootstrap. Only after explicit release authorization, commit the reviewed release and create/push its matching version tag. The tag workflow reruns all four validation jobs for that exact commit before publishing; prior branch or rehearsal runs cannot replace it.
 4. Verify the GitHub publish job, public npm name/version/access, provenance repository/commit, and registry availability. A configured workflow or packed artifact alone does not establish publication.
 
 Ordinary branch pushes never publish. Tags must match package.json's version. After `1.0`, tighter defaults and raised runtime requirements are major changes; optional additions are minor and nonbreaking fixes are patch changes.

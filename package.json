@@ -1,6 +1,6 @@
 {
   "name": "@brandonramsey/lint",
-  "version": "0.2.0",
+  "version": "1.0.0-rc.1",
   "description": "Strict, opinionated Oxlint configuration for Node TypeScript projects",
   "license": "ISC",
   "type": "module",
@@ -34,7 +34,8 @@
     "oxlint": "1.87.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "scripts": {
     "test": "npm run build:tools && node --test .tooling/test/*.test.js",

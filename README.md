@@ -4,6 +4,14 @@ A strict, opinionated Oxlint configuration for framework-neutral Node TypeScript
 
 `@brandonramsey/lint@0.2.0` was published on October 9, 2026. These instructions apply to that Oxlint release; the published `@brandonramsey/eslint@0.1.0` release used ESLint and remains historical. The [release evidence](docs/releasing.md#published-020-evidence) records the tagged commit's passing matrix, public registry artifact and provenance. The policy is being validated before `1.0`; review upgrades before adopting them.
 
+The approved v1 core policy is available for manual validation as release candidate `1.0.0-rc.1`, using npm's `next` tag. Install the exact candidate and required Oxlint peer in your project:
+
+```fish
+npm install --save-dev --save-exact @brandonramsey/lint@1.0.0-rc.1 oxlint@1.87.0
+```
+
+The [prerelease procedure](docs/releasing.md#prereleases) records the publication boundary. Stable `1.0.0` is not authorized by this prerelease.
+
 ## Install
 
 Install the configuration package and its exact Oxlint peer:

@@ -66,6 +66,7 @@
     "oxc-parser": "0.153.0",
     "oxlint-tsgolint": "7.0.2003",
     "tinyglobby": "0.2.17",
+    "typescript-coverage": "npm:typescript@7.0.2",
     "unrs-resolver": "1.12.2"
   },
   "devDependencies": {

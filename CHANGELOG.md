@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.0 (unreleased)
+## 0.2.0
 
-Prepare the first `@brandonramsey/lint` release with native Oxlint configuration, bundled style/policy plugins, strict TypeScript tooling and public package contract checks. Update current imports, generated examples and package metadata for GitHub `brandonramsey/lint`. npm bootstrap and the same-tag release gate remain prerequisites to publication.
+Add native Oxlint configuration, bundled style/policy plugins, strict TypeScript tooling and public package contract checks for the first `@brandonramsey/lint` release. Update current imports, generated examples and package metadata for GitHub `brandonramsey/lint`.
 
 Gate tag publication on shared four-job Node/TypeScript validation of the exact tagged commit and an exact version-tag check. Add non-publishing success, matrix-failure and tag-mismatch rehearsals; retain public access, trusted publishing and provenance for the new identity. npm bootstrap and publisher verification remain prerequisites to the first release.
 

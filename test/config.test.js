@@ -44,7 +44,7 @@ test('independent roots expose only their own resolver projects and an empty fal
 test('bundled compatibility plugin exports configured import, runtime, polyfill and CommonJS rules', async () => {
   const { default: plugin } = await import('@brandonramsey/eslint/plugins/policy');
   const policy = createConfig({ projectRoot: root });
-  const required = ['no-dupe-args', 'no-octal', 'no-unresolved', 'no-useless-path-segments', 'no-extraneous-dependencies', 'order', 'no-deprecated-api', 'node-builtins', 'es-builtins', 'no-process-exit', 'prefer-node-protocol', 'no-unnecessary-polyfills'];
+  const required = ['export', 'no-dupe-args', 'no-octal', 'no-unresolved', 'no-useless-path-segments', 'no-extraneous-dependencies', 'order', 'no-deprecated-api', 'node-builtins', 'es-builtins', 'no-process-exit', 'prefer-node-protocol', 'no-unnecessary-polyfills'];
   assert.deepEqual(Object.keys(plugin.rules).sort(), [...required, 'no-restricted-syntax'].sort());
   for (const name of required) {
     assert.equal(typeof plugin.rules[name].create, 'function');

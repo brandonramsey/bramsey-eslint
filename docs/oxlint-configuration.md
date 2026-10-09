@@ -55,7 +55,11 @@ The `policy` plugin enables unresolved imports (including CommonJS), redundant i
 
 ## Remaining migration work
 
-This foundation does not complete parent #2 or the release migration. Guarded export checks remain #10 work, and inferred-coverage warnings remain #11. Those rules are not configured until their implementations ship. Disable-comment explanations remain unenforced.
+The `policy/export` rule retains import-x's local export checks and adds guarded star-export inspection through the selected project resolver. Explicit exports override stars; repeated routes to the same underlying binding, namespace exports and static type-only exports are supported. Default exports are excluded from stars. Canonical module/name guards terminate cycles, and inspection failures or limits (512 binding-resolution steps and 10000 inspected modules per file) produce an error on a star-export statement with the failing path or corrective action.
+
+Child inspection uses the bundled `oxc-parser@0.153.0` adapter for JavaScript and TypeScript extensions. This adapter computes UTF-16 locations, including CRLF and Unicode line separators, and supplies the empty token array required by import-x's export maps. It is scoped to export-name inspection, with no general ESLint-parser, scope or token-dependent JSDoc/deprecation compatibility. Oxlint retains its native main-file parser. Graph/program caches belong to each rule context; child loading avoids import-x's process-global export-map cache. Historical research fixtures remain separate from public contract tests.
+
+This foundation does not complete parent #2 or the release migration. Inferred-coverage warnings remain #11 and are not configured until their implementation ships. Disable-comment explanations remain unenforced.
 
 Public contract tests import built and unpacked modules and inspect exports, declarations, metadata, settings, composition and plugin specifiers. They install no temporary consumer and execute no lint engine. Repository self-lint and historical reference generation temporarily use the isolated `scripts/legacy-eslint` policy; those development modules are outside the packed package. TypeScript tooling and Oxlint self-lint conversion belong to #13, and native reference/example generation to #14. Current exhaustive reference outputs remain historical ESLint outputs until that work completes; #12 reconciles the remaining documentation and support boundaries. The `test:consumer` command is retained as a compatibility name for direct packed-package inspection.
 

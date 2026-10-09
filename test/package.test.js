@@ -24,6 +24,7 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
     assert.equal(manifest.dependencies['oxlint-tsgolint'], '7.0.2003');
     assert.equal(manifest.dependencies['@stylistic/eslint-plugin'], '5.10.0');
     assert.equal(manifest.dependencies.eslint, '10.12.0');
+    assert.equal(manifest.dependencies['oxc-parser'], '0.153.0');
     for (const [name, version] of Object.entries({ 'eslint-import-resolver-typescript': '4.4.5', 'eslint-plugin-import-x': '4.17.1', 'eslint-plugin-n': '18.4.1', 'eslint-plugin-unicorn': '77.0.0', 'unrs-resolver': '1.12.2' })) {
       assert.equal(manifest.dependencies[name], version);
       assert.equal(manifest.devDependencies[name], undefined);
@@ -36,6 +37,9 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
       }
     }
     assert.ok(contents.has('dist/options.d.ts'));
+    for (const path of ['dist/export-parser.js', 'dist/export-parser.d.ts', 'dist/export-graph.js', 'dist/export-graph.d.ts']) {
+      assert.ok(contents.has(path), `Missing export-inspection asset ${path}`);
+    }
     const publicModule = await import(pathToFileURL(join(packageRoot, 'dist/index.js')).href);
     assert.deepEqual(Object.keys(publicModule).sort(), ['createConfig', 'default']);
     const config = publicModule.createConfig({ projectRoot: repository });
@@ -44,6 +48,11 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
       assert.ok(plugin.specifier.startsWith(`${packageRoot}/`));
       assert.ok(existsSync(plugin.specifier));
       const { default: bundled } = await import(pathToFileURL(plugin.specifier).href);
+      if (plugin.name === 'policy') {
+        assert.equal(typeof bundled.rules.export.create, 'function');
+        assert.equal(config.rules['policy/export'], 'error');
+        assert.deepEqual(config.settings['import-x/extensions'], ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts']);
+      }
       for (const id of Object.keys(config.rules).filter((name) => name.startsWith(`${plugin.name}/`))) {
         assert.equal(typeof bundled.rules[id.slice(plugin.name.length + 1)]?.create, 'function', `Missing rule ${id}`);
       }

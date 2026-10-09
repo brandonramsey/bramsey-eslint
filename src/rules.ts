@@ -2,6 +2,7 @@ import type { OxlintConfig } from 'oxlint';
 
 // Explicit policy from the validated candidate; no upstream presets.
 export const baseRules = {
+  'policy/export': 'error',
   'policy/no-dupe-args': 'error',
   'policy/no-octal': 'error',
   'policy/no-unresolved': [

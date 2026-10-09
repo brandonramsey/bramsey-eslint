@@ -3,6 +3,7 @@ import importPlugin from 'eslint-plugin-import-x';
 import nodePlugin from 'eslint-plugin-n';
 import unicorn from 'eslint-plugin-unicorn';
 
+import { createExportGraphRule } from '../export-graph.js';
 import { validateOptions } from '../options.js';
 import { createProjectResolver } from '../resolver.js';
 
@@ -11,6 +12,7 @@ import type { ESLint, Rule } from 'eslint';
 
 const providers: Record<string, ESLint.Plugin> = { import: importPlugin, node: nodePlugin, unicorn };
 const selected = {
+  export: ['import', 'export'],
   'no-dupe-args': ['core', 'no-dupe-args'],
   'no-octal': ['core', 'no-octal'],
   'no-restricted-syntax': ['core', 'no-restricted-syntax'],
@@ -46,7 +48,7 @@ function policySettings(value: unknown): { projectRoot: string; resolverOptions:
   return { projectRoot: options.projectRoot, resolverOptions: options.resolverOptions };
 }
 
-function bridge(rule: Rule.RuleModule, imports: boolean): Rule.RuleModule {
+function bridge(rule: Rule.RuleModule, imports: boolean, exports: boolean): Rule.RuleModule {
   return {
     ...rule,
     create(context) {
@@ -60,7 +62,7 @@ function bridge(rule: Rule.RuleModule, imports: boolean): Rule.RuleModule {
       const adapted = Object.create(context, {
         settings: { value: { ...context.settings, 'import-x/resolver-next': [resolver] }, enumerable: true },
       }) as Rule.RuleContext;
-      return rule.create(adapted);
+      return (exports ? createExportGraphRule(rule, resolver) : rule).create(adapted);
     },
   };
 }
@@ -71,7 +73,7 @@ const rules = Object.fromEntries(Object.entries(selected).map(([name, [owner, id
   if (rule === undefined) {
     throw new Error(`Bundled policy provider is missing ${owner}/${id}.`);
   }
-  return [name, bridge(rule, owner === 'import')];
+  return [name, bridge(rule, owner === 'import', name === 'export')];
 }));
 
 const plugin: ESLint.Plugin & { rules: Record<string, Rule.RuleModule> } = { meta: { name: '@brandonramsey/eslint/policy' }, rules };

@@ -6,7 +6,7 @@ import { createExportParser } from './export-parser.js';
 
 import type { createProjectResolver } from './resolver.js';
 import type { Rule } from 'eslint';
-import type { Program } from 'oxc-parser';
+import type { ExportDefaultDeclaration, Program } from 'oxc-parser';
 
 const ambiguous = Symbol('ambiguous export');
 type Binding = string | typeof ambiguous | null;
@@ -26,6 +26,13 @@ function namespaceBinding(module: Module | null): Binding {
   return module === null ? null : identity(module.map.path, '*namespace*');
 }
 
+function defaultName(declaration: ExportDefaultDeclaration['declaration']): string {
+  if (declaration.type === 'FunctionDeclaration' || declaration.type === 'ClassDeclaration' || declaration.type === 'TSDeclareFunction' || declaration.type === 'TSInterfaceDeclaration') {
+    return nameOf(declaration.id) ?? 'default';
+  }
+  return 'default';
+}
+
 function localName(program: Program, name: string): string {
   for (const node of program.body) {
     if (node.type === 'ExportNamedDeclaration') {
@@ -35,7 +42,8 @@ function localName(program: Program, name: string): string {
       }
     }
     if (name === 'default' && node.type === 'ExportDefaultDeclaration') {
-      return node.declaration.type === 'Identifier' ? node.declaration.name : 'id' in node.declaration ? nameOf(node.declaration.id) ?? name : name;
+      // Default expressions create a separate binding; named declarations share theirs.
+      return defaultName(node.declaration);
     }
   }
   return name;

@@ -1,0 +1,1506 @@
+{
+  "assessedAtUtc": "2026-10-09T22:21:02.610205+00:00",
+  "sourceCommit": "27a7dd5bfd59c143f530714809d20f773375c20c",
+  "lab": "/private/tmp/lint-issue7-jmglz9pq",
+  "commands": [
+    {
+      "name": "pack",
+      "command": [
+        "npm",
+        "pack",
+        "--json",
+        "--pack-destination",
+        "/private/tmp/lint-issue7-jmglz9pq"
+      ],
+      "cwd": "/Users/bramsey/Library/Mobile Documents/com~apple~CloudDocs/Projects/bramsey-eslint",
+      "exitCode": 0,
+      "seconds": 4.75
+    },
+    {
+      "name": "install-baseline",
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--registry=https://registry.npmjs.org",
+        "--cache",
+        "/private/tmp/lint-issue7-jmglz9pq/npm-cache"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/baseline",
+      "exitCode": 0,
+      "seconds": 1.515
+    },
+    {
+      "name": "install-candidate",
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--registry=https://registry.npmjs.org",
+        "--cache",
+        "/private/tmp/lint-issue7-jmglz9pq/npm-cache"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 1.069
+    },
+    {
+      "name": "install-packed",
+      "command": [
+        "npm",
+        "install",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--registry=https://registry.npmjs.org",
+        "--cache",
+        "/private/tmp/lint-issue7-jmglz9pq/npm-cache",
+        "--save-dev",
+        "/private/tmp/lint-issue7-jmglz9pq/brandonramsey-lint-0.2.0.tgz",
+        "oxlint@1.87.0",
+        "typescript@7.0.2"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 8.912
+    },
+    {
+      "name": "compiler-baseline",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/baseline",
+      "exitCode": 0,
+      "seconds": 0.941
+    },
+    {
+      "name": "tests-baseline",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/baseline",
+      "exitCode": 0,
+      "seconds": 3.821
+    },
+    {
+      "name": "compiler-candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.745
+    },
+    {
+      "name": "tests-candidate",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 3.766
+    },
+    {
+      "name": "lint-candidate",
+      "command": [
+        "node_modules/.bin/oxlint",
+        "--config",
+        ".oxlint-compat.config.mjs",
+        "--format",
+        "json",
+        "."
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 1,
+      "seconds": 1.606
+    },
+    {
+      "name": "compiler-adjusted",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.322
+    },
+    {
+      "name": "tests-adjusted",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 3.453
+    },
+    {
+      "name": "lint-adjusted",
+      "command": [
+        "node_modules/.bin/oxlint",
+        "--config",
+        ".oxlint-compat.config.mjs",
+        "--format",
+        "json",
+        "."
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 1,
+      "seconds": 0.97
+    },
+    {
+      "name": "coverage",
+      "command": [
+        "node_modules/.bin/oxlint",
+        "--config",
+        ".oxlint-compat.config.mjs",
+        "--debug",
+        "files",
+        "."
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.381
+    },
+    {
+      "name": "public-ts7.0.2",
+      "command": [
+        "node",
+        "/private/tmp/lint-issue7-jmglz9pq/candidate/node_modules/typescript/bin/tsc",
+        "--project",
+        ".public-config.json",
+        "--noEmit"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.186
+    },
+    {
+      "name": "public-ts6.0.3",
+      "command": [
+        "node",
+        "/Users/bramsey/Library/Mobile Documents/com~apple~CloudDocs/Projects/bramsey-eslint/node_modules/typescript/bin/tsc",
+        "--project",
+        ".public-config.json",
+        "--noEmit"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.752
+    },
+    {
+      "name": "public-ts5.9.3",
+      "command": [
+        "node",
+        "/private/tmp/lint-declaration-fix-j7a2y8cf/compiler-minimum/node_modules/typescript/bin/tsc",
+        "--project",
+        ".public-config.json",
+        "--noEmit"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.78
+    },
+    {
+      "name": "dependency-tree",
+      "command": [
+        "npm",
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "cwd": "/private/tmp/lint-issue7-jmglz9pq/candidate",
+      "exitCode": 0,
+      "seconds": 0.295
+    }
+  ],
+  "consumer": {
+    "source": "/Users/bramsey/Library/Mobile Documents/com~apple~CloudDocs/Projects/personal-assistant-project",
+    "head": "92976709455f3d5888e474236ddeedbd4b0de616",
+    "branch": "codex/oxlint-rules",
+    "status": "",
+    "indexSha256": "b5beb8b6282d4f82d7a224c61a1c0183c392e9d8464d79ee21296749276339ff",
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "cefaca50d67b2d2bc6ae46dfc9cdb3916c527e44f621d87ef070f9325f6c327c",
+        "mode": "0o644"
+      },
+      {
+        "path": "AGENTS.md",
+        "sha256": "385fb926072a04d6a109408737ba81b624572c29786bd246f91ed029485a12ac",
+        "mode": "0o644"
+      },
+      {
+        "path": "GLOSSARY.md",
+        "sha256": "2fcb2ae8a8d24e3c3c147c7bd6f69fef843d0be751c288816bc658a70ac4f027",
+        "mode": "0o644"
+      },
+      {
+        "path": "README.md",
+        "sha256": "5a73552ab8c8b388f0fb358c60410f14bcef257530f2b2dfdbea5d6bdd7fb1e7",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0001-build-a-typescript-learning-application.md",
+        "sha256": "bd8793e2bb9073e3f759c28e965bcad427ebf005f5a2b49118bf7d997679aedb",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0002-retain-vault-authority-during-evaluation.md",
+        "sha256": "f7369239c0b578cf975a93bfa3cf1d523ab9525668b6fccb4fcebb5809a5ef41",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0003-use-langsmith-with-personal-content-redacted.md",
+        "sha256": "9e9820be5ed25a5d5573bf305a197139b9d8308cd52f6eff1e7dac3c76c0ba28",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0004-bound-agentic-retrieval-to-selected-vault-sources.md",
+        "sha256": "7a5ef2dcf6770480b5df6917f6b40ff10a32d1f5ac4539007e9542d38f5e4faf",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0005-start-with-local-inference-and-direct-calendar-access.md",
+        "sha256": "ba8fe4d3af605f7349fecd8c97aedbdcbdb2f2e35750f5aa1eb984095a6466f2",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0006-manage-the-daily-cycle-with-automatic-finalization-recognition.md",
+        "sha256": "20b0d06b348d25aeccc51c3dcb0e230aeb0f78721391b38cd5c608ecb0cf995d",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0007-bound-normal-catch-up-and-report-older-pending-notes.md",
+        "sha256": "24cf0575aa46a6e4683bcc9e9faa82814c1cb4c5e9e5aa4f904ca2dc75c216ff",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/agents/domain.md",
+        "sha256": "3d06b4f231ec0dcd28d1c23dd2dfefb2ffa86629557363715c75cc7142becf1c",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/agents/issue-tracker.md",
+        "sha256": "f9d154a554329dfa1285545c325e7ee399e6d537d2a5142dabc8ae7151e12f00",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/agents/triage-labels.md",
+        "sha256": "dc3ae95e347b0120cd6969192bc7287caee288ec5f4a6f1afe10961f86723127",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/local-model-check.md",
+        "sha256": "63b5cf1bec9959e81bd4d764f946e4ba4fc467073c6b9afc5a8e2bd6e796f511",
+        "mode": "0o644"
+      },
+      {
+        "path": "jest.config.mjs",
+        "sha256": "6d32798415c18fbac99a0204d9c61dd801dc2a8a53dbb6381d539545a9244aaa",
+        "mode": "0o644"
+      },
+      {
+        "path": "knip.ts",
+        "sha256": "b1455e5484a739e2cb50cff8b3920272f6df4dc732bf3cb4081de779c3a01f35",
+        "mode": "0o644"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "d2337c84210c23a5cd34c8efcdee9dfc116d784dcf9ed75567c3f6ecb223f3fb",
+        "mode": "0o644"
+      },
+      {
+        "path": "package.json",
+        "sha256": "8dcb3e67d34ca6f013057aa3e031793f67805b159b86e9343343c4421defd26d",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-model-measurements.ts",
+        "sha256": "a27b3d5ccc9da747ea2ab1086d0234414e208e85c34263976045ec6a3e1f4bc1",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-ollama-http.ts",
+        "sha256": "aaafc01a7920306cab22a30a707b15942e384edc5814234caa646a5abeb6111f",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-structured-output.ts",
+        "sha256": "4faf21a17dfee0dba69b820860e4e97c2a05377a116f68b74c46dd026aae2acc",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-tool-exchange.ts",
+        "sha256": "7cd186ef74979c5f4ad0112af4e1590e9d8ea0af4860d82faf9ac7e045c64ee2",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-tool-requests.ts",
+        "sha256": "a9a1df3bb5d01ca57008902bb3851c5fae5429b4da90d32748b56a53da26e140",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/logger.ts",
+        "sha256": "b0603591c24a882083bff81ba1f9c66392b34323f2e39cf1e11ad815a42371c5",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/ollama.ts",
+        "sha256": "94040963f054f5be163780aef7bdd2ffaee5d7da604bd9825ddf2f202c9a7efa",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/output.ts",
+        "sha256": "bcd36345607713a0b1d8fe9b7f6c66fcaff3f105d7ff406ad63f64e0bebd9475",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/tools.ts",
+        "sha256": "098f0a17dc9b9d8023c4d62b758a892ba4aa5e21e51399eef8befee13f7c20d2",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/types.ts",
+        "sha256": "a4463ad8170c0acea9230b07602f01f748cbfdba8247ddf2355feaab330cd7aa",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/first-call.test.mjs",
+        "sha256": "64f8fc6dab82439c7c9848173001448edc3dec0800496796c44f4d1b47eddf09",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-call.test.mjs",
+        "sha256": "8b45d45fd1266cceafab65d43b2af8d67a22b3933753d81f5605acd8ebb86471",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-config.test.mjs",
+        "sha256": "09bd05acb392ffc37b21c21a2c52293b9a0a58342ff31f89d1d003c7dac5ace4",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-identity.test.mjs",
+        "sha256": "12385ee0213a276aecd53e33ba4265f07c54a2b84093e73326afc2062a48845e",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-load.test.mjs",
+        "sha256": "bb10f689b211389eba0635188a62c3e111b058a646fa9d9a86a76a354e96f2f6",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-usage.test.mjs",
+        "sha256": "8588ab26a8502a002da4308e42400e43aa11f5a19b8c895c6fc32f95474ac73e",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/structured-call.test.mjs",
+        "sha256": "32540cd9b8fdaa10609b0e73da56401075a4805e25927fa1f5ef8cdc46dcbac8",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/tool-call.test.mjs",
+        "sha256": "57ab53af644129332c21572f2cf904fb657d9ec7215d9a144ce884ae809f2c84",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/tool-exchange.test.mjs",
+        "sha256": "90fa858498e2cd5b3a668eb02a561bd6948ea6614dae8487a9f852094a93a709",
+        "mode": "0o644"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "07400e953adb587be106d3b0d742ebfce978067c182ac88112e39e6f13525214",
+        "mode": "0o644"
+      }
+    ]
+  },
+  "candidate": {
+    "id": "@brandonramsey/lint@0.2.0",
+    "filename": "brandonramsey-lint-0.2.0.tgz",
+    "size": 420499,
+    "unpackedSize": 2374897,
+    "shasum": "1f327e4dde0901b31c26d3cf9212448202fcc0b6",
+    "integrity": "sha512-w5ZkWWH9xZ0IYd7nyPuvgV4UMgeMw1jEU1D7m+YkLqu+wS4JdTGazz5ehFrIqLVssxAleAvoPw9IvPazGjgiCg==",
+    "sha256": "53830f02dc2961fa6de282b31345b7c55c1068194c751f01e66672b3a792b8df",
+    "files": [
+      "CHANGELOG.md",
+      "GLOSSARY.md",
+      "LICENSE",
+      "README.md",
+      "dist/export-graph.d.ts",
+      "dist/export-graph.js",
+      "dist/export-parser.d.ts",
+      "dist/export-parser.js",
+      "dist/index.d.ts",
+      "dist/index.js",
+      "dist/options.d.ts",
+      "dist/options.js",
+      "dist/patterns.d.ts",
+      "dist/patterns.js",
+      "dist/plugins/policy.d.ts",
+      "dist/plugins/policy.js",
+      "dist/plugins/style.d.ts",
+      "dist/plugins/style.js",
+      "dist/resolver.d.ts",
+      "dist/resolver.js",
+      "dist/rules.d.ts",
+      "dist/rules.js",
+      "docs/adr/0001-framework-neutral-first-release.md",
+      "docs/adr/0002-explicit-strict-and-opinionated-policy.md",
+      "docs/adr/0003-eslint-owns-formatting.md",
+      "docs/adr/0004-exhaustive-rule-reference.md",
+      "docs/adr/0005-package-lint-dependencies.md",
+      "docs/adr/0006-enable-typed-checks-by-default.md",
+      "docs/adr/0007-target-eslint-10-flat-config.md",
+      "docs/adr/0008-support-monorepos-and-project-references.md",
+      "docs/adr/0009-export-default-config-and-factory-as-esm.md",
+      "docs/adr/0010-default-application-target-node-24.md",
+      "docs/adr/0011-stabilize-the-policy-before-one-point-zero.md",
+      "docs/adr/0012-validate-and-publish-through-github-actions.md",
+      "docs/adr/0013-use-stylistic-in-the-planned-oxlint-stack.md",
+      "docs/adr/0014-migrate-to-oxlint-and-lint-identities.md",
+      "docs/adr/0015-warn-for-inferred-typescript-coverage.md",
+      "docs/adr/0016-use-native-parsing-with-package-aware-policy.md",
+      "docs/adr/0017-publish-configuration-and-plugins-without-a-runner.md",
+      "docs/adr/0018-use-native-typed-project-coverage.md",
+      "docs/agents/domain.md",
+      "docs/agents/issue-tracker.md",
+      "docs/agents/triage-labels.md",
+      "docs/design.md",
+      "docs/oxlint-configuration.md",
+      "docs/pre-v1-ticket-drafts.md",
+      "docs/releasing.md",
+      "docs/research/oxlint-candidate-upstream.md",
+      "docs/research/oxlint-candidate/configuration-contract-sources.md",
+      "docs/research/oxlint-candidate/configuration-contracts.mjs",
+      "docs/research/oxlint-candidate/configuration-results.json",
+      "docs/research/oxlint-candidate/description-preflight.mjs",
+      "docs/research/oxlint-candidate/description-results.json",
+      "docs/research/oxlint-candidate/export-candidate-results.json",
+      "docs/research/oxlint-candidate/export-graph.mjs",
+      "docs/research/oxlint-candidate/export-original-results.json",
+      "docs/research/oxlint-candidate/export-parser.mjs",
+      "docs/research/oxlint-candidate/export-probe.mjs",
+      "docs/research/oxlint-candidate/fixtures.mjs",
+      "docs/research/oxlint-candidate/path-probe-results.json",
+      "docs/research/oxlint-candidate/public-interface.md",
+      "docs/research/oxlint-candidate/README.md",
+      "docs/research/oxlint-candidate/results.json",
+      "docs/research/oxlint-candidate/timing-summary.json",
+      "docs/research/oxlint-candidate/toolchain-lock.json",
+      "docs/research/oxlint-candidate/toolchain.json",
+      "docs/research/oxlint-candidate/validate.mjs",
+      "docs/research/oxlint-rule-coverage.md",
+      "docs/research/personal-assistant-compatibility/declaration-fix.md",
+      "docs/research/personal-assistant-compatibility/evidence/assessment.json",
+      "docs/research/personal-assistant-compatibility/evidence/compiler-public-ts6.stdout",
+      "docs/research/personal-assistant-compatibility/evidence/compiler-public-ts7.stdout",
+      "docs/research/personal-assistant-compatibility/evidence/declaration-fix-fixture.mts.txt",
+      "docs/research/personal-assistant-compatibility/evidence/declaration-fix-repository-check.txt",
+      "docs/research/personal-assistant-compatibility/evidence/declaration-fix-tsconfig.json",
+      "docs/research/personal-assistant-compatibility/evidence/declaration-fix.json",
+      "docs/research/personal-assistant-compatibility/evidence/effective-profiles.json",
+      "docs/research/personal-assistant-compatibility/evidence/install-public.txt",
+      "docs/research/personal-assistant-compatibility/evidence/installed-packages.json",
+      "docs/research/personal-assistant-compatibility/evidence/lab-config.mjs.txt",
+      "docs/research/personal-assistant-compatibility/evidence/lint-adjusted.json",
+      "docs/research/personal-assistant-compatibility/evidence/lint-original.json",
+      "docs/research/personal-assistant-compatibility/evidence/public-config-fixture.mts.txt",
+      "docs/research/personal-assistant-compatibility/evidence/public-config-tsconfig.json",
+      "docs/research/personal-assistant-compatibility/evidence/repository-check.txt",
+      "docs/research/personal-assistant-compatibility/evidence/tests-adjusted.txt",
+      "docs/research/personal-assistant-compatibility/evidence/tests-baseline-unrestricted.txt",
+      "docs/research/personal-assistant-compatibility/evidence/tests-baseline.txt",
+      "docs/research/personal-assistant-compatibility/evidence/tests-candidate.txt",
+      "docs/research/personal-assistant-compatibility/follow-up-ticket-drafts.md",
+      "docs/research/personal-assistant-compatibility/README.md",
+      "docs/research/personal-assistant-compatibility/toolchain.md",
+      "docs/rule-policy.md",
+      "docs/support.md",
+      "examples/basic-config.mjs",
+      "examples/complete-config.mjs",
+      "examples/README.md",
+      "examples/rules/declarations-commonjs.mjs",
+      "examples/rules/declarations-esm.mjs",
+      "examples/rules/javascript-commonjs.mjs",
+      "examples/rules/javascript-esm.mjs",
+      "examples/rules/javascript-test-commonjs.mjs",
+      "examples/rules/javascript-test-esm.mjs",
+      "examples/rules/typescript-commonjs.mjs",
+      "examples/rules/typescript-esm.mjs",
+      "examples/rules/typescript-syntax-commonjs.mjs",
+      "examples/rules/typescript-syntax-esm.mjs",
+      "examples/rules/typescript-syntax-test-commonjs.mjs",
+      "examples/rules/typescript-syntax-test-esm.mjs",
+      "examples/rules/typescript-test-commonjs.mjs",
+      "examples/rules/typescript-test-esm.mjs",
+      "package.json"
+    ],
+    "manifest": {
+      "name": "@brandonramsey/lint",
+      "version": "0.2.0",
+      "description": "Strict, opinionated Oxlint configuration for Node TypeScript projects",
+      "license": "ISC",
+      "type": "module",
+      "exports": {
+        ".": {
+          "types": "./dist/index.d.ts",
+          "import": "./dist/index.js"
+        },
+        "./plugins/style": {
+          "types": "./dist/plugins/style.d.ts",
+          "import": "./dist/plugins/style.js"
+        },
+        "./plugins/policy": {
+          "types": "./dist/plugins/policy.d.ts",
+          "import": "./dist/plugins/policy.js"
+        }
+      },
+      "files": [
+        "dist",
+        "examples",
+        "docs",
+        "LICENSE",
+        "README.md",
+        "CHANGELOG.md",
+        "GLOSSARY.md"
+      ],
+      "engines": {
+        "node": "^22.13.0 || >=24.0.0"
+      },
+      "peerDependencies": {
+        "oxlint": "1.87.0"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "scripts": {
+        "test": "npm run build:tools && node --test .tooling/test/*.test.js",
+        "lint": "npm run build:tools && oxlint --config oxlint.config.js .",
+        "typecheck": "npm run build && tsc --noEmit",
+        "references": "npm run build:tools && node .tooling/scripts/generate-reference.js",
+        "references:check": "npm run build:tools && node .tooling/scripts/generate-reference.js --check",
+        "test:package": "npm run build:tools && node --test .tooling/test/package.test.js",
+        "test:consumer": "npm run test:package",
+        "check": "npm run typecheck && npm run lint && npm test && npm run references:check",
+        "prepublishOnly": "npm run check",
+        "build": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\" && tsc -p tsconfig.build.json",
+        "build:tools": "npm run build && node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('.tooling', { recursive: true, force: true }); rmSync('oxlint.config.js', { force: true });\" && tsc -p tsconfig.tools.json && node --input-type=module -e \"import { copyFileSync } from 'node:fs'; copyFileSync('.tooling/oxlint.config.js', 'oxlint.config.js');\"",
+        "prepack": "npm run build"
+      },
+      "keywords": [
+        "oxlint",
+        "lint",
+        "typescript",
+        "node",
+        "lint-config"
+      ],
+      "dependencies": {
+        "@stylistic/eslint-plugin": "5.10.0",
+        "@types/picomatch": "4.0.3",
+        "eslint": "10.12.0",
+        "eslint-import-resolver-typescript": "4.4.5",
+        "eslint-plugin-import-x": "4.17.1",
+        "eslint-plugin-n": "18.4.1",
+        "eslint-plugin-unicorn": "77.0.0",
+        "globals": "17.13.0",
+        "oxc-parser": "0.153.0",
+        "oxlint-tsgolint": "7.0.2003",
+        "tinyglobby": "0.2.17",
+        "type-fest": "5.10.0",
+        "unrs-resolver": "1.12.2"
+      },
+      "devDependencies": {
+        "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
+        "@types/node": "24.19.1",
+        "oxlint": "1.87.0",
+        "picomatch": "4.0.7",
+        "typescript": "6.0.3",
+        "typescript-eslint": "8.71.1"
+      },
+      "author": "Brandon Ramsey",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brandonramsey/lint.git"
+      },
+      "bugs": {
+        "url": "https://github.com/brandonramsey/lint/issues"
+      },
+      "homepage": "https://github.com/brandonramsey/lint#readme"
+    }
+  },
+  "payloadComparison": {
+    "reference": "issue #6 declaration-fix tarball",
+    "comparedFiles": [
+      "package/dist/export-graph.d.ts",
+      "package/dist/export-graph.js",
+      "package/dist/export-parser.d.ts",
+      "package/dist/export-parser.js",
+      "package/dist/index.d.ts",
+      "package/dist/index.js",
+      "package/dist/options.d.ts",
+      "package/dist/options.js",
+      "package/dist/patterns.d.ts",
+      "package/dist/patterns.js",
+      "package/dist/plugins/policy.d.ts",
+      "package/dist/plugins/policy.js",
+      "package/dist/plugins/style.d.ts",
+      "package/dist/plugins/style.js",
+      "package/dist/resolver.d.ts",
+      "package/dist/resolver.js",
+      "package/dist/rules.d.ts",
+      "package/dist/rules.js",
+      "package/examples/README.md",
+      "package/examples/basic-config.mjs",
+      "package/examples/complete-config.mjs",
+      "package/examples/rules/declarations-commonjs.mjs",
+      "package/examples/rules/declarations-esm.mjs",
+      "package/examples/rules/javascript-commonjs.mjs",
+      "package/examples/rules/javascript-esm.mjs",
+      "package/examples/rules/javascript-test-commonjs.mjs",
+      "package/examples/rules/javascript-test-esm.mjs",
+      "package/examples/rules/typescript-commonjs.mjs",
+      "package/examples/rules/typescript-esm.mjs",
+      "package/examples/rules/typescript-syntax-commonjs.mjs",
+      "package/examples/rules/typescript-syntax-esm.mjs",
+      "package/examples/rules/typescript-syntax-test-commonjs.mjs",
+      "package/examples/rules/typescript-syntax-test-esm.mjs",
+      "package/examples/rules/typescript-test-commonjs.mjs",
+      "package/examples/rules/typescript-test-esm.mjs"
+    ],
+    "changedFiles": [],
+    "removedFiles": [],
+    "changedManifestFields": []
+  },
+  "runtime": {
+    "node": "v24.21.0",
+    "npm": "11.19.0",
+    "platform": "Darwin arm64"
+  },
+  "installedVersions": {
+    "typescript": "7.0.2",
+    "oxlint": "1.87.0",
+    "oxlint-tsgolint": "7.0.2003",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "eslint": "10.12.0"
+  },
+  "lint": {
+    "diagnosticCount": 174,
+    "adjustedDiagnosticCount": 174,
+    "diagnosticsSha256": "bd9863532f6078c38c8aa833b0ac5de9a50e3d7444bc9d778a4e28e9552a0778",
+    "rawOrderIdentical": false,
+    "normalizedDiagnosticsIdentical": true,
+    "matchesIssue6Diagnostics": true,
+    "normalization": "Sort complete diagnostic objects serialized with sorted keys; ignore only array order.",
+    "normalizedDiagnosticsSha256": "82b71955b7b7b921812d307951d2876ddaa97d130de5e0eb667634cc152f3ae0",
+    "selectedFiles": [
+      "jest.config.mjs",
+      "knip.ts",
+      "scripts/demo-model-measurements.ts",
+      "scripts/demo-ollama-http.ts",
+      "scripts/demo-structured-output.ts",
+      "scripts/demo-tool-exchange.ts",
+      "scripts/demo-tool-requests.ts",
+      "src/logger.ts",
+      "src/ollama.ts",
+      "src/output.ts",
+      "src/tools.ts",
+      "src/types.ts",
+      "tests/first-call.test.mjs",
+      "tests/measure-call.test.mjs",
+      "tests/measure-config.test.mjs",
+      "tests/measure-identity.test.mjs",
+      "tests/measure-load.test.mjs",
+      "tests/measure-usage.test.mjs",
+      "tests/structured-call.test.mjs",
+      "tests/tool-call.test.mjs",
+      "tests/tool-exchange.test.mjs"
+    ],
+    "selectedCount": 21
+  },
+  "preservation": {
+    "originalUnchanged": true,
+    "scope": "All installation, compiler adjustments and linting occurred in isolated copies. Ignored credentials/configuration were neither inspected nor copied."
+  },
+  "registry": {
+    "typescriptLatest": {
+      "url": "https://registry.npmjs.org/typescript/latest",
+      "name": "typescript",
+      "version": "7.0.2",
+      "gitHead": "2bd066d87f5bafd315be9f40889d0a60b9e58e0b",
+      "engines": {
+        "node": ">=16.20.0"
+      },
+      "repository": {
+        "url": "git+https://github.com/microsoft/TypeScript.git",
+        "type": "git"
+      },
+      "exports": {
+        ".": "./lib/version.cjs",
+        "./unstable/fs": "./dist/api/fs.js",
+        "./package.json": "./package.json",
+        "./unstable/ast": "./dist/ast/index.js",
+        "./unstable/sync": "./dist/api/sync/api.js",
+        "./unstable/async": "./dist/api/async/api.js",
+        "./unstable/proto": "./dist/api/proto.js",
+        "./unstable/ast/is": "./dist/ast/is.js",
+        "./unstable/ast/clone": "./dist/ast/clone.js",
+        "./unstable/ast/utils": "./dist/ast/utils.js",
+        "./unstable/ast/factory": "./dist/ast/factory.generated.js",
+        "./unstable/ast/scanner": "./dist/ast/scanner.js",
+        "./unstable/ast/visitor": "./dist/ast/visitor.js"
+      },
+      "dist": {
+        "shasum": "9ec773d7954a8c182c17cc5bbd575aa28bc51582",
+        "tarball": "https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz",
+        "fileCount": 416,
+        "integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+        "signatures": [
+          {
+            "sig": "MEUCIHn8lVrLBbTJToaOcV3IJ0oVPREmFT5BhqmO2niVNCaSAiEAjbubGExGAYMSJN39iEgX/eDYhwBGnh/iyyGTRigXGjY=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "unpackedSize": 2497498
+      }
+    },
+    "typescriptEslint": {
+      "url": "https://registry.npmjs.org/typescript-eslint/8.71.1",
+      "name": "typescript-eslint",
+      "version": "8.71.1",
+      "engines": {
+        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+      },
+      "peerDependencies": {
+        "eslint": "^8.57.0 || ^9.0.0 || ^10.0.0",
+        "typescript": ">=4.8.4 <6.1.0"
+      },
+      "repository": {
+        "url": "https://github.com/typescript-eslint/typescript-eslint.git",
+        "type": "git",
+        "directory": "packages/typescript-eslint"
+      },
+      "exports": {
+        ".": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+      },
+      "dist": {
+        "shasum": "dabf06af972d975ea25b27d73e161193ea41075d",
+        "tarball": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.71.1.tgz",
+        "fileCount": 13,
+        "integrity": "sha512-oiNVPC3/NbV1FpaHU07l8O6ynqG9v4PAiW2WvTrAmZdR0f2HI/gE668ElMLCK7Xbsu5k2fK5C4fXNiq05j7/nQ==",
+        "signatures": [
+          {
+            "sig": "MEYCIQDwPC8MIiJtPwkBCpPeOzK81Jq/R22BNKlNR3e48CfLbgIhAKxWrj6J8hc8ZELC82FLO/VmKAhWG3agLXCTRaL9BibT",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "sig": "MEYCIQCu7RVjWUiF0lRGLcC6K6y6yMV0s7pkkYqYdgh6za/lFAIhAKYwqVjMjYmLxLTpu5G4xEEl4DJD3CkNI1k2+mEvtwzG",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/typescript-eslint@8.71.1",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 42688
+      }
+    },
+    "oxlint": {
+      "url": "https://registry.npmjs.org/oxlint/1.87.0",
+      "name": "oxlint",
+      "version": "1.87.0",
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peerDependencies": {
+        "vite-plus": "*",
+        "oxlint-tsgolint": ">=7.0.2003"
+      },
+      "repository": {
+        "url": "git+https://github.com/oxc-project/oxc",
+        "type": "git",
+        "directory": "npm/oxlint"
+      },
+      "exports": {
+        ".": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        },
+        "./plugins-dev": {
+          "types": "./dist/plugins-dev.d.ts",
+          "default": "./dist/plugins-dev.js"
+        },
+        "./package.json": "./package.json"
+      },
+      "dist": {
+        "shasum": "840dde7ec9e0b52945de83c103054a23b544323b",
+        "tarball": "https://registry.npmjs.org/oxlint/-/oxlint-1.87.0.tgz",
+        "fileCount": 18,
+        "integrity": "sha512-drxVlaW7Oqq7wSy1CN25znRu00aRq8n57Q2wniJRxCmtYVz07ufCm7EVDPQFZURrTgQIjzKrVEHAD/HcvJXObg==",
+        "signatures": [
+          {
+            "sig": "MEUCIHOoKEv/9Z/WPfO0sAXfAP/FrJLGKJMCbo2y+Nhes0+XAiEA2Awpqrb6SkgYMMAqrjiPWJeTebfTngD4rulhYlcI6d8=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "sig": "MEQCICbboYwfnYuEO/COWoS3hyuYtTX2u/hmg/NIBdpts7n2AiBeumCV4ssLJECwtCAYEJWdgDg7nd5C7I3rjw3s4aE9nw==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/oxlint@1.87.0",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 2414399
+      }
+    },
+    "typedEngine": {
+      "url": "https://registry.npmjs.org/oxlint-tsgolint/7.0.2003",
+      "name": "oxlint-tsgolint",
+      "version": "7.0.2003",
+      "repository": {
+        "url": "github:oxc-project/tsgolint",
+        "type": "git"
+      },
+      "dist": {
+        "shasum": "ad35592d0fde9ffd279c9befe3275a81a787573f",
+        "tarball": "https://registry.npmjs.org/oxlint-tsgolint/-/oxlint-tsgolint-7.0.2003.tgz",
+        "fileCount": 4,
+        "integrity": "sha512-VnK4zlqgmgq/7ZcjzCk/WpN8kKFsYGcB85Io9qT3wL4K8Un3RKmJkp793crNETieMusPMKOA4a+Mw2wbteI6TQ==",
+        "signatures": [
+          {
+            "sig": "MEUCIBZFSwUcg2iQNMhHU/fH/DO42p4cHSoY4a1EEY2y/WhEAiEAxAXE8dPpQDLpmLefPHPCCl9nxWKGz+tt9Oxvan/kyZk=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "sig": "MEYCIQCgXmoRi5EKtGeRQ6MXP7sVlyqaRyneuyuWjdllT4BfywIhAK5TNVeQI5T1HAgKp0KO1q44pAHhlzfbcM/zhpkpFRQp",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/oxlint-tsgolint@7.0.2003",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 15912
+      }
+    },
+    "stylistic": {
+      "url": "https://registry.npmjs.org/@stylistic%2feslint-plugin/5.10.0",
+      "name": "@stylistic/eslint-plugin",
+      "version": "5.10.0",
+      "engines": {
+        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+      },
+      "peerDependencies": {
+        "eslint": "^9.0.0 || ^10.0.0"
+      },
+      "repository": {
+        "url": "git+https://github.com/eslint-stylistic/eslint-stylistic.git",
+        "type": "git",
+        "directory": "packages/eslint-plugin"
+      },
+      "exports": {
+        ".": {
+          "types": "./dist/dts/index.d.ts",
+          "import": "./dist/index.js",
+          "default": "./dist/index.js"
+        },
+        "./rules/semi": "./dist/rules/semi.js",
+        "./rule-options": {
+          "types": "./dist/dts/rule-options.d.ts"
+        },
+        "./rules/indent": "./dist/rules/indent.js",
+        "./rules/quotes": "./dist/rules/quotes.js",
+        "./rules/max-len": "./dist/rules/max-len.js",
+        "./rules/no-tabs": "./dist/rules/no-tabs.js",
+        "./rules/eol-last": "./dist/rules/eol-last.js",
+        "./rules/wrap-iife": "./dist/rules/wrap-iife.js",
+        "./rules/jsx-indent": "./dist/rules/jsx-indent.js",
+        "./rules/jsx-quotes": "./dist/rules/jsx-quotes.js",
+        "./rules/list-style": "./dist/rules/list-style.js",
+        "./rules/new-parens": "./dist/rules/new-parens.js",
+        "./rules/semi-style": "./dist/rules/semi-style.js",
+        "./rules/wrap-regex": "./dist/rules/wrap-regex.js",
+        "./rules/brace-style": "./dist/rules/brace-style.js",
+        "./rules/comma-style": "./dist/rules/comma-style.js",
+        "./rules/jsx-newline": "./dist/rules/jsx-newline.js",
+        "./rules/key-spacing": "./dist/rules/key-spacing.js",
+        "./rules/quote-props": "./dist/rules/quote-props.js",
+        "./rules/arrow-parens": "./dist/rules/arrow-parens.js",
+        "./rules/comma-dangle": "./dist/rules/comma-dangle.js",
+        "./rules/dot-location": "./dist/rules/dot-location.js",
+        "./rules/semi-spacing": "./dist/rules/semi-spacing.js",
+        "./rules/arrow-spacing": "./dist/rules/arrow-spacing.js",
+        "./rules/block-spacing": "./dist/rules/block-spacing.js",
+        "./rules/comma-spacing": "./dist/rules/comma-spacing.js",
+        "./rules/curly-newline": "./dist/rules/curly-newline.js",
+        "./rules/no-extra-semi": "./dist/rules/no-extra-semi.js",
+        "./rules/padded-blocks": "./dist/rules/padded-blocks.js",
+        "./rules/jsx-sort-props": "./dist/rules/jsx-sort-props.js",
+        "./rules/spaced-comment": "./dist/rules/spaced-comment.js",
+        "./define-config-support": {
+          "types": "./dist/dts/define-config-support.d.ts"
+        },
+        "./rules/jsx-pascal-case": "./dist/rules/jsx-pascal-case.js",
+        "./rules/jsx-props-style": "./dist/rules/jsx-props-style.js",
+        "./rules/jsx-tag-spacing": "./dist/rules/jsx-tag-spacing.js",
+        "./rules/keyword-spacing": "./dist/rules/keyword-spacing.js",
+        "./rules/linebreak-style": "./dist/rules/linebreak-style.js",
+        "./rules/no-extra-parens": "./dist/rules/no-extra-parens.js",
+        "./rules/no-multi-spaces": "./dist/rules/no-multi-spaces.js",
+        "./rules/space-in-parens": "./dist/rules/space-in-parens.js",
+        "./rules/space-infix-ops": "./dist/rules/space-infix-ops.js",
+        "./rules/space-unary-ops": "./dist/rules/space-unary-ops.js",
+        "./rules/jsx-indent-props": "./dist/rules/jsx-indent-props.js",
+        "./rules/indent-binary-ops": "./dist/rules/indent-binary-ops.js",
+        "./rules/jsx-curly-newline": "./dist/rules/jsx-curly-newline.js",
+        "./rules/jsx-curly-spacing": "./dist/rules/jsx-curly-spacing.js",
+        "./rules/multiline-ternary": "./dist/rules/multiline-ternary.js",
+        "./rules/jsx-equals-spacing": "./dist/rules/jsx-equals-spacing.js",
+        "./rules/no-confusing-arrow": "./dist/rules/no-confusing-arrow.js",
+        "./rules/no-mixed-operators": "./dist/rules/no-mixed-operators.js",
+        "./rules/no-trailing-spaces": "./dist/rules/no-trailing-spaces.js",
+        "./rules/operator-linebreak": "./dist/rules/operator-linebreak.js",
+        "./rules/yield-star-spacing": "./dist/rules/yield-star-spacing.js",
+        "./rules/jsx-wrap-multilines": "./dist/rules/jsx-wrap-multilines.js",
+        "./rules/no-floating-decimal": "./dist/rules/no-floating-decimal.js",
+        "./rules/rest-spread-spacing": "./dist/rules/rest-spread-spacing.js",
+        "./rules/space-before-blocks": "./dist/rules/space-before-blocks.js",
+        "./rules/lines-around-comment": "./dist/rules/lines-around-comment.js",
+        "./rules/object-curly-newline": "./dist/rules/object-curly-newline.js",
+        "./rules/object-curly-spacing": "./dist/rules/object-curly-spacing.js",
+        "./rules/switch-colon-spacing": "./dist/rules/switch-colon-spacing.js",
+        "./rules/template-tag-spacing": "./dist/rules/template-tag-spacing.js",
+        "./rules/type-generic-spacing": "./dist/rules/type-generic-spacing.js",
+        "./rules/array-bracket-newline": "./dist/rules/array-bracket-newline.js",
+        "./rules/array-bracket-spacing": "./dist/rules/array-bracket-spacing.js",
+        "./rules/array-element-newline": "./dist/rules/array-element-newline.js",
+        "./rules/function-call-spacing": "./dist/rules/function-call-spacing.js",
+        "./rules/jsx-self-closing-comp": "./dist/rules/jsx-self-closing-comp.js",
+        "./rules/line-comment-position": "./dist/rules/line-comment-position.js",
+        "./rules/function-paren-newline": "./dist/rules/function-paren-newline.js",
+        "./rules/generator-star-spacing": "./dist/rules/generator-star-spacing.js",
+        "./rules/jsx-max-props-per-line": "./dist/rules/jsx-max-props-per-line.js",
+        "./rules/member-delimiter-style": "./dist/rules/member-delimiter-style.js",
+        "./rules/template-curly-spacing": "./dist/rules/template-curly-spacing.js",
+        "./rules/jsx-first-prop-new-line": "./dist/rules/jsx-first-prop-new-line.js",
+        "./rules/max-statements-per-line": "./dist/rules/max-statements-per-line.js",
+        "./rules/multiline-comment-style": "./dist/rules/multiline-comment-style.js",
+        "./rules/no-multiple-empty-lines": "./dist/rules/no-multiple-empty-lines.js",
+        "./rules/object-property-newline": "./dist/rules/object-property-newline.js",
+        "./rules/type-annotation-spacing": "./dist/rules/type-annotation-spacing.js",
+        "./rules/implicit-arrow-linebreak": "./dist/rules/implicit-arrow-linebreak.js",
+        "./rules/jsx-closing-tag-location": "./dist/rules/jsx-closing-tag-location.js",
+        "./rules/jsx-curly-brace-presence": "./dist/rules/jsx-curly-brace-presence.js",
+        "./rules/newline-per-chained-call": "./dist/rules/newline-per-chained-call.js",
+        "./rules/no-mixed-spaces-and-tabs": "./dist/rules/no-mixed-spaces-and-tabs.js",
+        "./rules/type-named-tuple-spacing": "./dist/rules/type-named-tuple-spacing.js",
+        "./rules/computed-property-spacing": "./dist/rules/computed-property-spacing.js",
+        "./rules/jsx-child-element-spacing": "./dist/rules/jsx-child-element-spacing.js",
+        "./rules/jsx-function-call-newline": "./dist/rules/jsx-function-call-newline.js",
+        "./rules/jsx-props-no-multi-spaces": "./dist/rules/jsx-props-no-multi-spaces.js",
+        "./rules/jsx-one-expression-per-line": "./dist/rules/jsx-one-expression-per-line.js",
+        "./rules/lines-between-class-members": "./dist/rules/lines-between-class-members.js",
+        "./rules/space-before-function-paren": "./dist/rules/space-before-function-paren.js",
+        "./rules/jsx-closing-bracket-location": "./dist/rules/jsx-closing-bracket-location.js",
+        "./rules/one-var-declaration-per-line": "./dist/rules/one-var-declaration-per-line.js",
+        "./rules/no-whitespace-before-property": "./dist/rules/no-whitespace-before-property.js",
+        "./rules/function-call-argument-newline": "./dist/rules/function-call-argument-newline.js",
+        "./rules/padding-line-between-statements": "./dist/rules/padding-line-between-statements.js",
+        "./rules/nonblock-statement-body-position": "./dist/rules/nonblock-statement-body-position.js"
+      },
+      "dist": {
+        "shasum": "471bbd9f7a27ceaac4a217e7f5b3890855e5640c",
+        "tarball": "https://registry.npmjs.org/@stylistic/eslint-plugin/-/eslint-plugin-5.10.0.tgz",
+        "fileCount": 108,
+        "integrity": "sha512-nPK52ZHvot8Ju/0A4ucSX1dcPV2/1clx0kLcH5wDmrE4naKso7TUC/voUyU1O9OTKTrR6MYip6LP0ogEMQ9jPQ==",
+        "signatures": [
+          {
+            "sig": "MEQCIE5U42aWk6GC68q2g4/1oUeV16gTB4V735O375sf9ev1AiACsj4qtYdJFtx+eOwD16rgQGxX1aGWum7Iic+endZNbg==",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/@stylistic%2feslint-plugin@5.10.0",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 713026
+      }
+    },
+    "publishedPackage": {
+      "url": "https://registry.npmjs.org/@brandonramsey%2flint/0.2.0",
+      "name": "@brandonramsey/lint",
+      "version": "0.2.0",
+      "gitHead": "36941f4cd6e71966786fd6ca608ef773a348e355",
+      "engines": {
+        "node": "^22.13.0 || >=24.0.0"
+      },
+      "peerDependencies": {
+        "oxlint": "1.87.0"
+      },
+      "repository": {
+        "url": "git+https://github.com/brandonramsey/lint.git",
+        "type": "git"
+      },
+      "exports": {
+        ".": {
+          "types": "./dist/index.d.ts",
+          "import": "./dist/index.js"
+        },
+        "./plugins/style": {
+          "types": "./dist/plugins/style.d.ts",
+          "import": "./dist/plugins/style.js"
+        },
+        "./plugins/policy": {
+          "types": "./dist/plugins/policy.d.ts",
+          "import": "./dist/plugins/policy.js"
+        }
+      },
+      "dist": {
+        "shasum": "3035c6b4cbda1666e0c0e49c2e0be71f980e2784",
+        "tarball": "https://registry.npmjs.org/@brandonramsey/lint/-/lint-0.2.0.tgz",
+        "fileCount": 112,
+        "integrity": "sha512-t6yWg9OTskHOJE+0f66kONLuoNStKW076lFAQHbBXnlVDGwaxIJqPKg64ux+5e3ZZQZLa64FjSgO/OH9Z6TtXg==",
+        "signatures": [
+          {
+            "sig": "MEUCIQDpK65DUuFVUNSsSualImlHtaNmJUDcCOfWV4JMUAvaUAIgSZcPX1AxpFL/lYwe1Mj0dDkZPjZ1+DPLbMMb7BfWHI8=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "sig": "MEUCIQCngMZJOuh2Q/8NKSo4Mu0cB8Tv70JscxXYR1kVoxom4gIgWGsLtvdvlkAd61+MUiYhdVfUWdRPwQzQc84eSDYOIJY=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/@brandonramsey%2flint@0.2.0",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 2365605
+      }
+    },
+    "historicalPackage": {
+      "url": "https://registry.npmjs.org/@brandonramsey%2feslint/0.1.0",
+      "name": "@brandonramsey/eslint",
+      "version": "0.1.0",
+      "gitHead": "fe1a2cd0f04c349cc7d45ba22d3377bf461cb520",
+      "engines": {
+        "node": "^22.13.0 || >=24.0.0"
+      },
+      "peerDependencies": {
+        "eslint": "^10.4.0",
+        "typescript": ">=5.9.0 <6.1.0"
+      },
+      "repository": {
+        "url": "git+https://github.com/brandonramsey/bramsey-eslint.git",
+        "type": "git"
+      },
+      "exports": {
+        ".": {
+          "types": "./src/index.d.ts",
+          "import": "./src/index.js"
+        }
+      },
+      "dist": {
+        "shasum": "39197f37a950d2ca3667be6eba6704d6d1b3c275",
+        "tarball": "https://registry.npmjs.org/@brandonramsey/eslint/-/eslint-0.1.0.tgz",
+        "fileCount": 40,
+        "integrity": "sha512-vT0w2MRDcq9qGC332aTVa1ZS20uLInCJqp5Frg5GMatHYpplNie++GIRXOZbZDNFPLzKxvQ782DlT6F++4o61A==",
+        "signatures": [
+          {
+            "sig": "MEYCIQCXGJdK4NABCF73iM3mKk8B39Ybp2lLZFhFdr2w7AnT3wIhAMRkkyv7ml/hbZvOARXlydPsqdbsCNu9Maqto9IrqM1b",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          },
+          {
+            "sig": "MEUCIQDuCz3/+wpqBT560hIaX0AHV2laAlgxgmP+nZ0JINQ+tAIgHElkt0UyQhsdNw1NGo143d/tZBXwWM9u6q6TykdMAlw=",
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+          }
+        ],
+        "attestations": {
+          "url": "https://registry.npmjs.org/-/npm/v1/attestations/@brandonramsey%2feslint@0.1.0",
+          "provenance": {
+            "predicateType": "https://slsa.dev/provenance/v1"
+          }
+        },
+        "unpackedSize": 1047491
+      }
+    },
+    "highestStableWithinRetainedCeiling": "6.0.3"
+  },
+  "publishedPayloadComparison": {
+    "integrityVerified": true,
+    "changedFiles": []
+  },
+  "github": {
+    "issues": [
+      {
+        "number": 14,
+        "state": "CLOSED",
+        "title": "Generate an editable Oxlint configuration example matching package defaults"
+      },
+      {
+        "number": 13,
+        "state": "CLOSED",
+        "title": "Run repository configuration and contract tests in TypeScript"
+      },
+      {
+        "number": 12,
+        "state": "CLOSED",
+        "title": "Verify public package contents and document support"
+      },
+      {
+        "number": 11,
+        "state": "CLOSED",
+        "title": "Warn when typed linting uses inferred compiler settings"
+      },
+      {
+        "number": 10,
+        "state": "CLOSED",
+        "title": "Detect conflicting re-exports safely"
+      },
+      {
+        "number": 9,
+        "state": "CLOSED",
+        "title": "Preserve workspace import resolution and compatibility policy"
+      },
+      {
+        "number": 8,
+        "state": "CLOSED",
+        "title": "Ship the typed Oxlint configuration and packaged plugins"
+      },
+      {
+        "number": 7,
+        "state": "OPEN",
+        "title": "Complete the v1 readiness review and record the release decision"
+      },
+      {
+        "number": 6,
+        "state": "CLOSED",
+        "title": "Assess the migrated pre-v1 core policy against personal-assistant-project"
+      },
+      {
+        "number": 5,
+        "state": "CLOSED",
+        "title": "Gate npm publishing on the full compatibility matrix for the tagged commit"
+      },
+      {
+        "number": 4,
+        "state": "CLOSED",
+        "title": "Rename the GitHub project and npm package to lint"
+      },
+      {
+        "number": 3,
+        "state": "CLOSED",
+        "title": "Convert maintained tooling and tests to TypeScript for the Oxlint package"
+      },
+      {
+        "number": 2,
+        "state": "CLOSED",
+        "title": "Implement the Oxlint package in TypeScript and ship its public configuration"
+      },
+      {
+        "number": 1,
+        "state": "CLOSED",
+        "title": "Validate the Oxlint core policy with tsgolint, Stylistic, and simplified naming"
+      }
+    ],
+    "issue7": {
+      "body": "## What to build\n\nProvide evidence and an explicit maintainer decision to freeze the stable core policy and proceed toward v1 under the new project identities.\n\n## Acceptance criteria\n\n- [ ] Repeat isolated consumer validation if the final built release candidate differs from the assessed candidate; record the exact artifact and consumer snapshot.\n- [ ] Complete migration and same-tag workflow validation; review final package contents, public configuration, generated references, and renamed metadata.\n- [ ] Resolve or explicitly defer every assessed finding. Track each accepted release-blocking defect as a dependency; document bridge/fix limitations and accepted convention reductions.\n- [ ] Reconcile current design/release claims with historical v0.1.0 publication and the new identity's release history. Verify current GitHub/npm links and publisher configuration.\n- [ ] Record compiler baseline, any single upgrade-blocking family, consumer exceptions, supported profiles, and remaining typed-coverage limitations.\n- [ ] The maintainer records the v1 go/no-go decision and stable policy boundary. Publication follows the approved explicit-tag process rather than occurring automatically as part of this review.\n\n## Blocked by\n\n- https://github.com/brandonramsey/bramsey-eslint/issues/1\n- https://github.com/brandonramsey/bramsey-eslint/issues/2\n- https://github.com/brandonramsey/bramsey-eslint/issues/3\n- https://github.com/brandonramsey/bramsey-eslint/issues/4\n- https://github.com/brandonramsey/bramsey-eslint/issues/5\n- https://github.com/brandonramsey/bramsey-eslint/issues/6\n",
+      "comments": [],
+      "labels": [
+        {
+          "id": "LA_kwDOVAH1j88AAAAC7yzC8w",
+          "name": "ready-for-human",
+          "description": "Human implementation required",
+          "color": "FBCA04"
+        }
+      ],
+      "number": 7,
+      "state": "OPEN",
+      "title": "Complete the v1 readiness review and record the release decision",
+      "url": "https://github.com/brandonramsey/lint/issues/7"
+    },
+    "repository": {
+      "default_branch": "main",
+      "full_name": "brandonramsey/lint",
+      "id": 1409414543,
+      "visibility": "public"
+    },
+    "environment": {
+      "name": "npm",
+      "protection_rules": []
+    },
+    "parentPR": {
+      "headRefOid": "916c6963712eddd5fdd5b05ff90ba01a01012d11",
+      "mergeCommit": {
+        "oid": "27a7dd5bfd59c143f530714809d20f773375c20c"
+      },
+      "mergedAt": "2026-10-09T21:59:49Z",
+      "number": 28,
+      "state": "MERGED",
+      "url": "https://github.com/brandonramsey/lint/pull/28"
+    },
+    "main": "27a7dd5bfd59c143f530714809d20f773375c20c",
+    "37959634490": {
+      "conclusion": "success",
+      "headSha": "36941f4cd6e71966786fd6ca608ef773a348e355",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "version"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-ready"
+        },
+        {
+          "conclusion": "success",
+          "name": "publish"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "rehearsal-result"
+        }
+      ],
+      "url": "https://github.com/brandonramsey/lint/actions/runs/37959634490"
+    },
+    "37884207483": {
+      "conclusion": "success",
+      "headSha": "965039d973ccf7dbed8814868c25fe4ce7655207",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "version"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-ready"
+        },
+        {
+          "conclusion": "success",
+          "name": "rehearsal-result"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "publish"
+        }
+      ],
+      "url": "https://github.com/brandonramsey/lint/actions/runs/37884207483"
+    },
+    "37884209987": {
+      "conclusion": "failure",
+      "headSha": "965039d973ccf7dbed8814868c25fe4ce7655207",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "version"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "failure",
+          "name": "validate / Node 22.13.0 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "rehearsal-result"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-ready"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "publish"
+        }
+      ],
+      "url": "https://github.com/brandonramsey/lint/actions/runs/37884209987"
+    },
+    "37884212640": {
+      "conclusion": "failure",
+      "headSha": "965039d973ccf7dbed8814868c25fe4ce7655207",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "version"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 24 / TypeScript 6.0.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "validate / Node 22.13.0 / TypeScript 5.9.3"
+        },
+        {
+          "conclusion": "success",
+          "name": "rehearsal-result"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-ready"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "publish"
+        }
+      ],
+      "url": "https://github.com/brandonramsey/lint/actions/runs/37884212640"
+    }
+  },
+  "verifiedAtUtc": "2026-10-09T22:26:44.954791+00:00",
+  "provenance": {
+    "url": "https://registry.npmjs.org/-/npm/v1/attestations/@brandonramsey%2flint@0.2.0",
+    "signatureVerification": "Statement and digest inspection only; signatures were not independently cryptographically verified in this review.",
+    "statement": {
+      "_type": "https://in-toto.io/Statement/v1",
+      "subject": [
+        {
+          "name": "pkg:npm/%40brandonramsey/lint@0.2.0",
+          "digest": {
+            "sha512": "b7ac9683d393b241ce244fb47faea438d2eea0d4ad296d3bea51404076c15e79550c6c1ac4826a3ca83ae2ec7ee5edd965064b6bae058d280efce1fd67a4ed5e"
+          }
+        }
+      ],
+      "predicateType": "https://slsa.dev/provenance/v1",
+      "predicate": {
+        "buildDefinition": {
+          "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+          "externalParameters": {
+            "workflow": {
+              "ref": "refs/tags/v0.2.0",
+              "repository": "https://github.com/brandonramsey/lint",
+              "path": ".github/workflows/publish.yml"
+            }
+          },
+          "internalParameters": {
+            "github": {
+              "event_name": "push",
+              "repository_id": "1409414543",
+              "repository_owner_id": "30050495"
+            }
+          },
+          "resolvedDependencies": [
+            {
+              "uri": "git+https://github.com/brandonramsey/lint@refs/tags/v0.2.0",
+              "digest": {
+                "gitCommit": "36941f4cd6e71966786fd6ca608ef773a348e355"
+              }
+            }
+          ]
+        },
+        "runDetails": {
+          "builder": {
+            "id": "https://github.com/actions/runner/github-hosted"
+          },
+          "metadata": {
+            "invocationId": "https://github.com/brandonramsey/lint/actions/runs/37959634490/attempts/1"
+          }
+        }
+      }
+    }
+  },
+  "repositoryVerification": {
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "exitCode": 0,
+    "contractTests": 21,
+    "referenceProfiles": 14,
+    "rulesPerProfile": 982,
+    "log": "repository-check.txt",
+    "includes": [
+      "clean build",
+      "strict typecheck",
+      "combined self-lint",
+      "public package contract tests",
+      "reference drift"
+    ]
+  }
+}

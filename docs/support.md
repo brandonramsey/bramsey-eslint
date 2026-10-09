@@ -1,6 +1,6 @@
 # Package support boundaries
 
-This describes the Oxlint implementation in this checkout as of October 9, 2026, prepared as `@brandonramsey/lint@0.2.0`. The published `@brandonramsey/eslint@0.1.0` release used ESLint; its historical verification does not establish an Oxlint release. npm bootstrap/publisher verification and successful full-matrix validation of the exact tagged commit remain required before publishing the new identity.
+This describes the published `@brandonramsey/lint@0.2.0` Oxlint package as of October 9, 2026. Its [release evidence](releasing.md#published-020-evidence) confirms the public registry artifact, provenance and successful full-matrix validation of the exact tagged commit. The published `@brandonramsey/eslint@0.1.0` release used ESLint and remains historical.
 
 ## Runtime and compiler contracts
 
@@ -16,7 +16,7 @@ This describes the Oxlint implementation in this checkout as of October 9, 2026,
 
 TypeScript's [stable registry metadata](https://registry.npmjs.org/typescript/latest) reported 7.0.2 in the October 8 support assessment. The single family blocking an upgrade of the retained repository toolchain is **typescript-eslint**: its [published support](https://typescript-eslint.io/users/dependency-versions/) and installed 8.71.1 peer contracts require `>=4.8.4 <6.1.0`. TypeScript 6.0.3 is the newest stable compiler within that assessed intersection. It checks this package's public declarations and maintained TypeScript tooling; it is not the typed engine's compiler. Repository self-lint uses Oxlint, and native reference generation uses strictly checked TypeScript. The compiler pin and unused legacy development providers are retained; this conversion does not change the compiler support assessment. Consumer TypeScript 7.0.2 is aligned with the typed engine's stated target, as recorded in the [candidate research](research/oxlint-candidate-upstream.md); this is not a claim that every compiler setting or diagnostic is identical.
 
-The local verification runtime is Node 24.21.0. Published and installed dependency contracts establish the minimum Node boundary. The [release matrix](releasing.md) now runs existing package checks on Node 22.13.0 and Node 24 with declaration/build compilers 5.9.3 and 6.0.3; each tagged release must demonstrate all four combinations at its own SHA. Workflow configuration alone does not establish a passing hosted run. Native binaries and their supported platforms remain upstream responsibilities.
+The local verification runtime is Node 24.21.0. Published and installed dependency contracts establish the minimum Node boundary. The [0.2.0 tag workflow](https://github.com/brandonramsey/lint/actions/runs/37959634490) passed existing package checks on Node 22.13.0 and Node 24 with declaration/build compilers 5.9.3 and 6.0.3 at commit `36941f4cd6e71966786fd6ca608ef773a348e355`. Each future tagged release must demonstrate all four combinations at its own SHA. Native binaries and their supported platforms remain upstream responsibilities.
 
 ## Dependency and provider boundary
 

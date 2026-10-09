@@ -2,7 +2,7 @@
 
 A strict, opinionated Oxlint configuration for framework-neutral Node TypeScript projects, including their JavaScript, JSX, TSX and handwritten declarations. The package exports one native configuration object, a `createConfig` factory, public types and bundled style/policy plugins. Consumers own lint execution and fixing.
 
-This checkout prepares the first `@brandonramsey/lint` release, version `0.2.0`. The published `@brandonramsey/eslint@0.1.0` release used ESLint; these instructions apply to the next package build. The release workflow gates publication on the exact tagged commit's full matrix; registry bootstrap, publisher verification and explicit release authorization remain required. The policy is being validated before `1.0`; review upgrades before adopting them.
+`@brandonramsey/lint@0.2.0` was published on October 9, 2026. These instructions apply to that Oxlint release; the published `@brandonramsey/eslint@0.1.0` release used ESLint and remains historical. The [release evidence](docs/releasing.md#published-020-evidence) records the tagged commit's passing matrix, public registry artifact and provenance. The policy is being validated before `1.0`; review upgrades before adopting them.
 
 ## Install
 

@@ -1,0 +1,4 @@
+import { createConfig } from '@brandonramsey/lint';
+import type { OxlintConfig } from '@brandonramsey/lint';
+const config: OxlintConfig = createConfig({ projectRoot: import.meta.dirname });
+export default config;

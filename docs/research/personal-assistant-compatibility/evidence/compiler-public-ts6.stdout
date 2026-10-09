@@ -1,0 +1,3 @@
+node_modules/eslint-import-context/lib/types.d.ts(1,31): error TS2307: Cannot find module '@typescript-eslint/utils' or its corresponding type declarations.
+node_modules/type-fest/ts41/get.d.ts(93,37): error TS2344: Type 'BaseType' does not satisfy the constraint 'Record<string | number, any>'.
+node_modules/type-fest/ts41/get.d.ts(94,19): error TS2344: Type 'BaseType' does not satisfy the constraint 'Record<string | number, any>'.

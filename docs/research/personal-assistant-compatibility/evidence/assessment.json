@@ -1,0 +1,1014 @@
+{
+  "assessedAtUtc": "2026-10-09T05:00:47.432237+00:00",
+  "localDate": "2026-10-08",
+  "timezone": "America/Chicago",
+  "candidate": {
+    "sourceCommit": "a711868c1de6685aa2529bcf6b6952e8397734a3",
+    "sourceTree": "git archive of sourceCommit, generated dist via npm prepack",
+    "package": "@brandonramsey/lint@0.2.0",
+    "filename": "brandonramsey-lint-0.2.0.tgz",
+    "sha256": "e099aaf380b4f1dc007553cb09f27558aa164a13a6d9960b0e118f5a171f76de",
+    "sha1": "9ffadf3ca65c27d4a9073a663f34f5cac9df7f98",
+    "integrity": "sha512-uaXHJwbFEkGbkUiRDkTg85563dH9D6j574E6EaGm42z2qxjpf0i5qp9QnJ10gL2jcqnL3S3fcJ5am2dpKaRFoQ==",
+    "size": 327338,
+    "unpackedSize": 1821958,
+    "packedFileCount": 88,
+    "manifest": {
+      "name": "@brandonramsey/lint",
+      "version": "0.2.0",
+      "description": "Strict, opinionated Oxlint configuration for Node TypeScript projects",
+      "license": "ISC",
+      "type": "module",
+      "exports": {
+        ".": {
+          "types": "./dist/index.d.ts",
+          "import": "./dist/index.js"
+        },
+        "./plugins/style": {
+          "types": "./dist/plugins/style.d.ts",
+          "import": "./dist/plugins/style.js"
+        },
+        "./plugins/policy": {
+          "types": "./dist/plugins/policy.d.ts",
+          "import": "./dist/plugins/policy.js"
+        }
+      },
+      "files": [
+        "dist",
+        "examples",
+        "docs",
+        "LICENSE",
+        "README.md",
+        "CHANGELOG.md",
+        "GLOSSARY.md"
+      ],
+      "engines": {
+        "node": "^22.13.0 || >=24.0.0"
+      },
+      "peerDependencies": {
+        "oxlint": "1.87.0"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "scripts": {
+        "test": "npm run build:tools && node --test .tooling/test/*.test.js",
+        "lint": "npm run build:tools && oxlint --config oxlint.config.js .",
+        "typecheck": "npm run build && tsc --noEmit",
+        "references": "npm run build:tools && node .tooling/scripts/generate-reference.js",
+        "references:check": "npm run build:tools && node .tooling/scripts/generate-reference.js --check",
+        "test:package": "npm run build:tools && node --test .tooling/test/package.test.js",
+        "test:consumer": "npm run test:package",
+        "check": "npm run typecheck && npm run lint && npm test && npm run references:check",
+        "prepublishOnly": "npm run check",
+        "build": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\" && tsc -p tsconfig.build.json",
+        "build:tools": "npm run build && node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('.tooling', { recursive: true, force: true }); rmSync('oxlint.config.js', { force: true });\" && tsc -p tsconfig.tools.json && node --input-type=module -e \"import { copyFileSync } from 'node:fs'; copyFileSync('.tooling/oxlint.config.js', 'oxlint.config.js');\"",
+        "prepack": "npm run build"
+      },
+      "keywords": [
+        "oxlint",
+        "lint",
+        "typescript",
+        "node",
+        "lint-config"
+      ],
+      "dependencies": {
+        "@stylistic/eslint-plugin": "5.10.0",
+        "@types/picomatch": "4.0.3",
+        "eslint": "10.12.0",
+        "eslint-import-resolver-typescript": "4.4.5",
+        "eslint-plugin-import-x": "4.17.1",
+        "eslint-plugin-n": "18.4.1",
+        "eslint-plugin-unicorn": "77.0.0",
+        "globals": "17.13.0",
+        "oxc-parser": "0.153.0",
+        "oxlint-tsgolint": "7.0.2003",
+        "tinyglobby": "0.2.17",
+        "type-fest": "5.10.0",
+        "unrs-resolver": "1.12.2"
+      },
+      "devDependencies": {
+        "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
+        "@types/node": "24.19.1",
+        "oxlint": "1.87.0",
+        "picomatch": "4.0.7",
+        "typescript": "6.0.3",
+        "typescript-eslint": "8.71.1"
+      },
+      "author": "Brandon Ramsey",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brandonramsey/lint.git"
+      },
+      "bugs": {
+        "url": "https://github.com/brandonramsey/lint/issues"
+      },
+      "homepage": "https://github.com/brandonramsey/lint#readme"
+    }
+  },
+  "runtime": {
+    "node": "24.21.0",
+    "npm": "11.19.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "consumerCompiler": "7.0.2",
+    "packageBuildCompiler": "6.0.3",
+    "jest": "30.5.2",
+    "oxlint": "1.87.0",
+    "oxlint-tsgolint": "7.0.2003"
+  },
+  "consumer": {
+    "source": "/Users/bramsey/Library/Mobile Documents/com~apple~CloudDocs/Projects/personal-assistant-project",
+    "head": "92976709455f3d5888e474236ddeedbd4b0de616",
+    "branch": "codex/oxlint-rules",
+    "status": "",
+    "indexSha256": "b5beb8b6282d4f82d7a224c61a1c0183c392e9d8464d79ee21296749276339ff",
+    "files": [
+      {
+        "path": ".gitignore",
+        "sha256": "cefaca50d67b2d2bc6ae46dfc9cdb3916c527e44f621d87ef070f9325f6c327c",
+        "mode": "0o644"
+      },
+      {
+        "path": "AGENTS.md",
+        "sha256": "385fb926072a04d6a109408737ba81b624572c29786bd246f91ed029485a12ac",
+        "mode": "0o644"
+      },
+      {
+        "path": "GLOSSARY.md",
+        "sha256": "2fcb2ae8a8d24e3c3c147c7bd6f69fef843d0be751c288816bc658a70ac4f027",
+        "mode": "0o644"
+      },
+      {
+        "path": "README.md",
+        "sha256": "5a73552ab8c8b388f0fb358c60410f14bcef257530f2b2dfdbea5d6bdd7fb1e7",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0001-build-a-typescript-learning-application.md",
+        "sha256": "bd8793e2bb9073e3f759c28e965bcad427ebf005f5a2b49118bf7d997679aedb",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0002-retain-vault-authority-during-evaluation.md",
+        "sha256": "f7369239c0b578cf975a93bfa3cf1d523ab9525668b6fccb4fcebb5809a5ef41",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0003-use-langsmith-with-personal-content-redacted.md",
+        "sha256": "9e9820be5ed25a5d5573bf305a197139b9d8308cd52f6eff1e7dac3c76c0ba28",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0004-bound-agentic-retrieval-to-selected-vault-sources.md",
+        "sha256": "7a5ef2dcf6770480b5df6917f6b40ff10a32d1f5ac4539007e9542d38f5e4faf",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0005-start-with-local-inference-and-direct-calendar-access.md",
+        "sha256": "ba8fe4d3af605f7349fecd8c97aedbdcbdb2f2e35750f5aa1eb984095a6466f2",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0006-manage-the-daily-cycle-with-automatic-finalization-recognition.md",
+        "sha256": "20b0d06b348d25aeccc51c3dcb0e230aeb0f78721391b38cd5c608ecb0cf995d",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/adr/0007-bound-normal-catch-up-and-report-older-pending-notes.md",
+        "sha256": "24cf0575aa46a6e4683bcc9e9faa82814c1cb4c5e9e5aa4f904ca2dc75c216ff",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/agents/domain.md",
+        "sha256": "3d06b4f231ec0dcd28d1c23dd2dfefb2ffa86629557363715c75cc7142becf1c",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/agents/issue-tracker.md",
+        "sha256": "f9d154a554329dfa1285545c325e7ee399e6d537d2a5142dabc8ae7151e12f00",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/agents/triage-labels.md",
+        "sha256": "dc3ae95e347b0120cd6969192bc7287caee288ec5f4a6f1afe10961f86723127",
+        "mode": "0o644"
+      },
+      {
+        "path": "docs/local-model-check.md",
+        "sha256": "63b5cf1bec9959e81bd4d764f946e4ba4fc467073c6b9afc5a8e2bd6e796f511",
+        "mode": "0o644"
+      },
+      {
+        "path": "jest.config.mjs",
+        "sha256": "6d32798415c18fbac99a0204d9c61dd801dc2a8a53dbb6381d539545a9244aaa",
+        "mode": "0o644"
+      },
+      {
+        "path": "knip.ts",
+        "sha256": "b1455e5484a739e2cb50cff8b3920272f6df4dc732bf3cb4081de779c3a01f35",
+        "mode": "0o644"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "d2337c84210c23a5cd34c8efcdee9dfc116d784dcf9ed75567c3f6ecb223f3fb",
+        "mode": "0o644"
+      },
+      {
+        "path": "package.json",
+        "sha256": "8dcb3e67d34ca6f013057aa3e031793f67805b159b86e9343343c4421defd26d",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-model-measurements.ts",
+        "sha256": "a27b3d5ccc9da747ea2ab1086d0234414e208e85c34263976045ec6a3e1f4bc1",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-ollama-http.ts",
+        "sha256": "aaafc01a7920306cab22a30a707b15942e384edc5814234caa646a5abeb6111f",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-structured-output.ts",
+        "sha256": "4faf21a17dfee0dba69b820860e4e97c2a05377a116f68b74c46dd026aae2acc",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-tool-exchange.ts",
+        "sha256": "7cd186ef74979c5f4ad0112af4e1590e9d8ea0af4860d82faf9ac7e045c64ee2",
+        "mode": "0o644"
+      },
+      {
+        "path": "scripts/demo-tool-requests.ts",
+        "sha256": "a9a1df3bb5d01ca57008902bb3851c5fae5429b4da90d32748b56a53da26e140",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/logger.ts",
+        "sha256": "b0603591c24a882083bff81ba1f9c66392b34323f2e39cf1e11ad815a42371c5",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/ollama.ts",
+        "sha256": "94040963f054f5be163780aef7bdd2ffaee5d7da604bd9825ddf2f202c9a7efa",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/output.ts",
+        "sha256": "bcd36345607713a0b1d8fe9b7f6c66fcaff3f105d7ff406ad63f64e0bebd9475",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/tools.ts",
+        "sha256": "098f0a17dc9b9d8023c4d62b758a892ba4aa5e21e51399eef8befee13f7c20d2",
+        "mode": "0o644"
+      },
+      {
+        "path": "src/types.ts",
+        "sha256": "a4463ad8170c0acea9230b07602f01f748cbfdba8247ddf2355feaab330cd7aa",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/first-call.test.mjs",
+        "sha256": "64f8fc6dab82439c7c9848173001448edc3dec0800496796c44f4d1b47eddf09",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-call.test.mjs",
+        "sha256": "8b45d45fd1266cceafab65d43b2af8d67a22b3933753d81f5605acd8ebb86471",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-config.test.mjs",
+        "sha256": "09bd05acb392ffc37b21c21a2c52293b9a0a58342ff31f89d1d003c7dac5ace4",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-identity.test.mjs",
+        "sha256": "12385ee0213a276aecd53e33ba4265f07c54a2b84093e73326afc2062a48845e",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-load.test.mjs",
+        "sha256": "bb10f689b211389eba0635188a62c3e111b058a646fa9d9a86a76a354e96f2f6",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/measure-usage.test.mjs",
+        "sha256": "8588ab26a8502a002da4308e42400e43aa11f5a19b8c895c6fc32f95474ac73e",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/structured-call.test.mjs",
+        "sha256": "32540cd9b8fdaa10609b0e73da56401075a4805e25927fa1f5ef8cdc46dcbac8",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/tool-call.test.mjs",
+        "sha256": "57ab53af644129332c21572f2cf904fb657d9ec7215d9a144ce884ae809f2c84",
+        "mode": "0o644"
+      },
+      {
+        "path": "tests/tool-exchange.test.mjs",
+        "sha256": "90fa858498e2cd5b3a668eb02a561bd6948ea6614dae8487a9f852094a93a709",
+        "mode": "0o644"
+      },
+      {
+        "path": "tsconfig.json",
+        "sha256": "07400e953adb587be106d3b0d742ebfce978067c182ac88112e39e6f13525214",
+        "mode": "0o644"
+      }
+    ],
+    "lab": "/private/tmp/lint-issue6-bto2_mwq"
+  },
+  "preservation": {
+    "originalUnchanged": true,
+    "compared": [
+      "HEAD",
+      "branch",
+      "git porcelain including untracked files",
+      "index SHA256",
+      "all 39 tracked/non-ignored file paths, bytes and modes"
+    ],
+    "after": {
+      "head": "92976709455f3d5888e474236ddeedbd4b0de616",
+      "branch": "codex/oxlint-rules",
+      "status": "",
+      "indexSha256": "b5beb8b6282d4f82d7a224c61a1c0183c392e9d8464d79ee21296749276339ff",
+      "files": [
+        {
+          "path": ".gitignore",
+          "sha256": "cefaca50d67b2d2bc6ae46dfc9cdb3916c527e44f621d87ef070f9325f6c327c",
+          "mode": "0o644"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "385fb926072a04d6a109408737ba81b624572c29786bd246f91ed029485a12ac",
+          "mode": "0o644"
+        },
+        {
+          "path": "GLOSSARY.md",
+          "sha256": "2fcb2ae8a8d24e3c3c147c7bd6f69fef843d0be751c288816bc658a70ac4f027",
+          "mode": "0o644"
+        },
+        {
+          "path": "README.md",
+          "sha256": "5a73552ab8c8b388f0fb358c60410f14bcef257530f2b2dfdbea5d6bdd7fb1e7",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0001-build-a-typescript-learning-application.md",
+          "sha256": "bd8793e2bb9073e3f759c28e965bcad427ebf005f5a2b49118bf7d997679aedb",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0002-retain-vault-authority-during-evaluation.md",
+          "sha256": "f7369239c0b578cf975a93bfa3cf1d523ab9525668b6fccb4fcebb5809a5ef41",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0003-use-langsmith-with-personal-content-redacted.md",
+          "sha256": "9e9820be5ed25a5d5573bf305a197139b9d8308cd52f6eff1e7dac3c76c0ba28",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0004-bound-agentic-retrieval-to-selected-vault-sources.md",
+          "sha256": "7a5ef2dcf6770480b5df6917f6b40ff10a32d1f5ac4539007e9542d38f5e4faf",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0005-start-with-local-inference-and-direct-calendar-access.md",
+          "sha256": "ba8fe4d3af605f7349fecd8c97aedbdcbdb2f2e35750f5aa1eb984095a6466f2",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0006-manage-the-daily-cycle-with-automatic-finalization-recognition.md",
+          "sha256": "20b0d06b348d25aeccc51c3dcb0e230aeb0f78721391b38cd5c608ecb0cf995d",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/adr/0007-bound-normal-catch-up-and-report-older-pending-notes.md",
+          "sha256": "24cf0575aa46a6e4683bcc9e9faa82814c1cb4c5e9e5aa4f904ca2dc75c216ff",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/agents/domain.md",
+          "sha256": "3d06b4f231ec0dcd28d1c23dd2dfefb2ffa86629557363715c75cc7142becf1c",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/agents/issue-tracker.md",
+          "sha256": "f9d154a554329dfa1285545c325e7ee399e6d537d2a5142dabc8ae7151e12f00",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/agents/triage-labels.md",
+          "sha256": "dc3ae95e347b0120cd6969192bc7287caee288ec5f4a6f1afe10961f86723127",
+          "mode": "0o644"
+        },
+        {
+          "path": "docs/local-model-check.md",
+          "sha256": "63b5cf1bec9959e81bd4d764f946e4ba4fc467073c6b9afc5a8e2bd6e796f511",
+          "mode": "0o644"
+        },
+        {
+          "path": "jest.config.mjs",
+          "sha256": "6d32798415c18fbac99a0204d9c61dd801dc2a8a53dbb6381d539545a9244aaa",
+          "mode": "0o644"
+        },
+        {
+          "path": "knip.ts",
+          "sha256": "b1455e5484a739e2cb50cff8b3920272f6df4dc732bf3cb4081de779c3a01f35",
+          "mode": "0o644"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "d2337c84210c23a5cd34c8efcdee9dfc116d784dcf9ed75567c3f6ecb223f3fb",
+          "mode": "0o644"
+        },
+        {
+          "path": "package.json",
+          "sha256": "8dcb3e67d34ca6f013057aa3e031793f67805b159b86e9343343c4421defd26d",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/demo-model-measurements.ts",
+          "sha256": "a27b3d5ccc9da747ea2ab1086d0234414e208e85c34263976045ec6a3e1f4bc1",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/demo-ollama-http.ts",
+          "sha256": "aaafc01a7920306cab22a30a707b15942e384edc5814234caa646a5abeb6111f",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/demo-structured-output.ts",
+          "sha256": "4faf21a17dfee0dba69b820860e4e97c2a05377a116f68b74c46dd026aae2acc",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/demo-tool-exchange.ts",
+          "sha256": "7cd186ef74979c5f4ad0112af4e1590e9d8ea0af4860d82faf9ac7e045c64ee2",
+          "mode": "0o644"
+        },
+        {
+          "path": "scripts/demo-tool-requests.ts",
+          "sha256": "a9a1df3bb5d01ca57008902bb3851c5fae5429b4da90d32748b56a53da26e140",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/logger.ts",
+          "sha256": "b0603591c24a882083bff81ba1f9c66392b34323f2e39cf1e11ad815a42371c5",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/ollama.ts",
+          "sha256": "94040963f054f5be163780aef7bdd2ffaee5d7da604bd9825ddf2f202c9a7efa",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/output.ts",
+          "sha256": "bcd36345607713a0b1d8fe9b7f6c66fcaff3f105d7ff406ad63f64e0bebd9475",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/tools.ts",
+          "sha256": "098f0a17dc9b9d8023c4d62b758a892ba4aa5e21e51399eef8befee13f7c20d2",
+          "mode": "0o644"
+        },
+        {
+          "path": "src/types.ts",
+          "sha256": "a4463ad8170c0acea9230b07602f01f748cbfdba8247ddf2355feaab330cd7aa",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/first-call.test.mjs",
+          "sha256": "64f8fc6dab82439c7c9848173001448edc3dec0800496796c44f4d1b47eddf09",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/measure-call.test.mjs",
+          "sha256": "8b45d45fd1266cceafab65d43b2af8d67a22b3933753d81f5605acd8ebb86471",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/measure-config.test.mjs",
+          "sha256": "09bd05acb392ffc37b21c21a2c52293b9a0a58342ff31f89d1d003c7dac5ace4",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/measure-identity.test.mjs",
+          "sha256": "12385ee0213a276aecd53e33ba4265f07c54a2b84093e73326afc2062a48845e",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/measure-load.test.mjs",
+          "sha256": "bb10f689b211389eba0635188a62c3e111b058a646fa9d9a86a76a354e96f2f6",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/measure-usage.test.mjs",
+          "sha256": "8588ab26a8502a002da4308e42400e43aa11f5a19b8c895c6fc32f95474ac73e",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/structured-call.test.mjs",
+          "sha256": "32540cd9b8fdaa10609b0e73da56401075a4805e25927fa1f5ef8cdc46dcbac8",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/tool-call.test.mjs",
+          "sha256": "57ab53af644129332c21572f2cf904fb657d9ec7215d9a144ce884ae809f2c84",
+          "mode": "0o644"
+        },
+        {
+          "path": "tests/tool-exchange.test.mjs",
+          "sha256": "90fa858498e2cd5b3a668eb02a561bd6948ea6614dae8487a9f852094a93a709",
+          "mode": "0o644"
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "07400e953adb587be106d3b0d742ebfce978067c182ac88112e39e6f13525214",
+          "mode": "0o644"
+        }
+      ]
+    },
+    "limits": "Ignored credential/configuration paths were neither copied nor inspected; no commands installed dependencies or changed files in the original checkout."
+  },
+  "lint": {
+    "selectedFiles": [
+      "jest.config.mjs",
+      "knip.ts",
+      "scripts/demo-model-measurements.ts",
+      "scripts/demo-ollama-http.ts",
+      "scripts/demo-structured-output.ts",
+      "scripts/demo-tool-exchange.ts",
+      "scripts/demo-tool-requests.ts",
+      "src/logger.ts",
+      "src/ollama.ts",
+      "src/output.ts",
+      "src/tools.ts",
+      "src/types.ts",
+      "tests/first-call.test.mjs",
+      "tests/measure-call.test.mjs",
+      "tests/measure-config.test.mjs",
+      "tests/measure-identity.test.mjs",
+      "tests/measure-load.test.mjs",
+      "tests/measure-usage.test.mjs",
+      "tests/structured-call.test.mjs",
+      "tests/tool-call.test.mjs",
+      "tests/tool-exchange.test.mjs"
+    ],
+    "selectedCount": 21,
+    "ruleCountReportedByEngine": 284,
+    "diagnosticCount": 174,
+    "byFamily": {
+      "eslint": 23,
+      "policy": 35,
+      "style": 63,
+      "typescript": 50,
+      "unicorn": 3
+    },
+    "byRule": {
+      "eslint(curly)": 18,
+      "eslint(no-shadow)": 1,
+      "eslint(no-unused-vars)": 4,
+      "policy(order)": 35,
+      "style(arrow-parens)": 3,
+      "style(brace-style)": 7,
+      "style(comma-dangle)": 2,
+      "style(indent)": 28,
+      "style(member-delimiter-style)": 1,
+      "style(no-multiple-empty-lines)": 4,
+      "style(quote-props)": 2,
+      "style(quotes)": 13,
+      "style(semi)": 1,
+      "style(space-infix-ops)": 2,
+      "typescript(consistent-type-definitions)": 4,
+      "typescript(consistent-type-imports)": 1,
+      "typescript(explicit-module-boundary-types)": 9,
+      "typescript(no-confusing-void-expression)": 3,
+      "typescript(no-floating-promises)": 1,
+      "typescript(no-unnecessary-type-assertion)": 1,
+      "typescript(no-unnecessary-type-conversion)": 1,
+      "typescript(no-unsafe-argument)": 3,
+      "typescript(no-unsafe-assignment)": 5,
+      "typescript(no-unsafe-member-access)": 3,
+      "typescript(prefer-nullish-coalescing)": 3,
+      "typescript(restrict-template-expressions)": 7,
+      "typescript(return-await)": 3,
+      "typescript(strict-boolean-expressions)": 3,
+      "typescript(use-unknown-in-catch-callback-variable)": 3,
+      "unicorn(prefer-number-properties)": 3
+    },
+    "byFile": {
+      "knip.ts": 10,
+      "scripts/demo-model-measurements.ts": 12,
+      "scripts/demo-ollama-http.ts": 14,
+      "scripts/demo-structured-output.ts": 26,
+      "scripts/demo-tool-exchange.ts": 19,
+      "scripts/demo-tool-requests.ts": 4,
+      "src/logger.ts": 8,
+      "src/ollama.ts": 23,
+      "src/output.ts": 12,
+      "src/tools.ts": 1,
+      "tests/first-call.test.mjs": 6,
+      "tests/measure-call.test.mjs": 4,
+      "tests/measure-config.test.mjs": 4,
+      "tests/measure-identity.test.mjs": 4,
+      "tests/measure-load.test.mjs": 4,
+      "tests/measure-usage.test.mjs": 4,
+      "tests/structured-call.test.mjs": 5,
+      "tests/tool-call.test.mjs": 5,
+      "tests/tool-exchange.test.mjs": 9
+    },
+    "severity": {
+      "error": 174
+    },
+    "adjustedDiagnosticCount": 174,
+    "noUncheckedIndexedAccessDiagnosticsIdentical": true
+  },
+  "commands": [
+    {
+      "name": "compiler-original",
+      "cwd": "baseline",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "exitCode": 0,
+      "seconds": 0.289,
+      "stdout": "compiler-original.stdout",
+      "stderr": "compiler-original.stderr"
+    },
+    {
+      "name": "compiler-original-indexed",
+      "cwd": "baseline",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--noUncheckedIndexedAccess"
+      ],
+      "exitCode": 0,
+      "seconds": 0.253,
+      "stdout": "compiler-original-indexed.stdout",
+      "stderr": "compiler-original-indexed.stderr"
+    },
+    {
+      "name": "compiler-candidate",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "exitCode": 0,
+      "seconds": 0.864,
+      "stdout": "compiler-candidate.stdout",
+      "stderr": "compiler-candidate.stderr"
+    },
+    {
+      "name": "compiler-candidate-indexed",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--noUncheckedIndexedAccess"
+      ],
+      "exitCode": 0,
+      "seconds": 0.272,
+      "stdout": "compiler-candidate-indexed.stdout",
+      "stderr": "compiler-candidate-indexed.stderr"
+    },
+    {
+      "name": "compiler-candidate-tooling",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--strict",
+        "--noUncheckedIndexedAccess",
+        "--module",
+        "NodeNext",
+        "--target",
+        "ESNext",
+        "--erasableSyntaxOnly",
+        "--rewriteRelativeImportExtensions",
+        "--verbatimModuleSyntax",
+        "--types",
+        "node",
+        "src/logger.ts",
+        "src/ollama.ts",
+        "src/output.ts",
+        "src/tools.ts",
+        "src/types.ts",
+        "scripts/demo-model-measurements.ts",
+        "scripts/demo-ollama-http.ts",
+        "scripts/demo-structured-output.ts",
+        "scripts/demo-tool-exchange.ts",
+        "scripts/demo-tool-requests.ts",
+        "knip.ts"
+      ],
+      "exitCode": 1,
+      "seconds": 0.029,
+      "stdout": "compiler-candidate-tooling.stdout",
+      "stderr": "compiler-candidate-tooling.stderr"
+    },
+    {
+      "name": "compiler-public-config",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--strict",
+        "--noUncheckedIndexedAccess",
+        "--module",
+        "NodeNext",
+        "--target",
+        "ESNext",
+        ".compat-configuration.mts"
+      ],
+      "exitCode": 1,
+      "seconds": 0.028,
+      "stdout": "compiler-public-config.stdout",
+      "stderr": "compiler-public-config.stderr"
+    },
+    {
+      "name": "lint-original",
+      "cwd": "candidate",
+      "command": [
+        "node_modules/.bin/oxlint",
+        "--config",
+        ".oxlint-compat.config.mjs",
+        "--format",
+        "json",
+        "."
+      ],
+      "exitCode": 1,
+      "seconds": 2.261,
+      "stdout": "lint-original.stdout",
+      "stderr": "lint-original.stderr"
+    },
+    {
+      "name": "dependency-tree",
+      "cwd": "candidate",
+      "command": [
+        "npm",
+        "ls",
+        "--all",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.265,
+      "stdout": "dependency-tree.stdout",
+      "stderr": "dependency-tree.stderr"
+    },
+    {
+      "name": "compiler-candidate-tooling-explicit",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--strict",
+        "--noUncheckedIndexedAccess",
+        "--module",
+        "NodeNext",
+        "--target",
+        "ESNext",
+        "--erasableSyntaxOnly",
+        "--rewriteRelativeImportExtensions",
+        "--verbatimModuleSyntax",
+        "--types",
+        "node",
+        "src/logger.ts",
+        "src/ollama.ts",
+        "src/output.ts",
+        "src/tools.ts",
+        "src/types.ts",
+        "scripts/demo-model-measurements.ts",
+        "scripts/demo-ollama-http.ts",
+        "scripts/demo-structured-output.ts",
+        "scripts/demo-tool-exchange.ts",
+        "scripts/demo-tool-requests.ts",
+        "knip.ts",
+        "--ignoreConfig"
+      ],
+      "exitCode": 0,
+      "seconds": 0.278,
+      "stdout": "compiler-candidate-tooling-explicit.stdout",
+      "stderr": "compiler-candidate-tooling-explicit.stderr"
+    },
+    {
+      "name": "compiler-public-config-explicit",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--strict",
+        "--noUncheckedIndexedAccess",
+        "--module",
+        "NodeNext",
+        "--target",
+        "ESNext",
+        ".compat-configuration.mts",
+        "--ignoreConfig"
+      ],
+      "exitCode": 1,
+      "seconds": 0.144,
+      "stdout": "compiler-public-config-explicit.stdout",
+      "stderr": "compiler-public-config-explicit.stderr"
+    },
+    {
+      "name": "compiler-adjusted",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "exitCode": 0,
+      "seconds": 0.25,
+      "stdout": "compiler-adjusted.stdout",
+      "stderr": "compiler-adjusted.stderr"
+    },
+    {
+      "name": "lint-adjusted",
+      "cwd": "candidate",
+      "command": [
+        "node_modules/.bin/oxlint",
+        "--config",
+        ".oxlint-compat.config.mjs",
+        "--format",
+        "json",
+        "."
+      ],
+      "exitCode": 1,
+      "seconds": 0.938,
+      "stdout": "lint-adjusted.stdout",
+      "stderr": "lint-adjusted.stderr"
+    },
+    {
+      "name": "compiler-public-config-node",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--strict",
+        "--noUncheckedIndexedAccess",
+        "--module",
+        "NodeNext",
+        "--target",
+        "ESNext",
+        ".compat-configuration.mts",
+        "--ignoreConfig",
+        "--types",
+        "node"
+      ],
+      "exitCode": 1,
+      "stdout": "compiler-public-config-node.stdout",
+      "stderr": "compiler-public-config-node.stderr"
+    },
+    {
+      "name": "compiler-public-ts7",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        ".compat-public.json",
+        "--noEmit"
+      ],
+      "exitCode": 1,
+      "stdout": "compiler-public-ts7.stdout",
+      "stderr": "compiler-public-ts7.stderr"
+    },
+    {
+      "name": "compiler-public-ts6",
+      "cwd": "candidate",
+      "command": [
+        "node",
+        "/Users/bramsey/Library/Mobile Documents/com~apple~CloudDocs/Projects/bramsey-eslint/node_modules/typescript/bin/tsc",
+        "--project",
+        ".compat-public.json",
+        "--noEmit"
+      ],
+      "exitCode": 2,
+      "stdout": "compiler-public-ts6.stdout",
+      "stderr": "compiler-public-ts6.stderr"
+    },
+    {
+      "name": "lint-files",
+      "cwd": "candidate",
+      "command": [
+        "node_modules/.bin/oxlint",
+        "--config",
+        ".oxlint-compat.config.mjs",
+        "--debug",
+        "files",
+        "."
+      ],
+      "exitCode": 0,
+      "stdout": "lint-files.stdout",
+      "stderr": "lint-files.stderr"
+    }
+  ],
+  "installation": {
+    "baseline": "npm ci --offline --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org",
+    "candidate": "npm install --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org --cache <lab>/npm-cache --save-dev <lab>/brandonramsey-lint-0.2.0.tgz oxlint@1.87.0 typescript@7.0.2",
+    "candidateExitCode": 0,
+    "publicPackagesAdded": 116,
+    "peerVerification": "npm ls --all --json exited 0",
+    "scripts": "Dependency lifecycle scripts disabled; shipped native binaries executed successfully."
+  },
+  "tests": [
+    {
+      "stage": "restricted",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "exitCode": 1,
+      "testSuites": 9,
+      "tests": 20,
+      "passed": 0,
+      "failed": 20,
+      "log": "tests-baseline.txt",
+      "environmentFailure": "Loopback server listen EPERM in sandbox"
+    },
+    {
+      "stage": "original",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "exitCode": 0,
+      "testSuites": 9,
+      "tests": 20,
+      "passed": 20,
+      "failed": 0,
+      "log": "tests-baseline-unrestricted.txt",
+      "environmentFailure": null
+    },
+    {
+      "stage": "candidate",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "exitCode": 0,
+      "testSuites": 9,
+      "tests": 20,
+      "passed": 20,
+      "failed": 0,
+      "log": "tests-candidate.txt",
+      "environmentFailure": null
+    },
+    {
+      "stage": "indexed-access-adjustment",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--runInBand"
+      ],
+      "exitCode": 0,
+      "testSuites": 9,
+      "tests": 20,
+      "passed": 20,
+      "failed": 0,
+      "log": "tests-adjusted.txt",
+      "environmentFailure": null
+    }
+  ],
+  "repositoryVerification": {
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "exitCode": 0,
+    "contractTests": 21,
+    "log": "repository-check.txt",
+    "includes": [
+      "strict typecheck",
+      "self-lint",
+      "full contract tests",
+      "reference drift"
+    ]
+  }
+}

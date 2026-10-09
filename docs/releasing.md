@@ -4,7 +4,7 @@
 
 Publication requires the full compatibility matrix to pass for the exact tagged commit and a separate explicit release action. The [publish workflow](../.github/workflows/publish.yml) calls the [reusable validation workflow](../.github/workflows/ci.yml) from the same commit, with every checkout pinned to `github.sha`. Its `release-ready` job depends on both the version guard and the entire validation matrix; publication depends on that gate. A failed, cancelled or skipped prerequisite prevents publication. A successful unrelated branch run is never release evidence.
 
-The [v1 readiness review](v1-readiness.md) records the current artifact/consumer reassessment, findings dispositions and proposed stable core policy boundary. The maintainer's go/no-go decision remains pending; the review does not authorize a v1 publication.
+The [v1 readiness review](v1-readiness.md) records the current artifact/consumer reassessment, findings dispositions and approved stable core policy boundary. The maintainer approved the policy freeze on October 9, 2026; the review does not authorize a v1 publication.
 
 ## Published 0.2.0 evidence
 

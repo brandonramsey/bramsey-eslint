@@ -1,10 +1,10 @@
 # V1 readiness review
 
-Prepared October 9, 2026, America/Chicago, for [issue #7](https://github.com/brandonramsey/lint/issues/7). **Recommendation: approve the stable core policy boundary below and proceed to v1 release preparation. Maintainer decision: pending.** The assessed package remains `@brandonramsey/lint@0.2.0`; this review neither changes its version nor authorizes publication.
+Prepared October 9, 2026, America/Chicago, for [issue #7](https://github.com/brandonramsey/lint/issues/7). **Maintainer decision: go. The stable core policy boundary below is approved and frozen for v1 release preparation.** The assessed package remains `@brandonramsey/lint@0.2.0`; this review neither changes its version nor authorizes publication.
 
 ## Review scope and prerequisites
 
-The reviewed source is `27a7dd5bfd59c143f530714809d20f773375c20c`, the merged [#5 completion audit, PR #28](https://github.com/brandonramsey/lint/pull/28). GitHub confirms issues #1–#6 and #8–#14 are closed. Issue #11 was withdrawn by [ADR 0018](adr/0018-use-native-typed-project-coverage.md), rather than implemented. Issue #7 stays open until the maintainer records a go/no-go decision.
+The reviewed source is `27a7dd5bfd59c143f530714809d20f773375c20c`, the merged [#5 completion audit, PR #28](https://github.com/brandonramsey/lint/pull/28). GitHub confirms issues #1–#6 and #8–#14 are closed. Issue #11 was withdrawn by [ADR 0018](adr/0018-use-native-typed-project-coverage.md), rather than implemented. The maintainer's explicit go decision for #7 is recorded below.
 
 `gh stack sync` brought `main` to that merged commit. Because the previous stack was fully merged, `gh stack trunk` followed by `gh stack init --base main feat/7-v1-readiness` started the next stack after #5. The review adds documentation and evidence; package sources, dependencies, rule settings, generated examples and workflows are unchanged.
 
@@ -15,7 +15,7 @@ The reviewed source is `27a7dd5bfd59c143f530714809d20f773375c20c`, the merged [#
 | Resolve or defer findings and document limitations | The findings ledger below distinguishes the resolved package defect, deferred consumer work and approved limitations. No new package release-blocking defect was observed. |
 | Reconcile release history, identities, links and publisher setup | Current registry metadata and provenance identify `brandonramsey/lint` and `@brandonramsey/lint@0.2.0`; historical `@brandonramsey/eslint@0.1.0` remains available. Publisher evidence and its verification boundary are below. |
 | Record compiler baseline, exceptions, profiles and coverage limits | The support boundary below retains repository TypeScript 6.0.3, documents the typescript-eslint ceiling and independently checked public declarations at 5.9.3/6.0.3/7.0.2. All 14 reference profiles remain unchanged. |
-| Maintainer go/no-go decision and stable policy boundary | The proposed boundary and decision record are below. This requirement remains pending; publication is a separate authorized action. |
+| Maintainer go/no-go decision and stable policy boundary | The maintainer approved the boundary below on October 9, 2026. The explicit decision is recorded below; publication is a separate authorized action. |
 
 ## Fresh artifact and isolated consumer results
 
@@ -61,9 +61,9 @@ The new checks are one-off release evidence. Permanent tests retain [ADR 0017's 
 
 No consumer remediation or consumer issue publication is required for the lint package's v1 decision. The October 9 maintainer deferral in the [follow-up notes](research/personal-assistant-compatibility/follow-up-ticket-drafts.md) remains authoritative. Any newly accepted release-blocking package defect must become an explicit dependency of #7 before proceeding.
 
-## Proposed stable core policy boundary
+## Approved stable core policy boundary
 
-Freeze the explicitly curated policy and the public factory/configuration/plugin contract in the reviewed source, with the accepted limitations above:
+The maintainer approved freezing the explicitly curated policy and public factory/configuration/plugin contract in the reviewed source, with the accepted limitations above:
 
 1. Framework-neutral Node TypeScript and JavaScript policy, including JSX/TSX, ESM/CommonJS, handwritten declarations, tests and intentional syntax-only exceptions. The [reference index](../examples/README.md) records all 14 profiles and 982 available rules per profile, including disabled rules; profile enabled counts differ.
 2. Native Oxlint plus bundled tsgolint, all 66 configured Stylistic settings and selected policy-plugin import/runtime/export checks. Retain the 48 configured typed checks, including promise and unsafe-value safety. Keep explicit rule/options curation, generated references and final consumer override precedence; do not adopt moving upstream presets wholesale.
@@ -88,11 +88,11 @@ Fresh local `npm run check` passed: clean build, strict types, combined reposito
 
 ## Maintainer decision record
 
-- Decision: **pending**.
-- Decision maker/date: **pending**.
-- Proposed choice: **go for the stable core policy boundary above**, with the documented engine limitations and deferred user-owned consumer work.
+- Decision: **go — stable core policy freeze approved**.
+- Decision maker/date: **maintainer, October 9, 2026 (America/Chicago)**, by explicit response in the implementation chat: “Go — approve the policy freeze”.
+- Approved scope: **the stable core policy boundary above**, including the documented engine limitations and deferred user-owned consumer work. This approval follows review of [PR #29](https://github.com/brandonramsey/lint/pull/29).
 - Release authorization: **not granted by this review**.
 
-For **go**, record the maintainer's explicit approval and date here, including any conditions or changed exceptions, before closing #7. For **no-go**, record each release-blocking concern, create reviewed dependency issues as appropriate, and keep #7 open. Do not infer either decision from passing checks or the request to prepare this review.
+The decision comes from the maintainer's explicit approval, rather than passing checks or the request to prepare this review. No additional policy exceptions or release-blocking package defects were introduced by that decision. This completes #7's readiness decision; versioned release preparation and publication remain separate work.
 
-After a go decision, prepare the separate `1.0.0` version/changelog candidate, record its exact packed artifact and repeat isolated validation if it differs, then request explicit release authorization. Only the authorized matching tag may initiate publication, and its own full matrix must pass.
+Next, prepare the separate `1.0.0` version/changelog candidate, record its exact packed artifact and repeat isolated validation if it differs, then request explicit release authorization. Only the authorized matching tag may initiate publication, and its own full matrix must pass.

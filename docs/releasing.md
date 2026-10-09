@@ -67,10 +67,24 @@ Checks on October 8, 2026:
 - The repository was renamed from `brandonramsey/bramsey-eslint` to `brandonramsey/lint`, retaining repository ID `1409414543`. It is public and owned by `brandonramsey`; the authenticated GitHub account has admin permission.
 - Before the rename, GitHub returned 404 for `brandonramsey/lint`.
 - After the rename, the old GitHub API repository path resolves to `brandonramsey/lint` with the same ID; issue #4 and its blocking relationships to #2/#3 remain present. The checkout's `origin` now uses `https://github.com/brandonramsey/lint.git`.
-- The old repository web URL now redirects to `https://github.com/brandonramsey/lint` with HTTP 200. The new repository and issue #4 web links return 200. An earlier request to the old issue URL returned 404 immediately after the rename; recheck that issue redirect before completing the cutover.
+- The old repository web URL now redirects to `https://github.com/brandonramsey/lint` with HTTP 200. The new repository and issue #4 web links return 200. An earlier request to the old issue URL returned 404 immediately after the rename; the October 9 recheck below records the remaining legacy-link limitation.
 - The GitHub `npm` environment exists with no protection rules.
 - The public npm registry returned 404 for `@brandonramsey/lint`. This does not establish scope ownership or permission to reserve the name.
 - `npm whoami` initially returned 401. After maintainer login it returned `brandonramsey`, confirming the intended npm account. The new package still returned 404, and `npm trust list` required a separate 2FA challenge (`EOTP`). Package bootstrap and the new trusted publisher remain unverified and require maintainer account steps.
+
+### October 9 completion audit
+
+The repository implementation already shipped in commit [`9072b86`](https://github.com/brandonramsey/lint/commit/9072b8649db541dfca58a55d10bdac18e25e2220). Issues #2, #3 and #14 are closed. The [published 0.2.0 evidence](#published-020-evidence) supersedes the October 8 bootstrap status above.
+
+Rechecked on October 9, 2026 for [issue #4](https://github.com/brandonramsey/lint/issues/4):
+
+- Both GitHub API repository names resolve to public `brandonramsey/lint`, ID `1409414543`, and the authenticated account retains admin permission. Issue #4 retains its native dependencies on closed issues #2 and #3. The local remote and tracker guidance use the canonical name.
+- The old repository web URL redirects to the canonical repository with HTTP 200. Canonical issue links for [#4](https://github.com/brandonramsey/lint/issues/4) and [#14](https://github.com/brandonramsey/lint/issues/14) return 200. The old #4 URL returned 200 once, then 404 on subsequent requests; the old #14 URL returned 404. Legacy issue redirects are unreliable in these observations. Use canonical links for current work; original links remain in dated planning and research records.
+- Registry metadata, tarball SHA-512 integrity and provenance still match `@brandonramsey/lint@0.2.0`, commit `36941f4cd6e71966786fd6ca608ef773a348e355`, repository `brandonramsey/lint` and `.github/workflows/publish.yml`. The recorded tag workflow still reports successful version, four-job matrix, release gate and publication results. Historical `@brandonramsey/eslint@0.1.0` remains available.
+- Package and lockfile identity, public repository metadata, basic/editable example imports, generated references, plugin metadata and test temporary-directory prefixes use the new identity. Remaining old branding belongs to historical releases, research, approved drafts and the isolated legacy ESLint implementation. Current ESLint mentions identify bundled upstream providers, rule namespaces or migration limitations.
+- `npm run check` passed: typechecking, repository self-lint, all 21 public-contract tests and reference drift checks for 14 profiles with 982 rules each. The separate packed public-contract check also passed; it checks the new identity, public access, metadata, exports, declarations, plugin paths and editable example directly without installing a consumer or running Oxlint.
+
+The GitHub `npm` environment still exists. The agent's `npm trust list @brandonramsey/lint --json` request returned `EOTP`; the maintainer then completed authentication in their own terminal and supplied the current binding: type `github`, repository `brandonramsey/lint`, file `publish.yml`, environment `npm`, permissions `createPackage` and `createStagedPackage`. In [npm CLI 11.19.0](https://github.com/npm/cli/blob/v11.19.0/lib/trust-cmd.js#L198-L210), `--allow-publish` maps to `createPackage`, confirming direct publication is allowed; `createStagedPackage` separately permits staging. This verifies the current binding from maintainer-supplied output, independently of the recorded release provenance. The audit retains only binding fields, with no authentication URL, OTP or credentials. Bootstrap and current publisher verification are complete.
 
 ## One-time npm setup
 

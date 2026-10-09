@@ -1,8 +1,8 @@
 # Approved pre-v1 ticket plan
 
-Historical planning record: the original drafts and old repository links below remain as approved. Issue #4 now prepares `@brandonramsey/lint@0.2.0`, and GitHub has been renamed to `brandonramsey/lint`. See [release setup](releasing.md) for verified cutover evidence and remaining npm account steps.
+Historical planning record: the original drafts and old repository links below remain as approved. Issue #4's repository and package identity changes shipped as `@brandonramsey/lint@0.2.0`, and GitHub has been renamed to `brandonramsey/lint`. See [release setup](releasing.md) for cutover and publication evidence; the first-release npm bootstrap is complete.
 
-The maintainer approved this seven-ticket plan on October 8, 2026. All seven issues have been submitted to the current GitHub repository, with verified bodies, triage labels, and 16 native blocking relationships. The approved direction is Oxlint + oxlint-tsgolint + @stylistic/eslint-plugin, native id-match for simplified naming, and no Oxfmt. Target identities: GitHub `brandonramsey/lint` and npm `@brandonramsey/lint`. The executable package and external identities have not yet changed.
+The maintainer approved this seven-ticket plan on October 8, 2026. All seven issues have been submitted to the current GitHub repository, with verified bodies, triage labels, and 16 native blocking relationships. The approved direction is Oxlint + oxlint-tsgolint + @stylistic/eslint-plugin, native id-match for simplified naming, and no Oxfmt. Target identities: GitHub `brandonramsey/lint` and npm `@brandonramsey/lint`. At that planning point, the executable package and external identities had not yet changed.
 
 The plan covers actual engine migration, all maintained code in TypeScript, the identity transition, CI/CD, and isolated consumer assessment. Convention simplifications do not authorize silently dropping correctness checks. Unresolved implementation/release-blocking gaps discovered during validation must become explicit dependencies.
 

@@ -1,6 +1,8 @@
-# Compatibility follow-up ticket drafts
+# Package follow-up draft and deferred consumer notes
 
-Prepared from [issue #6's assessment](README.md). **Drafts only: no GitHub submission or consumer implementation is authorized by this document.** Review titles, scope and ownership with the user, check existing issues for duplicates, then publish accepted drafts in dependency order with canonical triage labels. Use native blockers where available; retain explicit cross-repository links otherwise.
+Prepared from [issue #6's assessment](README.md). **No GitHub submission or consumer implementation is authorized by this document.** The lint package defect in section 1 remains a ticket draft for review; check existing issues before publishing it with the canonical triage label.
+
+On October 9, 2026, the user deferred personal-assistant-project issues until after installing `@brandonramsey/lint@1.0.0` and retained responsibility for creating those issues. Sections 2–5 are reference notes for that later work, not tickets awaiting publication. Consumer policy violations and consumer issue creation are not prerequisites for the lint package's v1 release. The package declaration defect remains separate release-readiness work.
 
 ## 1. Make packed public declarations independent of undeclared provider types
 
@@ -22,13 +24,13 @@ Evidence: [TS7 errors](evidence/compiler-public-ts7.stdout), [TS6 errors](eviden
 
 ## 2. Handle CLI promise failures through explicit unknown error boundaries
 
-Repository: `brandonramsey/personal-assistant-project`. Priority: P1. Proposed triage: `ready-for-human`. Implementation owner: user; assistant provides guidance/review/debugging.
+Project: `personal-assistant-project`. Priority: P1. Deferred until after the user installs v1.0.0. Issue creation and implementation owner: user; assistant provides guidance/review/debugging.
 
 ### Problem
 
 `scripts/demo-tool-requests.ts:11` leaves a `Promise<void>` unhandled. Three demo catch callbacks infer unsafe error types; `scripts/demo-tool-exchange.ts:28` passes the error directly to a string logger. The current 20 tests pass but do not establish all rejected-promise paths.
 
-### Acceptance criteria
+### Later work to consider
 
 - [ ] User implements awaited/handled completion for the tool-request entrypoint with deliberate nonzero failure status.
 - [ ] Narrow catch callback values from `unknown`, producing intentional string diagnostics and retaining useful error context.
@@ -36,17 +38,17 @@ Repository: `brandonramsey/personal-assistant-project`. Priority: P1. Proposed t
 - [ ] Preserve existing agreed tests. Review any newly required failure scenarios as separate test work before implementation; do not change tests already under implementation without explicit user direction.
 - [ ] Verify the existing suites and full lint diagnostics for the touched paths in the isolated adoption candidate.
 
-Does not authorize implementation by an agent or new test edits now. Coordinate with draft 3 for structured-output error metadata.
+Does not authorize implementation by an agent or new test edits now. Coordinate with section 3 for structured-output error metadata.
 
 ## 3. Validate model HTTP results and narrow structured-output error metadata
 
-Repository: `brandonramsey/personal-assistant-project`. Priority: P1. Proposed triage: `ready-for-human`. Implementation owner: user.
+Project: `personal-assistant-project`. Priority: P1. Deferred until after the user installs v1.0.0. Issue creation and implementation owner: user.
 
 ### Problem
 
-`Response.json()` produces unchecked values in `src/ollama.ts:71` and `scripts/demo-ollama-http.ts:14–17`; a declared result type is not runtime validation. `scripts/demo-structured-output.ts:31–33` reads unsafe callback error fields and interpolates them. The lint run reports five unsafe assignments, three unsafe member accesses and three unsafe arguments across these paths and draft 2's error logger.
+`Response.json()` produces unchecked values in `src/ollama.ts:71` and `scripts/demo-ollama-http.ts:14–17`; a declared result type is not runtime validation. `scripts/demo-structured-output.ts:31–33` reads unsafe callback error fields and interpolates them. The lint run reports five unsafe assignments, three unsafe member accesses and three unsafe arguments across these paths and section 2's error logger.
 
-### Acceptance criteria
+### Later work to consider
 
 - [ ] User defines and implements the remote JSON validation/narrowing boundary before accessing expected fields.
 - [ ] Preserve the existing model-call behavior while deliberately handling malformed/unavailable responses.
@@ -55,17 +57,17 @@ Repository: `brandonramsey/personal-assistant-project`. Priority: P1. Proposed t
 - [ ] Resolve relevant unsafe/member/template/default diagnostics without assertions that merely claim unvalidated data is safe.
 - [ ] Preserve existing agreed tests; capture new validation test requirements in separately reviewed work before implementation.
 
-Coordinate catch ownership with draft 2. This is guided application work, not automatic lint autofix.
+Coordinate catch ownership with section 2. This is guided application work, not automatic lint autofix.
 
 ## 4. Align source and ESM test conventions with the reviewed core policy
 
-Repository: `brandonramsey/personal-assistant-project`. Priority: P2. Proposed triage: `ready-for-human`. Implementation owner: user. Suggested order: after drafts 2 and 3 settle behavior.
+Project: `personal-assistant-project`. Priority: P2. Deferred until after the user installs v1.0.0. Issue creation and implementation owner: user. Suggested order: after sections 2 and 3 settle behavior.
 
 ### Problem
 
 The run identifies 63 style findings, 35 import-order findings, 18 required-brace findings, unused/shadowed bindings, `Number.NaN` conventions, missing exported return annotations, interface aliases and one type-only import. Nine ESM test files contribute 45 diagnostics even under the relaxed test profile. This is adoption work, separate from package/configuration defects.
 
-### Acceptance criteria
+### Later work to consider
 
 - [ ] Review these convention costs and any narrow exceptions before changing source or test text.
 - [ ] Apply accepted source conventions without changing runtime behavior or broadly disabling rule families.
@@ -75,22 +77,22 @@ The run identifies 63 style findings, 35 import-order findings, 18 required-brac
 
 Record deliberate semantic/coercion choices separately from mechanical formatting.
 
-## 5. Adopt the corrected packed policy with consumer-owned execution
+## 5. Record compiler and tooling choices after installation
 
-Repository: `brandonramsey/personal-assistant-project`. Priority: P2. Proposed triage: `ready-for-human`. Implementation owner: user. Blocked by: accepted draft 1 and agreed resolutions or explicit deferrals of drafts 2–4.
+Project: `personal-assistant-project`. Priority: P2. Deferred until after the user installs v1.0.0. Issue creation and implementation owner: user. Consumer remediation is not a prerequisite for v1 publication or installation.
 
 ### Problem
 
-The isolated package runs with TypeScript 7.0.2, but permanent adoption currently has both a public-declaration blocker and unresolved consumer violations. The existing compiler lacks the policy's indexed-access setting and excludes `knip.ts`.
+The isolated package runs with TypeScript 7.0.2. Its public-declaration defect belongs to the lint package's release work; the unresolved consumer violations belong to later user-led work. The existing compiler lacks the policy's indexed-access setting and excludes `knip.ts`.
 
-### Acceptance criteria
+### Later work to consider
 
-- [ ] Review a freshly packed corrected candidate and repeat the isolated assessment at the current consumer snapshot before permanent installation.
+- [ ] After installing v1.0.0, capture the installed package version and current consumer snapshot as the baseline for user-created follow-up issues.
 - [ ] Keep the highest stable compiler supported by the reassessed complete stack; do not downgrade solely because the lint repository retains development-only typescript-eslint.
 - [ ] User enables `noUncheckedIndexedAccess` and decides whether `knip.ts` joins compiler coverage; preserve other justified compiler settings. The assessed snapshot passes both checks.
-- [ ] User installs the actual package and exact Oxlint peer, saves a root-aligned configuration, and owns the lint command and exit handling.
+- [ ] Review the installed package's exact Oxlint peer, root-aligned configuration, lint command and exit handling.
 - [ ] Resolve or explicitly document policy findings and narrow exceptions; retain typed rules and standard ESM test settings.
 - [ ] Record fresh full compiler/test/lint results and distinguish native inferred coverage from explicit syntax-only exceptions. Do not introduce a custom typed-program preflight.
 - [ ] Assess the existing Node 26 type declarations against the chosen application runtime if adopting newer APIs; the current passing tests do not certify every declared API.
 
-Publication, v1 policy freeze and publisher account setup remain the lint project's separate release work. Permanent installation and remediation require subsequent user-led work.
+Publication, v1 policy freeze and publisher account setup remain the lint project's separate release work. The user owns permanent installation and subsequent consumer issue creation and remediation.

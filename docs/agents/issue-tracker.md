@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-Issues and specs live in brandonramsey/bramsey-eslint on GitHub.
+Issues and specs live in brandonramsey/lint on GitHub.
 Use the gh CLI from this repository.
 
 Read issues with their comments and labels; check existing issues before

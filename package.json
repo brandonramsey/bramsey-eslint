@@ -1,6 +1,6 @@
 {
-  "name": "@brandonramsey/eslint",
-  "version": "0.1.0",
+  "name": "@brandonramsey/lint",
+  "version": "0.2.0",
   "description": "Strict, opinionated Oxlint configuration for Node TypeScript projects",
   "license": "ISC",
   "type": "module",
@@ -51,11 +51,11 @@
     "prepack": "npm run build"
   },
   "keywords": [
-    "eslint",
-    "eslintconfig",
+    "oxlint",
+    "lint",
     "typescript",
     "node",
-    "flat-config"
+    "lint-config"
   ],
   "dependencies": {
     "@stylistic/eslint-plugin": "5.10.0",
@@ -83,10 +83,10 @@
   "author": "Brandon Ramsey",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brandonramsey/bramsey-eslint.git"
+    "url": "git+https://github.com/brandonramsey/lint.git"
   },
   "bugs": {
-    "url": "https://github.com/brandonramsey/bramsey-eslint/issues"
+    "url": "https://github.com/brandonramsey/lint/issues"
   },
-  "homepage": "https://github.com/brandonramsey/bramsey-eslint#readme"
+  "homepage": "https://github.com/brandonramsey/lint#readme"
 }

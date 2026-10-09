@@ -5,11 +5,11 @@ import { fileURLToPath } from 'node:url';
 
 import picomatch from 'picomatch';
 
-import { createConfig } from '@brandonramsey/eslint';
-import policy from '@brandonramsey/eslint/plugins/policy';
-import style from '@brandonramsey/eslint/plugins/style';
+import { createConfig } from '@brandonramsey/lint';
+import policy from '@brandonramsey/lint/plugins/policy';
+import style from '@brandonramsey/lint/plugins/style';
 
-import type { OxlintConfig, OxlintOverride } from '@brandonramsey/eslint';
+import type { OxlintConfig, OxlintOverride } from '@brandonramsey/lint';
 
 // Executed from .tooling/scripts after the strict tools build.
 const root = fileURLToPath(new URL('../../', import.meta.url));

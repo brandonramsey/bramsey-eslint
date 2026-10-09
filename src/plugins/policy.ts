@@ -77,5 +77,5 @@ const rules = Object.fromEntries(Object.entries(selected).map(([name, [owner, id
   return [name, bridge(rule, owner === 'import', name === 'export')];
 }));
 
-const plugin: ESLint.Plugin & { rules: Record<string, Rule.RuleModule> } = { meta: { name: '@brandonramsey/eslint/policy' }, rules };
+const plugin: ESLint.Plugin & { rules: Record<string, Rule.RuleModule> } = { meta: { name: '@brandonramsey/lint/policy' }, rules };
 export default plugin;

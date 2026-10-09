@@ -1,6 +1,6 @@
 # Package support boundaries
 
-This describes the Oxlint implementation in this checkout as of October 8, 2026. The published `@brandonramsey/eslint@0.1.0` release used ESLint; its historical verification does not establish an Oxlint release. Identity cutover and release workflow changes remain #4 and #5.
+This describes the Oxlint implementation in this checkout as of October 8, 2026, prepared as `@brandonramsey/lint@0.2.0`. The published `@brandonramsey/eslint@0.1.0` release used ESLint; its historical verification does not establish an Oxlint release. npm bootstrap and the release workflow gate (#5) must be completed before publishing the new identity.
 
 ## Runtime and compiler contracts
 

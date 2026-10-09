@@ -42,7 +42,7 @@ export function createProjectResolver(projectRoot: string, options: ResolverOpti
   const resolvers = new Map<string | undefined, ResolverFactory>();
   return {
     interfaceVersion: 3,
-    name: '@brandonramsey/eslint/nearest-project',
+    name: '@brandonramsey/lint/nearest-project',
     resolve(source, file) {
       const canonicalFile = realpathSync(resolve(projectRoot, file));
       const selected = ordered.find(({ directory }) => {

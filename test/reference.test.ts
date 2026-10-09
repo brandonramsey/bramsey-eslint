@@ -6,9 +6,9 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { createConfig } from '@brandonramsey/eslint';
+import { createConfig } from '@brandonramsey/lint';
 
-import type { ConfigOptions, OxlintConfig } from '@brandonramsey/eslint';
+import type { ConfigOptions, OxlintConfig } from '@brandonramsey/lint';
 
 const root = fileURLToPath(new URL('../../test/fixtures/project', import.meta.url));
 const exampleURL = new URL('../../examples/complete-config.mjs', import.meta.url);
@@ -99,8 +99,8 @@ await test('reference drift checks reject stale inventory, options, example and 
 await test('all native reference profiles include disabled inventory, configured options and distinct exemptions', async () => {
   const schema: { definitions: { DummyRuleMap: { properties: Record<string, unknown> } } } = JSON.parse(readFileSync(new URL('configuration_schema.json', import.meta.resolve('oxlint/package.json')), 'utf8'));
   const [{ default: style }, { default: policy }] = await Promise.all([
-    import('@brandonramsey/eslint/plugins/style'),
-    import('@brandonramsey/eslint/plugins/policy'),
+    import('@brandonramsey/lint/plugins/style'),
+    import('@brandonramsey/lint/plugins/policy'),
   ]);
   const inventory = [
     ...Object.keys(schema.definitions.DummyRuleMap.properties).map((name) => name.includes('/') ? name : `eslint/${name}`),

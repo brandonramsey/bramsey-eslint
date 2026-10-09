@@ -1,13 +1,13 @@
 # Native Oxlint configuration
 
-Issues #8 and #9 establish the TypeScript package, native configuration and bundled compatibility policy, under the existing `@brandonramsey/eslint` identity pending #4. Consumers install the package and the pinned peer `oxlint@1.87.0`; `oxlint-tsgolint@7.0.2003`, Stylistic, import-x, its TypeScript resolver, the Node and Unicorn providers, UnRS and ESLint are package dependencies. ESLint supplies selected rules and types; the exported configuration uses Oxlint. Build ESM and declarations with `npm run build`. The default export is one Oxlint object; `createConfig` and the `OxlintConfig`, `OxlintOverride`, `ConfigOptions` and `ResolverOptions` types are public. Compiled plugins are also exported as `@brandonramsey/eslint/plugins/style` and `@brandonramsey/eslint/plugins/policy`.
+Issues #8 and #9 establish the TypeScript package, native configuration and bundled compatibility policy; #4 prepares the new `@brandonramsey/lint` identity. Consumers install the package and the pinned peer `oxlint@1.87.0`; `oxlint-tsgolint@7.0.2003`, Stylistic, import-x, its TypeScript resolver, the Node and Unicorn providers, UnRS and ESLint are package dependencies. ESLint supplies selected rules and types; the exported configuration uses Oxlint. Build ESM and declarations with `npm run build`. The default export is one Oxlint object; `createConfig` and the `OxlintConfig`, `OxlintOverride`, `ConfigOptions` and `ResolverOptions` types are public. Compiled plugins are also exported as `@brandonramsey/lint/plugins/style` and `@brandonramsey/lint/plugins/policy`.
 
 Create `oxlint.config.ts` in the consuming project root:
 
 Use Node 22.18+ or 24+ for TypeScript configuration execution. On earlier supported Node 22, save the [basic JavaScript example](../examples/basic-config.mjs) as `oxlint.config.mjs` and pass its path explicitly. See [runtime, compiler and provider boundaries](support.md).
 
 ```ts
-import { createConfig } from '@brandonramsey/eslint';
+import { createConfig } from '@brandonramsey/lint';
 
 export default createConfig({
   projectRoot: import.meta.dirname,

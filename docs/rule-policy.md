@@ -4,7 +4,7 @@ These semantic policy choices have been approved during the design interview. Im
 
 ## Coverage
 
-The current implementation maps this policy to native Oxlint/tsgolint plus bundled Stylistic and the policy plugin. Native naming uses simplified declaration-level `id-match` rather than typescript-eslint's selector-based convention. The provider table below records the original ESLint ownership; see the [current interface](oxlint-configuration.md) for the implemented owners and the [historical reference index](../examples/README.md) for the original settings. Native rule inventory is tracked in #14. ADRs [0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md) and [0018](adr/0018-use-native-typed-project-coverage.md) supersede the original compiler/description obligations below.
+The current implementation maps this policy to native Oxlint/tsgolint plus bundled Stylistic and the policy plugin. Native naming uses simplified declaration-level `id-match` rather than typescript-eslint's selector-based convention. The provider table below records the original ESLint ownership; see the [current interface](oxlint-configuration.md) for the implemented owners and the [native reference index](../examples/README.md) for current settings. ADRs [0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md) and [0018](adr/0018-use-native-typed-project-coverage.md) supersede the original compiler/description obligations below.
 
 | Source | Purpose |
 | --- | --- |

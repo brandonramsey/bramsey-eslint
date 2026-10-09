@@ -5,15 +5,15 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { createConfig } from '@brandonramsey/eslint';
+import { createConfig } from '@brandonramsey/lint';
 
-import type { OxlintConfig, OxlintOverride } from '@brandonramsey/eslint';
+import type { OxlintConfig, OxlintOverride } from '@brandonramsey/lint';
 import type { DummyRule } from 'oxlint';
 
 const root = fileURLToPath(new URL('../../test/fixtures/project', import.meta.url));
 
 await test('the basic consumer example preserves the public default configuration', async () => {
-  const { default: config } = await import('@brandonramsey/eslint');
+  const { default: config } = await import('@brandonramsey/lint');
   const { default: example } = await import(new URL('../../examples/basic-config.mjs', import.meta.url).href);
   assert.deepEqual(example, config);
 });
@@ -54,7 +54,7 @@ await test('independent roots expose only their own resolver projects and an emp
 });
 
 await test('bundled compatibility plugin exports configured import, runtime, polyfill and CommonJS rules', async () => {
-  const { default: plugin } = await import('@brandonramsey/eslint/plugins/policy');
+  const { default: plugin } = await import('@brandonramsey/lint/plugins/policy');
   const policy = createConfig({ projectRoot: root });
   assert.ok(policy.rules);
   assert.ok(policy.overrides);
@@ -88,7 +88,7 @@ await test('factory rejects malformed plugin lists in native overrides', () => {
 });
 
 await test('native defaults and all validated Stylistic settings are explicit', async () => {
-  const { default: config } = await import('@brandonramsey/eslint');
+  const { default: config } = await import('@brandonramsey/lint');
   const evidence: { candidate: OxlintConfig } = JSON.parse(readFileSync(new URL('../../docs/research/oxlint-candidate/results.json', import.meta.url), 'utf8'));
   const expected = evidence.candidate;
   const styleSettings = (rules: OxlintConfig['rules']) => Object.fromEntries(Object.entries(rules ?? {}).filter(([id]) => id.startsWith('style/')));

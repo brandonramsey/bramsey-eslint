@@ -1,6 +1,6 @@
 # Shared lint policy design
 
-Status: this checkout implements native Oxlint configuration and bundled plugins under the existing `@brandonramsey/eslint` identity, with strictly checked TypeScript tooling, public-contract tests and a generated editable configuration. The published ESLint `0.1.0` release is historical. Identity cutover (#4) and release workflows (#5) remain separate work.
+Status: this checkout implements native Oxlint configuration and bundled plugins under the new `@brandonramsey/lint` identity, with strictly checked TypeScript tooling, public-contract tests and a generated editable configuration. The published `@brandonramsey/eslint@0.1.0` release is historical. The first new-name release is planned as `0.2.0`; npm account setup and the release workflow gate (#5) must be verified before publication.
 
 ## Goal and public boundary
 
@@ -12,7 +12,7 @@ The compiled ESM default is one `OxlintConfig` object. `createConfig` accepts ex
 
 1. [Framework-neutral Node TypeScript projects](adr/0001-framework-neutral-first-release.md), with application APIs targeting [Node 24+](adr/0010-default-application-target-node-24.md). Standalone JavaScript and browser presets remain outside the promise.
 2. [Explicit strict policy](adr/0002-explicit-strict-and-opinionated-policy.md), with [Stylistic as formatting authority](adr/0013-use-stylistic-in-the-planned-oxlint-stack.md) and no Oxfmt. [Rule policy](rule-policy.md) describes semantic choices and migration differences.
-3. [Native Oxlint configuration](adr/0014-migrate-to-oxlint-and-lint-identities.md), superseding the ESLint engine/flat-array contract in ADRs 0007/0009. The name cutover remains pending; third-party names and historical releases stay accurate.
+3. [Native Oxlint configuration](adr/0014-migrate-to-oxlint-and-lint-identities.md), superseding the ESLint engine/flat-array contract in ADRs 0007/0009. Current package metadata uses the lint identities; [release setup](releasing.md) records external cutover evidence and outstanding account steps. Third-party names and historical releases stay accurate.
 4. [Configuration and bundled plugins without a runner](adr/0017-publish-configuration-and-plugins-without-a-runner.md), superseding the runner/preflight obligation and ADR 0005's dependency arrangement. Oxlint is a peer; ESLint is an exact bundled bridge provider. Consumer TypeScript is distinct from tsgolint's embedded compiler.
 5. [Native typed-project coverage](adr/0018-use-native-typed-project-coverage.md): retain typed safety and explicit syntax-only/declaration exemptions, accept native inferred programs and diagnostics, and emit no custom warning or independent compiler inspection. ADR 0015 and issue #11 are withdrawn. Import-resolver discovery remains separate.
 6. [Native parsing with package-aware policy](adr/0016-use-native-parsing-with-package-aware-policy.md): nearest package boundaries, explicit patterns and dedicated extensions select globals and policy, without forcing parser/scope modes. Preserve [workspace aliases and references](adr/0008-support-monorepos-and-project-references.md) through the import bridge.

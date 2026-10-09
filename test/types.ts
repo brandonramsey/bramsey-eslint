@@ -1,8 +1,8 @@
-import config, { createConfig } from '@brandonramsey/eslint';
+import config, { createConfig } from '@brandonramsey/lint';
 
-import type { ConfigOptions, OxlintConfig, OxlintOverride, ResolverOptions } from '@brandonramsey/eslint';
-import type policy from '@brandonramsey/eslint/plugins/policy';
-import type style from '@brandonramsey/eslint/plugins/style';
+import type { ConfigOptions, OxlintConfig, OxlintOverride, ResolverOptions } from '@brandonramsey/lint';
+import type policy from '@brandonramsey/lint/plugins/policy';
+import type style from '@brandonramsey/lint/plugins/style';
 
 const override: OxlintOverride = { files: ['fixtures/**'], rules: { 'typescript/no-explicit-any': 'off' } };
 const options: ConfigOptions = {

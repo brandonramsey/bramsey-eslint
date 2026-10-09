@@ -73,7 +73,8 @@ jobs:
         run: node scripts/check-release.ts "$GITHUB_REF_NAME"
       - run: npm ci
       # prepublishOnly runs the final clean package check before publication.
-      - run: npm publish --access public --provenance
+      - name: Publish to the declared distribution tag
+        run: npm publish --access public --provenance --tag "$(node -p "require('./package.json').publishConfig.tag")"
   rehearsal-result:
     needs: [version, validate, release-ready, publish]
     if: ${{ always() && github.event_name == 'workflow_dispatch' }}

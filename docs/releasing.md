@@ -138,6 +138,16 @@ The following procedure records the setup path for the first release. `0.2.0` is
 4. Review the GitHub [npm environment](https://github.com/brandonramsey/lint/settings/environments) and desired reviewer protection. The publish job must use that exact environment, a GitHub-hosted runner and `id-token: write`. Node 24 and npm 11.19 meet the current trusted publishing tooling requirements independently of the consumer runtime.
 5. Review the packed artifact's name, version, public access, repository URL and assets. Provenance requires the new repository URL in package metadata and a public package/repository. Verify the publisher again immediately before the authorized release.
 
+## Prereleases
+
+The maintainer authorized `1.0.0-rc.1` on October 9, 2026 for manual installation and validation in another project before stable v1 publication. The policy freeze is recorded in [the readiness review](v1-readiness.md); this candidate changes release metadata and documentation, not runtime policy or dependencies.
+
+The candidate manifest sets `publishConfig.tag` to `next` and retains public access. The trusted-publishing workflow passes that manifest value explicitly to [`npm publish --tag`](https://docs.npmjs.com/cli/v11/commands/npm-publish/#tag), publishing this version under `next` while leaving `latest` at `0.2.0`. An npm 11.19.0 dry run without the explicit flag selected `latest`, so the workflow must retain the explicit flag. The packed-package contract checks the exact candidate version and tag, and an npm publish dry run must report `next` before creating `v1.0.0-rc.1`.
+
+Follow the full release procedure below, including isolated assessment of the actual candidate and the exact tagged commit's matrix. Use `-f tag=v1.0.0-rc.1` for non-publishing rehearsals; the workflow input's historical default is not the current candidate. [The release record](https://github.com/brandonramsey/lint/releases/tag/v1.0.0-rc.1) is the destination for the verified publication, artifact, provenance and consumer-assessment evidence.
+
+For a separately authorized stable release, change the package and lockfile to `1.0.0`, set `publishConfig.tag` to `latest`, update the packed-contract expectations and repeat release validation. Do not move the prerelease to `latest` or publish stable v1 as part of this authorization. Permanent consumer installation and source remediation remain user-led.
+
 ## Each release
 
 1. Review policy/runtime changes against the versioning contract. Update package.json and lockfile versions together; choose a new version and matching tag after the published `0.2.0` / `v0.2.0` release.

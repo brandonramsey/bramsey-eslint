@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-rc.1
+
+Prepare the first v1 release candidate from the core policy approved in issue #7. Runtime configuration, plugins, dependencies and generated reference profiles are unchanged from `0.2.0`.
+
+Publish this prerelease under npm's `next` tag for manual consumer validation. The default `latest` release remains `0.2.0`; stable `1.0.0` publication requires a separate decision after that validation.
+
 ## 0.2.0
 
 Add native Oxlint configuration, bundled style/policy plugins, strict TypeScript tooling and public package contract checks for the first `@brandonramsey/lint` release. Update current imports, generated examples and package metadata for GitHub `brandonramsey/lint`.

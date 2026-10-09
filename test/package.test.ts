@@ -14,7 +14,7 @@ type PackageManifest = {
   repository: { type: string; url: string };
   bugs: { url: string };
   homepage: string;
-  publishConfig: { access: string };
+  publishConfig: { access: string; tag: string };
   exports: Record<string, { types: string; import: string }>;
   engines: { node: string };
   peerDependencies: Record<string, string>;
@@ -40,11 +40,11 @@ await test('packed public modules, declarations, dependencies and plugin specifi
     const packageRoot = realpathSync(join(directory, 'package'));
     const manifest: PackageManifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'));
     assert.equal(manifest.name, '@brandonramsey/lint');
-    assert.equal(manifest.version, '0.2.0');
+    assert.equal(manifest.version, '1.0.0-rc.1');
     assert.deepEqual(manifest.repository, { type: 'git', url: 'git+https://github.com/brandonramsey/lint.git' });
     assert.deepEqual(manifest.bugs, { url: 'https://github.com/brandonramsey/lint/issues' });
     assert.equal(manifest.homepage, 'https://github.com/brandonramsey/lint#readme');
-    assert.deepEqual(manifest.publishConfig, { access: 'public' });
+    assert.deepEqual(manifest.publishConfig, { access: 'public', tag: 'next' });
     assert.deepEqual(Object.keys(manifest.exports), ['.', './plugins/style', './plugins/policy']);
     assert.deepEqual(manifest.peerDependencies, { oxlint: '1.87.0' });
     assert.equal(manifest.engines.node, '^22.13.0 || >=24.0.0');

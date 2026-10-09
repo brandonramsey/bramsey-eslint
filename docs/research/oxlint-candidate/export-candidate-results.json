@@ -1,0 +1,542 @@
+{
+  "mode": "candidate",
+  "results": [
+    {
+      "name": "javascript",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "javascript/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 25,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "javascript/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 26,
+                "length": 25,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "typescript",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "typescript/entry.ts",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 25,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "typescript/entry.ts",
+          "labels": [
+            {
+              "span": {
+                "offset": 26,
+                "length": 25,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "mts",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "mts/entry.mts",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 26,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "mts/entry.mts",
+          "labels": [
+            {
+              "span": {
+                "offset": 27,
+                "length": 26,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "mjs",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "mjs/entry.mjs",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 26,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "mjs/entry.mjs",
+          "labels": [
+            {
+              "span": {
+                "offset": 27,
+                "length": 26,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "nested",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "nested/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 28,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "nested/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 29,
+                "length": 25,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "distinct",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "explicit",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "defaults",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "cycle",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "types",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'Clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "types/entry.ts",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 30,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'Clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "types/entry.ts",
+          "labels": [
+            {
+              "span": {
+                "offset": 31,
+                "length": 30,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "invalid-child",
+      "expectedCount": 1,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Cannot inspect re-export graph: Unexpected token",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "invalid-child/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 14,
+                "length": 10,
+                "line": 1,
+                "column": 15
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "locations",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "locations/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 25,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "locations/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 26,
+                "length": 25,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "diamond",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "renamed",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "local-alias",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "imported-binding",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "namespaces",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "namespace-conflict",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'values' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "namespace-conflict/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 25,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'values' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "namespace-conflict/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 26,
+                "length": 25,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "renamed-default",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "nested-ambiguity",
+      "expectedCount": 1,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "nested-ambiguity/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 28,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "named-override",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "cyclic-conflict",
+      "expectedCount": 2,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "cyclic-conflict/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 0,
+                "length": 25,
+                "line": 1,
+                "column": 1
+              }
+            }
+          ]
+        },
+        {
+          "message": "Conflicting star exports of 'clash' resolve to different bindings.",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "cyclic-conflict/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 26,
+                "length": 25,
+                "line": 2,
+                "column": 1
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "empty-cycle",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "overloads",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "namespace-merge",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    },
+    {
+      "name": "invalid-indirect-child",
+      "expectedCount": 1,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Cannot inspect re-export graph: Unexpected token",
+          "code": "probe(export)",
+          "severity": "error",
+          "filename": "invalid-indirect-child/entry.js",
+          "labels": [
+            {
+              "span": {
+                "offset": 14,
+                "length": 13,
+                "line": 1,
+                "column": 15
+              }
+            }
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "named-default-binding",
+      "expectedCount": 0,
+      "status": 0,
+      "diagnostics": [],
+      "pass": true
+    }
+  ]
+}

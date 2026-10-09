@@ -1,0 +1,3100 @@
+{
+  "diagnostics": [
+    {
+      "message": "Missing semicolon.",
+      "code": "style(semi)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 112,
+            "length": 1,
+            "line": 4,
+            "column": 2
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing trailing comma.",
+      "code": "style(comma-dangle)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 110,
+            "length": 1,
+            "line": 3,
+            "column": 65
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unnecessarily quoted property 'entry' found.",
+      "code": "style(quote-props)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 19,
+            "length": 25,
+            "line": 2,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 19,
+            "length": 7,
+            "line": 2,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 29,
+            "length": 14,
+            "line": 2,
+            "column": 13
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unnecessarily quoted property 'project' found.",
+      "code": "style(quote-props)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 48,
+            "length": 62,
+            "line": 3,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 48,
+            "length": 9,
+            "line": 3,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 60,
+            "length": 13,
+            "line": 3,
+            "column": 15
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 75,
+            "length": 17,
+            "line": 3,
+            "column": 30
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "knip.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 94,
+            "length": 15,
+            "line": 3,
+            "column": 49
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-requests.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 171,
+            "length": 15,
+            "line": 6,
+            "column": 48
+          }
+        }
+      ]
+    },
+    {
+      "message": "More than 1 blank line not allowed.",
+      "code": "style(no-multiple-empty-lines)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-requests.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 95,
+            "length": 1,
+            "line": 4,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`../src/logger.ts` import should occur before import of `../src/ollama.ts`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-requests.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 51,
+            "length": 42,
+            "line": 2,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Variable 'CHAT_ENDPOINT' is declared but never used. Unused variables should start with a '_'.",
+      "code": "eslint(no-unused-vars)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-unused-vars.html",
+      "help": "Consider removing this declaration.",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "label": "'CHAT_ENDPOINT' is declared here",
+          "span": {
+            "offset": 254,
+            "length": 13,
+            "line": 6,
+            "column": 7
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 26,
+            "length": 18,
+            "line": 1,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 93,
+            "length": 18,
+            "line": 2,
+            "column": 48
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 631,
+            "length": 1,
+            "line": 18,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`../src/logger.ts` import should occur before import of `../src/ollama.ts`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 113,
+            "length": 49,
+            "line": 3,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `Number.NaN` instead of the global `NaN`",
+      "code": "unicorn(prefer-number-properties)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-number-properties.html",
+      "help": "Replace it with `Number.NaN`",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1112,
+            "length": 3,
+            "line": 37,
+            "column": 62
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `Number.NaN` instead of the global `NaN`",
+      "code": "unicorn(prefer-number-properties)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-number-properties.html",
+      "help": "Replace it with `Number.NaN`",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1180,
+            "length": 3,
+            "line": 38,
+            "column": 64
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `Number.NaN` instead of the global `NaN`",
+      "code": "unicorn(prefer-number-properties)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/unicorn/prefer-number-properties.html",
+      "help": "Replace it with `Number.NaN`",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1246,
+            "length": 3,
+            "line": 39,
+            "column": 62
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 69,
+            "length": 18,
+            "line": 2,
+            "column": 23
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected parentheses around arrow function argument.",
+      "code": "style(arrow-parens)",
+      "severity": "error",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 733,
+            "length": 8,
+            "line": 24,
+            "column": 26
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected parentheses around arrow function argument.",
+      "code": "style(arrow-parens)",
+      "severity": "error",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1435,
+            "length": 3,
+            "line": 48,
+            "column": 10
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 46,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 47,
+            "length": 41,
+            "line": 2,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`../src/types.ts` type import should occur before type import of `@langchain/core/messages`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 148,
+            "length": 48,
+            "line": 4,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1101,
+            "length": 1,
+            "line": 30,
+            "column": 5
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 843,
+            "length": 6,
+            "line": 26,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 0 spaces but found 2.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 888,
+            "length": 2,
+            "line": 27,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 912,
+            "length": 4,
+            "line": 28,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 962,
+            "length": 6,
+            "line": 29,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1097,
+            "length": 4,
+            "line": 30,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1110,
+            "length": 6,
+            "line": 31,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1174,
+            "length": 6,
+            "line": 32,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1227,
+            "length": 6,
+            "line": 33,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1301,
+            "length": 6,
+            "line": 34,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1334,
+            "length": 4,
+            "line": 35,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1340,
+            "length": 4,
+            "line": 36,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 24,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 25,
+            "length": 42,
+            "line": 2,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 68,
+            "length": 71,
+            "line": 3,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@langchain/core/output_parsers` import should occur before import of `zod`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 68,
+            "length": 71,
+            "line": 3,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@langchain/core/tools` import should occur before import of `zod`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "src/tools.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 25,
+            "length": 45,
+            "line": 2,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 27,
+            "length": 5,
+            "line": 3,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 162,
+            "length": 5,
+            "line": 8,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 216,
+            "length": 4,
+            "line": 9,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 268,
+            "length": 4,
+            "line": 10,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Too many blank lines at the beginning of file. Max of 0 allowed.",
+      "code": "style(no-multiple-empty-lines)",
+      "severity": "error",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 1,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `type` instead of `interface`.",
+      "code": "typescript(consistent-type-definitions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-definitions.html",
+      "help": "Replace `interface LLMInputMessage {\n  role: LLMInputRole;\n  content: string;\n}` with `type LLMInputMessage = {\n  role: LLMInputRole;\n  content: string;\n}`.",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 272,
+            "length": 9,
+            "line": 9,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `type` instead of `interface`.",
+      "code": "typescript(consistent-type-definitions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-definitions.html",
+      "help": "Replace `interface LLMRequestBody {\n  model: string;\n  stream: boolean;\n  messages: LLMInputMessage[];\n}` with `type LLMRequestBody = {\n  model: string;\n  stream: boolean;\n  messages: LLMInputMessage[];\n}`.",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 343,
+            "length": 9,
+            "line": 13,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `type` instead of `interface`.",
+      "code": "typescript(consistent-type-definitions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-definitions.html",
+      "help": "Replace `interface LLMOutput {\n  model: string;\n  message: {\n    role: 'assistant';\n    content: string;\n    thinking?: string;\n  }\n  done: boolean;\n}` with `type LLMOutput = {\n  model: string;\n  message: {\n    role: 'assistant';\n    content: string;\n    thinking?: string;\n  }\n  done: boolean;\n}`.",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 440,
+            "length": 9,
+            "line": 19,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 27,
+            "length": 19,
+            "line": 1,
+            "column": 28
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected a semicolon.",
+      "code": "style(member-delimiter-style)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 562,
+            "length": 0,
+            "line": 25,
+            "column": 4
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing trailing comma.",
+      "code": "style(comma-dangle)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1459,
+            "length": 1,
+            "line": 54,
+            "column": 7
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 2059,
+            "length": 1,
+            "line": 73,
+            "column": 3
+          }
+        }
+      ]
+    },
+    {
+      "message": "Operator '=' must be spaced.",
+      "code": "style(space-infix-ops)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1991,
+            "length": 1,
+            "line": 71,
+            "column": 34
+          }
+        }
+      ]
+    },
+    {
+      "message": "More than 1 blank line not allowed.",
+      "code": "style(no-multiple-empty-lines)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 218,
+            "length": 1,
+            "line": 7,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 985,
+            "length": 6,
+            "line": 41,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1060,
+            "length": 4,
+            "line": 42,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1066,
+            "length": 4,
+            "line": 43,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1102,
+            "length": 4,
+            "line": 44,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1197,
+            "length": 4,
+            "line": 45,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 4.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1465,
+            "length": 4,
+            "line": 56,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 47,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Identifier 'ToolMessage' is imported but never used.",
+      "code": "eslint(no-unused-vars)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-unused-vars.html",
+      "help": "Consider removing this import.",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "label": "'ToolMessage' is imported here",
+          "span": {
+            "offset": 36,
+            "length": 11,
+            "line": 1,
+            "column": 37
+          }
+        }
+      ]
+    },
+    {
+      "message": "Imports BaseMessage are only used as type.",
+      "code": "typescript(consistent-type-imports)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-imports.html",
+      "help": "Mark all type-only imports with the type specifier",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 82,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`BaseMessage` import should occur before import of `HumanMessage`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 23,
+            "length": 11,
+            "line": 1,
+            "column": 24
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 317,
+            "length": 15,
+            "line": 9,
+            "column": 22
+          }
+        }
+      ]
+    },
+    {
+      "message": "Strings must use singlequote.",
+      "code": "style(quotes)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 536,
+            "length": 43,
+            "line": 15,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected parentheses around arrow function argument.",
+      "code": "style(arrow-parens)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 871,
+            "length": 3,
+            "line": 27,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "message": "More than 1 blank line not allowed.",
+      "code": "style(no-multiple-empty-lines)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 221,
+            "length": 1,
+            "line": 6,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 0.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 804,
+            "length": 0,
+            "line": 24,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 2.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 831,
+            "length": 2,
+            "line": 25,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 0.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 861,
+            "length": 0,
+            "line": 26,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 0.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 864,
+            "length": 0,
+            "line": 27,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 2.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 880,
+            "length": 2,
+            "line": 28,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 4 spaces but found 2.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 901,
+            "length": 2,
+            "line": 29,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 2 spaces but found 0.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 925,
+            "length": 0,
+            "line": 30,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 82,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`../src/ollama.ts` import should occur before import of `../src/tools.ts`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 126,
+            "length": 50,
+            "line": 3,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`../src/logger.ts` import should occur before import of `../src/tools.ts`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 177,
+            "length": 42,
+            "line": 4,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Variable 'style' is declared but never used. Unused variables should start with a '_'.",
+      "code": "eslint(no-unused-vars)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-unused-vars.html",
+      "help": "Consider removing this declaration.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "label": "'style' is declared here",
+          "span": {
+            "offset": 408,
+            "length": 5,
+            "line": 17,
+            "column": 7
+          }
+        }
+      ]
+    },
+    {
+      "message": "'color' is already declared in the upper scope.",
+      "code": "eslint(no-shadow)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-shadow.html",
+      "help": "Consider renaming 'color' to avoid shadowing the variable from the outer scope.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "label": "'color' is declared here",
+          "span": {
+            "offset": 1218,
+            "length": 5,
+            "line": 50,
+            "column": 9
+          }
+        },
+        {
+          "label": "shadowed declaration is here",
+          "span": {
+            "offset": 595,
+            "length": 5,
+            "line": 25,
+            "column": 7
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1318,
+            "length": 2,
+            "line": 54,
+            "column": 39
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1413,
+            "length": 2,
+            "line": 58,
+            "column": 40
+          }
+        }
+      ]
+    },
+    {
+      "message": "Use `type` instead of `interface`.",
+      "code": "typescript(consistent-type-definitions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/consistent-type-definitions.html",
+      "help": "Replace `interface LabelValueLineConfig {\n  separatorColor?: Color;\n}` with `type LabelValueLineConfig = {\n  separatorColor?: Color;\n}`.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1470,
+            "length": 9,
+            "line": 62,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1984,
+            "length": 2,
+            "line": 74,
+            "column": 76
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 2135,
+            "length": 2,
+            "line": 78,
+            "column": 77
+          }
+        }
+      ]
+    },
+    {
+      "message": "Missing return type on function",
+      "code": "typescript(explicit-module-boundary-types)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/explicit-module-boundary-types.html",
+      "help": "Define an explicit return type for the function.",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 2270,
+            "length": 2,
+            "line": 82,
+            "column": 60
+          }
+        }
+      ]
+    },
+    {
+      "message": "`inspect` import should occur before import of `styleText`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 20,
+            "length": 7,
+            "line": 1,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "message": "Operator '=' must be spaced.",
+      "code": "style(space-infix-ops)",
+      "severity": "error",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 103,
+            "length": 1,
+            "line": 4,
+            "column": 12
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 47,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/measure-identity.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 252,
+            "length": 7,
+            "line": 9,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/measure-identity.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 717,
+            "length": 14,
+            "line": 21,
+            "column": 40
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-identity.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-identity.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/measure-usage.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 252,
+            "length": 7,
+            "line": 9,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/measure-usage.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 796,
+            "length": 14,
+            "line": 23,
+            "column": 40
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-usage.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-usage.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 301,
+            "length": 7,
+            "line": 10,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 849,
+            "length": 14,
+            "line": 25,
+            "column": 42
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 902,
+            "length": 1,
+            "line": 27,
+            "column": 5
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 10 spaces but found 8.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 1545,
+            "length": 8,
+            "line": 42,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 10 spaces but found 8.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 1572,
+            "length": 8,
+            "line": 43,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 10 spaces but found 8.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 1593,
+            "length": 8,
+            "line": 44,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected indentation of 8 spaces but found 6.",
+      "code": "style(indent)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 1675,
+            "length": 6,
+            "line": 45,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/tool-exchange.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/tool-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 252,
+            "length": 7,
+            "line": 9,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/tool-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 833,
+            "length": 14,
+            "line": 24,
+            "column": 42
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "tests/tool-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 886,
+            "length": 1,
+            "line": 26,
+            "column": 5
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/tool-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/tool-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Parameter 'stdout' is declared but never used. Unused parameters should start with a '_'.",
+      "code": "eslint(no-unused-vars)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/no-unused-vars.html",
+      "help": "Consider removing this parameter.",
+      "filename": "tests/first-call.test.mjs",
+      "labels": [
+        {
+          "label": "'stdout' is declared here",
+          "span": {
+            "offset": 1335,
+            "length": 6,
+            "line": 36,
+            "column": 16
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/first-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 252,
+            "length": 7,
+            "line": 9,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/first-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 2259,
+            "length": 14,
+            "line": 63,
+            "column": 42
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "tests/first-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 2312,
+            "length": 1,
+            "line": 65,
+            "column": 5
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/first-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/first-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/measure-config.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 252,
+            "length": 7,
+            "line": 9,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/measure-config.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 715,
+            "length": 14,
+            "line": 21,
+            "column": 40
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-config.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-config.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/measure-load.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 252,
+            "length": 7,
+            "line": 9,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/measure-load.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 1106,
+            "length": 14,
+            "line": 26,
+            "column": 40
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-load.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-load.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/measure-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 312,
+            "length": 7,
+            "line": 10,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/measure-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 883,
+            "length": 14,
+            "line": 24,
+            "column": 40
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/measure-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'if' condition.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `return;` with `{return;}`.",
+      "filename": "tests/structured-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 270,
+            "length": 7,
+            "line": 10,
+            "column": 27
+          }
+        }
+      ]
+    },
+    {
+      "message": "Expected { after 'for-of'.",
+      "code": "eslint(curly)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/eslint/curly.html",
+      "help": "Replace `body += chunk;` with `{body += chunk;}`.",
+      "filename": "tests/structured-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 965,
+            "length": 14,
+            "line": 30,
+            "column": 42
+          }
+        }
+      ]
+    },
+    {
+      "message": "Closing curly brace appears on the same line as the subsequent block.",
+      "code": "style(brace-style)",
+      "severity": "error",
+      "filename": "tests/structured-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 1018,
+            "length": 1,
+            "line": 32,
+            "column": 5
+          }
+        }
+      ]
+    },
+    {
+      "message": "There should be at least one empty line between import groups",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/structured-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "`@jest/globals` import should occur after import of `node:url`",
+      "code": "policy(order)",
+      "severity": "error",
+      "filename": "tests/structured-call.test.mjs",
+      "labels": [
+        {
+          "span": {
+            "offset": 0,
+            "length": 56,
+            "line": 1,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+      "code": "typescript(prefer-nullish-coalescing)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-nullish-coalescing.html",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 142,
+            "length": 2,
+            "line": 4,
+            "column": 56
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unexpected nullable string value in conditional.",
+      "code": "typescript(strict-boolean-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-boolean-expressions.html",
+      "help": "Handle the nullish and empty string cases explicitly.",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 111,
+            "length": 30,
+            "line": 4,
+            "column": 25
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "label": "Type: number",
+          "span": {
+            "offset": 916,
+            "length": 15,
+            "line": 39,
+            "column": 21
+          }
+        },
+        {
+          "span": {
+            "offset": 916,
+            "length": 15,
+            "line": 39,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "message": "Returning a void expression from an arrow function shorthand is forbidden.",
+      "code": "typescript(no-confusing-void-expression)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-confusing-void-expression.html",
+      "help": "Add braces to the arrow function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 190,
+            "length": 22,
+            "line": 8,
+            "column": 31
+          }
+        }
+      ]
+    },
+    {
+      "message": "Returning a void expression from an arrow function shorthand is forbidden.",
+      "code": "typescript(no-confusing-void-expression)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-confusing-void-expression.html",
+      "help": "Add braces to the arrow function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 243,
+            "length": 21,
+            "line": 9,
+            "column": 30
+          }
+        }
+      ]
+    },
+    {
+      "message": "Returning a void expression from an arrow function shorthand is forbidden.",
+      "code": "typescript(no-confusing-void-expression)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-confusing-void-expression.html",
+      "help": "Add braces to the arrow function.",
+      "filename": "src/logger.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 295,
+            "length": 21,
+            "line": 10,
+            "column": 30
+          }
+        }
+      ]
+    },
+    {
+      "message": "Returning an awaited promise is required in this context.",
+      "code": "typescript(return-await)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/return-await.html",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 281,
+            "length": 20,
+            "line": 8,
+            "column": 10
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe assignment of an any value.",
+      "code": "typescript(no-unsafe-assignment)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-assignment.html",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "label": "Assigned value has type `any`.",
+          "span": {
+            "offset": 1993,
+            "length": 21,
+            "line": 71,
+            "column": 36
+          }
+        },
+        {
+          "label": "Target expects type `LLMOutput`.",
+          "span": {
+            "offset": 1982,
+            "length": 9,
+            "line": 71,
+            "column": 25
+          }
+        },
+        {
+          "span": {
+            "offset": 1991,
+            "length": 1,
+            "line": 71,
+            "column": 34
+          }
+        }
+      ]
+    },
+    {
+      "message": "This type conversion does not change the type or value of the expression.",
+      "code": "typescript(no-unnecessary-type-conversion)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-conversion.html",
+      "filename": "src/output.ts",
+      "labels": [
+        {
+          "label": "This expression already has type 'boolean'.",
+          "span": {
+            "offset": 2319,
+            "length": 20,
+            "line": 84,
+            "column": 21
+          }
+        },
+        {
+          "span": {
+            "offset": 2311,
+            "length": 7,
+            "line": 84,
+            "column": 13
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "label": "Type: unknown",
+          "span": {
+            "offset": 2119,
+            "length": 3,
+            "line": 74,
+            "column": 45
+          }
+        },
+        {
+          "span": {
+            "offset": 2119,
+            "length": 3,
+            "line": 74,
+            "column": 45
+          }
+        }
+      ]
+    },
+    {
+      "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+      "code": "typescript(prefer-nullish-coalescing)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-nullish-coalescing.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 219,
+            "length": 2,
+            "line": 5,
+            "column": 56
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unexpected nullable string value in conditional.",
+      "code": "typescript(strict-boolean-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-boolean-expressions.html",
+      "help": "Handle the nullish and empty string cases explicitly.",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 188,
+            "length": 30,
+            "line": 5,
+            "column": 25
+          }
+        }
+      ]
+    },
+    {
+      "message": "Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.",
+      "code": "typescript(prefer-nullish-coalescing)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/prefer-nullish-coalescing.html",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 2251,
+            "length": 2,
+            "line": 80,
+            "column": 43
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unexpected nullable string value in conditional.",
+      "code": "typescript(strict-boolean-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/strict-boolean-expressions.html",
+      "help": "Handle the nullish and empty string cases explicitly.",
+      "filename": "src/ollama.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 2220,
+            "length": 30,
+            "line": 80,
+            "column": 12
+          }
+        }
+      ]
+    },
+    {
+      "message": "This assertion is unnecessary since it does not change the type of the expression.",
+      "code": "typescript(no-unnecessary-type-assertion)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unnecessary-type-assertion.html",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 555,
+            "length": 50,
+            "line": 17,
+            "column": 12
+          }
+        }
+      ]
+    },
+    {
+      "message": "Returning an awaited promise is required in this context.",
+      "code": "typescript(return-await)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/return-await.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 371,
+            "length": 18,
+            "line": 9,
+            "column": 10
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe assignment of an any value.",
+      "code": "typescript(no-unsafe-assignment)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-assignment.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "label": "Assigned value has type `any`.",
+          "span": {
+            "offset": 472,
+            "length": 21,
+            "line": 14,
+            "column": 24
+          }
+        },
+        {
+          "label": "Target is inferred as `any`.",
+          "span": {
+            "offset": 457,
+            "length": 12,
+            "line": 14,
+            "column": 9
+          }
+        },
+        {
+          "span": {
+            "offset": 470,
+            "length": 1,
+            "line": 14,
+            "column": 22
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe argument of type any assigned to a parameter of type Record<string, unknown>.",
+      "code": "typescript(no-unsafe-argument)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-argument.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 545,
+            "length": 12,
+            "line": 15,
+            "column": 51
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe assignment of an any value.",
+      "code": "typescript(no-unsafe-assignment)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-assignment.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "label": "Assigned value has type `any`.",
+          "span": {
+            "offset": 580,
+            "length": 28,
+            "line": 16,
+            "column": 19
+          }
+        },
+        {
+          "label": "Target is inferred as `any`.",
+          "span": {
+            "offset": 570,
+            "length": 7,
+            "line": 16,
+            "column": 9
+          }
+        },
+        {
+          "span": {
+            "offset": 578,
+            "length": 1,
+            "line": 16,
+            "column": 17
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe member access .message on an `any` value.",
+      "code": "typescript(no-unsafe-member-access)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-member-access.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 593,
+            "length": 7,
+            "line": 16,
+            "column": 32
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe argument of type any assigned to a parameter of type string.",
+      "code": "typescript(no-unsafe-argument)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-argument.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 621,
+            "length": 7,
+            "line": 17,
+            "column": 12
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "scripts/demo-ollama-http.ts",
+      "labels": [
+        {
+          "label": "Type: unknown",
+          "span": {
+            "offset": 685,
+            "length": 3,
+            "line": 19,
+            "column": 39
+          }
+        },
+        {
+          "span": {
+            "offset": 685,
+            "length": 3,
+            "line": 19,
+            "column": 39
+          }
+        }
+      ]
+    },
+    {
+      "message": "Prefer the safe `: unknown` for a `catch` callback variable.",
+      "code": "typescript(use-unknown-in-catch-callback-variable)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/use-unknown-in-catch-callback-variable.html",
+      "filename": "scripts/demo-model-measurements.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1435,
+            "length": 3,
+            "line": 48,
+            "column": 10
+          }
+        }
+      ]
+    },
+    {
+      "message": "Promises must be awaited, add await operator.",
+      "code": "typescript(no-floating-promises)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-floating-promises.html",
+      "help": "The promise must end with a call to .catch, or end with a call to .then with a rejection handler.",
+      "filename": "scripts/demo-tool-requests.ts",
+      "labels": [
+        {
+          "label": "This unhandled promise-like value has type `Promise<void>`.",
+          "span": {
+            "offset": 286,
+            "length": 10,
+            "line": 11,
+            "column": 1
+          }
+        },
+        {
+          "span": {
+            "offset": 286,
+            "length": 10,
+            "line": 11,
+            "column": 1
+          }
+        }
+      ]
+    },
+    {
+      "message": "Returning an awaited promise is required in this context.",
+      "code": "typescript(return-await)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/return-await.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 769,
+            "length": 30,
+            "line": 22,
+            "column": 10
+          }
+        }
+      ]
+    },
+    {
+      "message": "Prefer the safe `: unknown` for a `catch` callback variable.",
+      "code": "typescript(use-unknown-in-catch-callback-variable)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/use-unknown-in-catch-callback-variable.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 900,
+            "length": 5,
+            "line": 27,
+            "column": 13
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "label": "Type: string | undefined",
+          "span": {
+            "offset": 1033,
+            "length": 15,
+            "line": 29,
+            "column": 72
+          }
+        },
+        {
+          "span": {
+            "offset": 1033,
+            "length": 15,
+            "line": 29,
+            "column": 72
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "label": "Type: string | undefined",
+          "span": {
+            "offset": 1055,
+            "length": 17,
+            "line": 29,
+            "column": 94
+          }
+        },
+        {
+          "span": {
+            "offset": 1055,
+            "length": 17,
+            "line": 29,
+            "column": 94
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe assignment of an any value.",
+      "code": "typescript(no-unsafe-assignment)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-assignment.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "label": "Assigned value has type `any`.",
+          "span": {
+            "offset": 1135,
+            "length": 37,
+            "line": 31,
+            "column": 26
+          }
+        },
+        {
+          "label": "Target is inferred as `any`.",
+          "span": {
+            "offset": 1122,
+            "length": 10,
+            "line": 31,
+            "column": 13
+          }
+        },
+        {
+          "span": {
+            "offset": 1133,
+            "length": 1,
+            "line": 31,
+            "column": 24
+          }
+        }
+      ]
+    },
+    {
+      "message": "Prefer the safe `: unknown` for a `catch` callback variable.",
+      "code": "typescript(use-unknown-in-catch-callback-variable)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/use-unknown-in-catch-callback-variable.html",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 871,
+            "length": 3,
+            "line": 27,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe member access .status_code on an `any` value.",
+      "code": "typescript(no-unsafe-member-access)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-member-access.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1141,
+            "length": 11,
+            "line": 31,
+            "column": 32
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe assignment of an any value.",
+      "code": "typescript(no-unsafe-assignment)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-assignment.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "label": "Assigned value has type `any`.",
+          "span": {
+            "offset": 1196,
+            "length": 29,
+            "line": 32,
+            "column": 23
+          }
+        },
+        {
+          "label": "Target is inferred as `any`.",
+          "span": {
+            "offset": 1186,
+            "length": 7,
+            "line": 32,
+            "column": 13
+          }
+        },
+        {
+          "span": {
+            "offset": 1194,
+            "length": 1,
+            "line": 32,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe member access .message on an `any` value.",
+      "code": "typescript(no-unsafe-member-access)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-member-access.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 1202,
+            "length": 7,
+            "line": 32,
+            "column": 29
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "label": "Type: any",
+          "span": {
+            "offset": 1256,
+            "length": 10,
+            "line": 33,
+            "column": 30
+          }
+        },
+        {
+          "span": {
+            "offset": 1256,
+            "length": 10,
+            "line": 33,
+            "column": 30
+          }
+        }
+      ]
+    },
+    {
+      "message": "Invalid type used in template literal expression.",
+      "code": "typescript(restrict-template-expressions)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/restrict-template-expressions.html",
+      "filename": "scripts/demo-structured-output.ts",
+      "labels": [
+        {
+          "label": "Type: any",
+          "span": {
+            "offset": 1271,
+            "length": 7,
+            "line": 33,
+            "column": 45
+          }
+        },
+        {
+          "span": {
+            "offset": 1271,
+            "length": 7,
+            "line": 33,
+            "column": 45
+          }
+        }
+      ]
+    },
+    {
+      "message": "Unsafe argument of type any assigned to a parameter of type string.",
+      "code": "typescript(no-unsafe-argument)",
+      "severity": "error",
+      "url": "https://oxc.rs/docs/guide/usage/linter/rules/typescript/no-unsafe-argument.html",
+      "filename": "scripts/demo-tool-exchange.ts",
+      "labels": [
+        {
+          "span": {
+            "offset": 895,
+            "length": 3,
+            "line": 28,
+            "column": 16
+          }
+        }
+      ]
+    }
+  ],
+  "number_of_files": 21,
+  "number_of_rules": 284,
+  "threads_count": 15,
+  "start_time": 1.800408709
+}

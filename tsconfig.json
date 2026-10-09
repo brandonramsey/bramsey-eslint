@@ -4,10 +4,16 @@
     "noUncheckedIndexedAccess": true,
     "module": "NodeNext",
     "target": "ES2024",
-    "allowJs": true,
-    "checkJs": false,
     "noEmit": true,
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src/index.d.ts", "test/types.ts"]
+  "include": [
+    "src/**/*.ts",
+    "test/*.ts",
+    "scripts/*.ts",
+    "oxlint.config.ts"
+  ]
 }

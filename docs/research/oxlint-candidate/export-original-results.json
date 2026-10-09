@@ -1,0 +1,19 @@
+{
+  "mode": "original",
+  "results": [
+    {
+      "name": "cycle",
+      "expectedCount": 0,
+      "status": 1,
+      "diagnostics": [
+        {
+          "message": "Error running JS plugin.\nFile path: <project>/cycle/entry.js\nRangeError: Maximum call stack size exceeded\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:2465:28\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35\n    at <tools>/node_modules/eslint-plugin-import-x/lib/index.cjs:1764:35",
+          "severity": "error",
+          "filename": "cycle/entry.js",
+          "labels": []
+        }
+      ],
+      "pass": false
+    }
+  ]
+}

@@ -9,3 +9,5 @@ dist/
 .aws/
 .npmrc
 skills-lock.json
+.tooling/
+oxlint.config.js

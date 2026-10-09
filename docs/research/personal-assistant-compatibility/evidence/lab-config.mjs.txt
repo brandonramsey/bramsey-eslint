@@ -1,0 +1,2 @@
+import { createConfig } from '@brandonramsey/lint';
+export default createConfig({ projectRoot: import.meta.dirname, ignores: ['.oxlint-compat.config.mjs', '.compat-configuration.mts'] });

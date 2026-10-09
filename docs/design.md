@@ -1,61 +1,31 @@
-# Shared ESLint package design
+# Shared lint policy design
 
-Status: implemented and released publicly as `@brandonramsey/eslint@0.1.0` through GitHub trusted publishing. A clean registry consumer verified linting and public types with only the library, ESLint, and project TypeScript installed directly.
+Status: this checkout implements native Oxlint configuration and bundled plugins under the new `@brandonramsey/lint` identity, with strictly checked TypeScript tooling, public-contract tests and a generated editable configuration. The published `@brandonramsey/eslint@0.1.0` release is historical. The first new-name release is planned as `0.2.0`; the workflow gates publication on the tagged commit's entire compatibility matrix. npm account setup and hosted gate evidence must be verified before publication.
 
-## Goal
+## Goal and public boundary
 
-Publish an npm package supplying a common policy for TypeScript projects: formatting, code quality, TypeScript checks, and other explicitly chosen conventions. Consumers install the package and ESLint without separately installing any parsers, plugins, or extended rulesets. Maintain an exhaustive example showing each available rule and the package's settings.
+Supply a strict, explicitly curated core policy for Node TypeScript projects and their JavaScript, JSX/TSX and handwritten declarations. Consumers install the configuration package and the exact Oxlint peer. The package supplies every required plugin/provider and tsgolint; consumers own invocation, file selection, fixing and exit handling. It exports no executable, execution helper or independent preflight.
 
-## Settled decisions
+The compiled ESM default is one `OxlintConfig` object. `createConfig` accepts explicit roots, file patterns, resolver options and native overrides. Public declarations expose `ConfigOptions`, `ResolverOptions`, `OxlintConfig` and `OxlintOverride`; `plugins/style` and `plugins/policy` expose the bundled modules. See [the interface](oxlint-configuration.md) and [support evidence](support.md).
 
-1. [Framework-neutral TypeScript projects, including their JavaScript files](adr/0001-framework-neutral-first-release.md). Standalone JavaScript projects are outside the first-release promise.
-2. [Maximum strictness and extensive conventions, chosen explicitly](adr/0002-explicit-strict-and-opinionated-policy.md).
-3. [ESLint owns formatting](adr/0003-eslint-owns-formatting.md).
-4. [Generate an exhaustive reference from resolved profiles and check it for drift](adr/0004-exhaustive-rule-reference.md). Include disabled rules and configured options; do not expand all omitted internal option defaults.
-5. [Package all lint extensions; use the consuming TypeScript project's compiler](adr/0005-package-lint-dependencies.md).
-6. [Enable typed TypeScript checks by default, with explicit syntax-only file patterns](adr/0006-enable-typed-checks-by-default.md).
-7. [Target ESLint 10 flat config and Node `^22.13.0 || >=24.0.0` for linting](adr/0007-target-eslint-10-flat-config.md). The application's Node target is a separate contract.
-8. [Target Node applications and tooling first](adr/0001-framework-neutral-first-release.md). Browser support and explicit environment selection may be added later.
-9. [Concrete formatting, TypeScript, import, and filename conventions](rule-policy.md) are approved.
-10. [Support single projects and monorepos with aliases and project references](adr/0008-support-monorepos-and-project-references.md).
-11. [Export an ESM default config array and named `createConfig` factory](adr/0009-export-default-config-and-factory-as-esm.md), with examples in `eslint.config.mjs`.
-12. [Use Node 24+ as the default application target](adr/0010-default-application-target-node-24.md), independent of the linting tool's Node runtime.
-13. [Rule coverage](rule-policy.md): ESLint core, typescript-eslint, Stylistic, import-x and its TypeScript resolver, Unicorn, and eslint-plugin-n, with explicit curation.
-14. [Enforce naming for bindings and types while exempting property names and original destructured keys](rule-policy.md).
-15. [Automatically apply a relaxed profile to standard test patterns](rule-policy.md), with configurable fixture patterns. Permit `any` and unsafe fixture operations; retain formatting, import checks, and other typed correctness checks.
-16. [Support both ESM and CommonJS consuming applications](adr/0009-export-default-config-and-factory-as-esm.md), while publishing the config package as ESM.
-17. [All enabled rules are errors; allow described inline exceptions and report unused disables as errors](rule-policy.md).
-18. [Production limits: complexity 10, nesting 4, parameters 4; no hard function/file size limits](rule-policy.md). Relax these limits in tests.
-19. [Support JSX syntax and a syntax-only handwritten-declaration profile, and exclude generated output](rule-policy.md). Declaration exceptions permit interfaces, ambient enums, namespaces, and required global `var` declarations, while retaining the `any` ban.
-20. Publish under the intended name `@brandonramsey/eslint`; verify availability and publishing access before release.
-21. Retain the ISC license and include the matching license file in the package.
-22. Use a public GitHub source repository named `bramsey-eslint`.
-23. [Release `0.1.0` first, validate before `1.0.0`, and treat stricter stable defaults as major changes](adr/0011-stabilize-the-policy-before-one-point-zero.md).
-24. [Supported projects use TypeScript's strict compiler baseline plus `noUncheckedIndexedAccess`, and run compiler diagnostics separately](rule-policy.md).
-25. [Explicit production correctness policy](rule-policy.md): primitive truthiness checks, handled promises, safe async callback positions, `return await`, Error-compatible new throws, preserved direct rethrows, and unknown Promise rejection values.
-26. [Permit synchronous CLI APIs; prefer exit codes over immediate process termination with explained exceptions](rule-policy.md).
-27. [Validate in GitHub Actions and publish explicit version tags through npm trusted publishing](adr/0012-validate-and-publish-through-github-actions.md).
-28. [Enable unnecessary-condition checks with accurate indexed types while permitting defensive type-predicate assertions](rule-policy.md).
-29. [Remaining TypeScript notation, readonly, and inference conventions are explicitly approved](rule-policy.md).
-30. [Leave the declined optional Unicorn conventions unenforced](rule-policy.md): iteration methods, helper locality, array mutation, conditional shape, extra naming, member order, and TODO deadlines.
-31. [Remaining production practices are explicitly approved](rule-policy.md): const/let, strict equality, explicit coercion, nonempty functions, class shape, dynamic deletion, and index-only loops.
+## Current decisions
 
-## Current interview frontier
+1. [Framework-neutral Node TypeScript projects](adr/0001-framework-neutral-first-release.md), with application APIs targeting [Node 24+](adr/0010-default-application-target-node-24.md). Standalone JavaScript and browser presets remain outside the promise.
+2. [Explicit strict policy](adr/0002-explicit-strict-and-opinionated-policy.md), with [Stylistic as formatting authority](adr/0013-use-stylistic-in-the-planned-oxlint-stack.md) and no Oxfmt. [Rule policy](rule-policy.md) describes semantic choices and migration differences.
+3. [Native Oxlint configuration](adr/0014-migrate-to-oxlint-and-lint-identities.md), superseding the ESLint engine/flat-array contract in ADRs 0007/0009. Current package metadata uses the lint identities; [release setup](releasing.md) records external cutover evidence and outstanding account steps. Third-party names and historical releases stay accurate.
+4. [Configuration and bundled plugins without a runner](adr/0017-publish-configuration-and-plugins-without-a-runner.md), superseding the runner/preflight obligation and ADR 0005's dependency arrangement. Oxlint is a peer; ESLint is an exact bundled bridge provider. Consumer TypeScript is distinct from tsgolint's embedded compiler.
+5. [Native typed-project coverage](adr/0018-use-native-typed-project-coverage.md): retain typed safety and explicit syntax-only/declaration exemptions, accept native inferred programs and diagnostics, and emit no custom warning or independent compiler inspection. ADR 0015 and issue #11 are withdrawn. Import-resolver discovery remains separate.
+6. [Native parsing with package-aware policy](adr/0016-use-native-parsing-with-package-aware-policy.md): nearest package boundaries, explicit patterns and dedicated extensions select globals and policy, without forcing parser/scope modes. Preserve [workspace aliases and references](adr/0008-support-monorepos-and-project-references.md) through the import bridge.
+7. Automatic relaxed test settings retain formatting, import and promise checks. Declarations permit augmentation constructs while retaining syntax-level `any` rejection. Consumer overrides have final precedence.
+8. Enabled rules are errors. Unused disables and blanket-disable rejection remain configured; disable-comment descriptions are recommended but unenforced under ADR 0017. Consumers manage observed multi-pass fixes.
+9. The policy plugin retains missing import/runtime/core providers and scoped guarded export inspection. Child parsing is limited to export-name inspection; it promises no general ESLint parser compatibility. Packed imports verify the pinned unsupported ESLint core-provider entry point.
+10. [Exhaustive references](adr/0004-exhaustive-rule-reference.md) supply native inventories and configured settings for every reference profile, plus an [editable generated configuration](../examples/complete-config.mjs) preserving the default policy. The generator reads pinned metadata and public configuration/plugin exports without lint-engine probes; generation drift is part of the development check.
+11. [ISC and pre-v1 stabilization](adr/0011-stabilize-the-policy-before-one-point-zero.md) remain. [Tag-based releases](adr/0012-validate-and-publish-through-github-actions.md) require a matching version tag and successful full-matrix validation of the triggering SHA. Non-publishing rehearsals verify success and failure gates.
 
-The complete design was confirmed for implementation. No interview decisions remain pending.
+## Verification boundary
 
-## Remaining branches
+Tests cover public exports/declarations, configured rules/options, factory composition/validation, plugin exports/specifiers, dependency metadata, packed assets and example equivalence/drift. They inspect built and unpacked modules directly, without installing a consumer or executing Oxlint. Assume upstream engines and rules work; research fixtures are historical evidence, not a permanent upstream behavior suite. Self-lint remains a development check.
 
-- Authenticate npm, configure trusted publishing, and verify the first public release.
+Repository commands build the public package before compiling TypeScript configuration, the reference generator and tests to local JavaScript. The compiled Oxlint configuration is placed at the repository root to preserve relative pattern semantics; tests execute from `.tooling/test/` and locate fixtures/assets in the source checkout. Strict checking includes package sources, maintained repository tooling, contract tests and the public API fixture. Generated consumer assets retain their `.mjs` formats and receive drift checks.
 
-The source is public and [the compatibility matrix passed](https://github.com/brandonramsey/bramsey-eslint/actions/runs/37692745103): Node 22.13/24 with packed consumers using ESLint 10.4/10.12 and TypeScript 5.9/6.0. Local lint, type checking, 29 behavior tests, and exhaustive-reference drift checks pass.
-
-The [exhaustive generated references](../examples/README.md) resolve the executable configuration and list every available core and shipped-plugin rule. The package exports its default array and createConfig factory, with representative behavior tests and packed-consumer validation.
-
-## Known constraints
-
-TypeScript project service does not automatically fall back to syntax-only checking for files outside a project. Exception selection must be explicit in the design.
-
-A TypeScript peer dependency preserves compiler consistency. Missing-peer installation differs across package managers, so standalone JavaScript support needs an explicit dependency contract.
-
-The intended public name is `@brandonramsey/eslint`, and ISC is the chosen license. Registry lookup returned 404; scope ownership remains unverified because this machine is not authenticated to npm. The public GitHub repository is [brandonramsey/bramsey-eslint](https://github.com/brandonramsey/bramsey-eslint). Supported compiler versions are TypeScript 5.9–6.0; the tested lint range starts at ESLint 10.4.
+TypeScript 6.0.3 checks the build and public declarations with full library checking. The retained typescript-eslint family blocks a toolchain upgrade to stable TypeScript 7.0.2; tsgolint separately embeds a compiler targeting 7.0.2. Runtime support is derived from published dependency contracts, and local verification uses Node 24.21.0. No new engine/compiler compatibility matrix is claimed. See [support boundaries](support.md) for pins, evidence and limitations.

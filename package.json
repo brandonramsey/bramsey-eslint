@@ -1,17 +1,25 @@
 {
-  "name": "@brandonramsey/eslint",
-  "version": "0.1.0",
-  "description": "Strict, opinionated ESLint flat configuration for Node TypeScript projects",
+  "name": "@brandonramsey/lint",
+  "version": "0.2.0",
+  "description": "Strict, opinionated Oxlint configuration for Node TypeScript projects",
   "license": "ISC",
   "type": "module",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
-      "import": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./plugins/style": {
+      "types": "./dist/plugins/style.d.ts",
+      "import": "./dist/plugins/style.js"
+    },
+    "./plugins/policy": {
+      "types": "./dist/plugins/policy.d.ts",
+      "import": "./dist/plugins/policy.js"
     }
   },
   "files": [
-    "src",
+    "dist",
     "examples",
     "docs",
     "LICENSE",
@@ -23,53 +31,62 @@
     "node": "^22.13.0 || >=24.0.0"
   },
   "peerDependencies": {
-    "eslint": "^10.4.0",
-    "typescript": ">=5.9.0 <6.1.0"
+    "oxlint": "1.87.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "test": "node --test test/*.test.js",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "references": "node scripts/generate-reference.js",
-    "references:check": "node scripts/generate-reference.js --check",
-    "test:consumer": "node scripts/test-consumer.js",
+    "test": "npm run build:tools && node --test .tooling/test/*.test.js",
+    "lint": "npm run build:tools && oxlint --config oxlint.config.js .",
+    "typecheck": "npm run build && tsc --noEmit",
+    "references": "npm run build:tools && node .tooling/scripts/generate-reference.js",
+    "references:check": "npm run build:tools && node .tooling/scripts/generate-reference.js --check",
+    "test:package": "npm run build:tools && node --test .tooling/test/package.test.js",
+    "test:consumer": "npm run test:package",
     "check": "npm run typecheck && npm run lint && npm test && npm run references:check",
-    "prepublishOnly": "npm run check && npm run test:consumer"
+    "prepublishOnly": "npm run check",
+    "build": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\" && tsc -p tsconfig.build.json",
+    "build:tools": "npm run build && node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('.tooling', { recursive: true, force: true }); rmSync('oxlint.config.js', { force: true });\" && tsc -p tsconfig.tools.json && node --input-type=module -e \"import { copyFileSync } from 'node:fs'; copyFileSync('.tooling/oxlint.config.js', 'oxlint.config.js');\"",
+    "prepack": "npm run build"
   },
   "keywords": [
-    "eslint",
-    "eslintconfig",
+    "oxlint",
+    "lint",
     "typescript",
     "node",
-    "flat-config"
+    "lint-config"
   ],
   "dependencies": {
-    "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@stylistic/eslint-plugin": "5.10.0",
+    "@types/picomatch": "4.0.3",
+    "eslint": "10.12.0",
     "eslint-import-resolver-typescript": "4.4.5",
     "eslint-plugin-import-x": "4.17.1",
     "eslint-plugin-n": "18.4.1",
     "eslint-plugin-unicorn": "77.0.0",
     "globals": "17.13.0",
+    "oxc-parser": "0.153.0",
+    "oxlint-tsgolint": "7.0.2003",
     "tinyglobby": "0.2.17",
     "type-fest": "5.10.0",
-    "typescript-eslint": "8.71.1"
+    "unrs-resolver": "1.12.2"
   },
   "devDependencies": {
+    "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@types/node": "24.19.1",
-    "eslint": "10.12.0",
-    "typescript": "6.0.3"
+    "oxlint": "1.87.0",
+    "picomatch": "4.0.7",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.1"
   },
   "author": "Brandon Ramsey",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brandonramsey/bramsey-eslint.git"
+    "url": "git+https://github.com/brandonramsey/lint.git"
   },
   "bugs": {
-    "url": "https://github.com/brandonramsey/bramsey-eslint/issues"
+    "url": "https://github.com/brandonramsey/lint/issues"
   },
-  "homepage": "https://github.com/brandonramsey/bramsey-eslint#readme"
+  "homepage": "https://github.com/brandonramsey/lint#readme"
 }

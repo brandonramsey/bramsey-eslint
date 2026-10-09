@@ -2,10 +2,57 @@ name: Publish
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      rehearsal:
+        description: Non-publishing release-gate scenario
+        type: choice
+        required: true
+        default: success
+        options: [success, matrix-failure, tag-mismatch]
+      tag:
+        description: Candidate tag to check against package.json (no tag is created)
+        type: string
+        required: true
+        default: v0.2.0
 permissions:
   contents: read
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Check tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          REHEARSAL: ${{ inputs.rehearsal }}
+        run: |
+          if [ "$REHEARSAL" = tag-mismatch ]; then
+            RELEASE_TAG="$RELEASE_TAG-mismatch"
+          fi
+          node scripts/check-release.ts "$RELEASE_TAG"
+  validate:
+    uses: ./.github/workflows/ci.yml
+    with:
+      inject-failure: ${{ github.event_name == 'workflow_dispatch' && inputs.rehearsal == 'matrix-failure' }}
+  release-ready:
+    needs: [version, validate]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All release prerequisites passed for this commit
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: echo "Release gate passed for $RELEASE_SHA"
   publish:
+    needs: release-ready
+    if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && github.repository == 'brandonramsey/lint' }}
     runs-on: ubuntu-latest
     environment: npm
     permissions:
@@ -14,16 +61,43 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: '24'
           registry-url: https://registry.npmjs.org
-          cache: npm
+          package-manager-cache: false
       - run: npm install --global npm@11.19.0
       - name: Check tag matches package version
-        run: node --input-type=module -e 'import p from "./package.json" with {type:"json"}; if (process.env.GITHUB_REF_NAME !== `v${p.version}`) throw new Error("Tag must match package version");'
+        run: node scripts/check-release.ts "$GITHUB_REF_NAME"
       - run: npm ci
-      - run: npm run check
-      - run: npm run test:consumer
+      # prepublishOnly runs the final clean package check before publication.
       - run: npm publish --access public --provenance
+  rehearsal-result:
+    needs: [version, validate, release-ready, publish]
+    if: ${{ always() && github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify the expected gate result without publishing
+        env:
+          REHEARSAL: ${{ inputs.rehearsal }}
+          VERSION_RESULT: ${{ needs.version.result }}
+          MATRIX_RESULT: ${{ needs.validate.result }}
+          GATE_RESULT: ${{ needs.release-ready.result }}
+          PUBLISH_RESULT: ${{ needs.publish.result }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { appendFileSync } from 'node:fs';
+          const scenario = process.env.REHEARSAL;
+          assert.equal(process.env.VERSION_RESULT, scenario === 'tag-mismatch' ? 'failure' : 'success');
+          assert.equal(process.env.MATRIX_RESULT, scenario === 'matrix-failure' ? 'failure' : 'success');
+          assert.equal(process.env.GATE_RESULT, scenario === 'success' ? 'success' : 'skipped');
+          assert.equal(process.env.PUBLISH_RESULT, 'skipped');
+          appendFileSync(process.env.GITHUB_STEP_SUMMARY, `Verified ${scenario}: version=${process.env.VERSION_RESULT}, matrix=${process.env.MATRIX_RESULT}, gate=${process.env.GATE_RESULT}, publish=skipped.\n`);
+          JS

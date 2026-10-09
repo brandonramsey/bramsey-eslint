@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": false,
+    "noUncheckedIndexedAccess": true
+  },
+  "include": [
+    ".public-api.mts"
+  ]
+}

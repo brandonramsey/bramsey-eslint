@@ -1,0 +1,100 @@
+
+> personal-assistant-project@1.0.0 test
+> node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand
+
+(node:4333) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL tests/structured-call.test.mjs
+  ● structured CLI prints the validated object as JSON
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● structured CLI rejects malformed JSON without printing a result
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● structured CLI rejects a missing required field without printing a result
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● structured CLI rejects a summary with the wrong type without printing a result
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● structured CLI rejects limitations with the wrong type without printing a result
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● structured CLI rejects a blank summary without printing a result
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● structured CLI reports unavailable inference
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/tool-exchange.test.mjs
+  ● exchange CLI executes add, returns its result, and displays the final answer
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● exchange CLI reports no tool call instead of treating a text answer as capability evidence
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/first-call.test.mjs
+  ● CLI reports Ollama HTTP failure with a nonzero exit status
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● CLI sends a user message and displays the returned answer
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● CLI displays a long answer without truncating it
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/tool-call.test.mjs
+  ● tool CLI advertises add and prints the requested tool name and arguments
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/measure-call.test.mjs
+  ● measurement CLI reports the answer and elapsed time including the model wait
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/measure-config.test.mjs
+  ● measurement CLI records the prompt and temperature sent to Ollama
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/measure-usage.test.mjs
+  ● measurement CLI includes input, output, and total token usage
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/measure-load.test.mjs
+  ● measurement CLI converts reported loading nanoseconds to milliseconds
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● measurement CLI preserves a reported zero loading duration
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+  ● measurement CLI reports unavailable loading duration as null
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+FAIL tests/measure-identity.test.mjs
+  ● measurement CLI records its model tag and Node runtime identity
+
+    listen EPERM: operation not permitted 127.0.0.1
+
+Test Suites: 9 failed, 9 total
+Tests:       20 failed, 20 total
+Snapshots:   0 total
+Time:        0.357 s
+Ran all test suites.

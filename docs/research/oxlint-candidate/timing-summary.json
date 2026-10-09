@@ -1,0 +1,109 @@
+{
+  "environment": {
+    "node": "v24.21.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "files": [
+    "src/ambient.d.cts",
+    "src/ambient.d.ts",
+    "src/source.cjs",
+    "src/source.js",
+    "src/source.test.cjs",
+    "src/source.test.js",
+    "src/source.cts",
+    "src/source.ts",
+    "tools/config.cts",
+    "tools/config.ts",
+    "tools/config.test.cts",
+    "tools/config.test.ts",
+    "src/source.test.cts",
+    "src/source.test.ts"
+  ],
+  "warmupsExcluded": true,
+  "engines": {
+    "ESLint CLI": {
+      "medianMs": 808.9187910000037,
+      "samples": [
+        {
+          "engine": "ESLint CLI",
+          "iteration": 0,
+          "elapsedMs": 1340.8233340000006,
+          "warmup": true,
+          "status": 0,
+          "stderr": ""
+        },
+        {
+          "engine": "ESLint CLI",
+          "iteration": 1,
+          "elapsedMs": 809.93299999999,
+          "warmup": false,
+          "status": 0,
+          "stderr": ""
+        },
+        {
+          "engine": "ESLint CLI",
+          "iteration": 2,
+          "elapsedMs": 801.833415999994,
+          "warmup": false,
+          "status": 0,
+          "stderr": ""
+        },
+        {
+          "engine": "ESLint CLI",
+          "iteration": 3,
+          "elapsedMs": 808.9187910000037,
+          "warmup": false,
+          "status": 0,
+          "stderr": ""
+        }
+      ],
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Oxlint CLI": {
+      "medianMs": 552.7797089999949,
+      "samples": [
+        {
+          "engine": "Oxlint CLI",
+          "iteration": 0,
+          "elapsedMs": 586.9962500000111,
+          "warmup": true,
+          "status": 0
+        },
+        {
+          "engine": "Oxlint CLI",
+          "iteration": 1,
+          "elapsedMs": 559.2539589999942,
+          "warmup": false,
+          "status": 0
+        },
+        {
+          "engine": "Oxlint CLI",
+          "iteration": 2,
+          "elapsedMs": 552.7797089999949,
+          "warmup": false,
+          "status": 0
+        },
+        {
+          "engine": "Oxlint CLI",
+          "iteration": 3,
+          "elapsedMs": 552.0269999999873,
+          "warmup": false,
+          "status": 0
+        }
+      ],
+      "statuses": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "scope": "Small neutral reference fixture; not a consumer performance prediction. Oxlint CLI timing includes package preflight collection in the experiment."
+}

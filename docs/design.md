@@ -1,6 +1,6 @@
 # Shared lint policy design
 
-Status: this checkout implements native Oxlint configuration and bundled plugins under the new `@brandonramsey/lint` identity, with strictly checked TypeScript tooling, public-contract tests and a generated editable configuration. The published `@brandonramsey/eslint@0.1.0` release is historical. The first new-name release is planned as `0.2.0`; npm account setup and the release workflow gate (#5) must be verified before publication.
+Status: this checkout implements native Oxlint configuration and bundled plugins under the new `@brandonramsey/lint` identity, with strictly checked TypeScript tooling, public-contract tests and a generated editable configuration. The published `@brandonramsey/eslint@0.1.0` release is historical. The first new-name release is planned as `0.2.0`; the workflow gates publication on the tagged commit's entire compatibility matrix. npm account setup and hosted gate evidence must be verified before publication.
 
 ## Goal and public boundary
 
@@ -20,7 +20,7 @@ The compiled ESM default is one `OxlintConfig` object. `createConfig` accepts ex
 8. Enabled rules are errors. Unused disables and blanket-disable rejection remain configured; disable-comment descriptions are recommended but unenforced under ADR 0017. Consumers manage observed multi-pass fixes.
 9. The policy plugin retains missing import/runtime/core providers and scoped guarded export inspection. Child parsing is limited to export-name inspection; it promises no general ESLint parser compatibility. Packed imports verify the pinned unsupported ESLint core-provider entry point.
 10. [Exhaustive references](adr/0004-exhaustive-rule-reference.md) supply native inventories and configured settings for every reference profile, plus an [editable generated configuration](../examples/complete-config.mjs) preserving the default policy. The generator reads pinned metadata and public configuration/plugin exports without lint-engine probes; generation drift is part of the development check.
-11. [ISC and pre-v1 stabilization](adr/0011-stabilize-the-policy-before-one-point-zero.md) remain. [Tag-based release history](adr/0012-validate-and-publish-through-github-actions.md) is preserved, with migration workflow work in #5.
+11. [ISC and pre-v1 stabilization](adr/0011-stabilize-the-policy-before-one-point-zero.md) remain. [Tag-based releases](adr/0012-validate-and-publish-through-github-actions.md) require a matching version tag and successful full-matrix validation of the triggering SHA. Non-publishing rehearsals verify success and failure gates.
 
 ## Verification boundary
 

@@ -2,7 +2,7 @@
 
 A strict, opinionated Oxlint configuration for framework-neutral Node TypeScript projects, including their JavaScript, JSX, TSX and handwritten declarations. The package exports one native configuration object, a `createConfig` factory, public types and bundled style/policy plugins. Consumers own lint execution and fixing.
 
-This checkout prepares the first `@brandonramsey/lint` release, version `0.2.0`. The published `@brandonramsey/eslint@0.1.0` release used ESLint; these instructions apply to the next package build. Registry bootstrap and the release workflow gate in #5 must be completed before publication. The policy is being validated before `1.0`; review upgrades before adopting them.
+This checkout prepares the first `@brandonramsey/lint` release, version `0.2.0`. The published `@brandonramsey/eslint@0.1.0` release used ESLint; these instructions apply to the next package build. The release workflow gates publication on the exact tagged commit's full matrix; registry bootstrap, publisher verification and explicit release authorization remain required. The policy is being validated before `1.0`; review upgrades before adopting them.
 
 ## Install
 
@@ -112,6 +112,6 @@ npm run references
 npm run references:check
 ```
 
-Intentional format fixtures and generated consumer examples retain their formats. The TypeScript generator uses pinned inventory metadata and public configuration/plugin exports without running per-rule probes. Generated `.mjs` consumer assets are checked for drift rather than reformatted by self-lint. Historical research and the unused isolated legacy ESLint policy remain outside current strict checking and self-lint. Existing release workflows are historical pending #5; see [release setup and history](docs/releasing.md).
+Intentional format fixtures and generated consumer examples retain their formats. The TypeScript generator uses pinned inventory metadata and public configuration/plugin exports without running per-rule probes. Generated `.mjs` consumer assets are checked for drift rather than reformatted by self-lint. Historical research and the unused isolated legacy ESLint policy remain outside current strict checking and self-lint. CI and tag releases validate Node 22.13/24 with TypeScript 5.9.3/6.0.3 using the pinned Oxlint/tsgolint pair; see [release setup, gate rehearsals and history](docs/releasing.md).
 
 Licensed under [ISC](LICENSE).

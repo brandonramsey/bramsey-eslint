@@ -2,7 +2,38 @@
 
 The next public package is `@brandonramsey/lint@0.2.0`, from GitHub `brandonramsey/lint`, with public access. This is a new npm identity, not a rename of a registry package. Version `0.2.0` continues the pre-v1 sequence and avoids reusing the existing historical `v0.1.0` Git tag. Keep historical `@brandonramsey/eslint` releases intact.
 
-Publication requires issue #5's full compatibility matrix to pass for the exact tagged commit and a separate explicit release action. Existing GitHub Actions still carry the historical ESLint/TypeScript matrix; its environment variables no longer select a temporary consumer. Current local checks verify the public package contract but do not establish that release gate. Use [support boundaries](support.md) for the implemented Oxlint contract.
+Publication requires the full compatibility matrix to pass for the exact tagged commit and a separate explicit release action. The [publish workflow](../.github/workflows/publish.yml) calls the [reusable validation workflow](../.github/workflows/ci.yml) from the same commit, with every checkout pinned to `github.sha`. Its `release-ready` job depends on both the version guard and the entire validation matrix; publication depends on that gate. A failed, cancelled or skipped prerequisite prevents publication. A successful unrelated branch run is never release evidence.
+
+## Release validation matrix
+
+| Node runtime | Declaration/build TypeScript | Oxlint | Bundled typed engine |
+| --- | --- | --- | --- |
+| 22.13.0 | 5.9.3 and 6.0.3 | 1.87.0 | oxlint-tsgolint 7.0.2003 |
+| 24 (latest patch) | 5.9.3 and 6.0.3 | 1.87.0 | oxlint-tsgolint 7.0.2003 |
+
+These are four jobs. Each starts with `npm ci`, explicitly installs its selected TypeScript without changing the committed manifests/lockfile, reports installed versions and runs `npm run check`: clean builds, strict source/tooling/declaration checking, repository Oxlint/tsgolint/Stylistic self-lint, public configuration and packed-module/asset tests, and generated-reference drift checks. Packed tests inspect modules/declarations directly; they install no consumer and run no lint engine, following [ADR 0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md). All matrix jobs finish even when one fails.
+
+The Oxlint/tsgolint pair is fixed by the package contract; changing the `tsc` version does not change tsgolint's embedded compiler. TypeScript 6.0.3 is the highest mutually supported stable repository compiler in the October 8, 2026 assessment. Stable 7.0.2 remains blocked by the single **typescript-eslint** family (`>=4.8.4 <6.1.0`); report and reassess this ceiling when updating dependencies. [Support boundaries](support.md) separates published dependency contracts from demonstrated compatibility. The configured matrix alone does not prove a successful hosted run; retain the workflow URL and commit SHA as execution evidence.
+
+## Non-publishing gate rehearsal
+
+Run `publish.yml` through `workflow_dispatch` against the reviewed branch or commit, passing the candidate version tag as an input. This creates no Git tag. Dispatches always skip the `publish` job, its `npm` environment and its OIDC permission, even when every check passes. The normal tag-push path has no rehearsal override. GitHub requires the workflow file to exist on the default branch for [manual dispatch](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
+
+```fish
+gh workflow run publish.yml --ref main -f rehearsal=success -f tag=v0.2.0
+gh workflow run publish.yml --ref main -f rehearsal=matrix-failure -f tag=v0.2.0
+gh workflow run publish.yml --ref main -f rehearsal=tag-mismatch -f tag=v0.2.0
+gh run list --workflow publish.yml --event workflow_dispatch
+gh run view RUN_ID --json headSha,conclusion,jobs,url
+```
+
+| Scenario | Version guard | Validation matrix | release-ready | publish |
+| --- | --- | --- | --- | --- |
+| success | success | all four pass | success | skipped |
+| matrix-failure | success | Node 22.13.0 / TS 5.9.3 deliberately fails after checks | skipped | skipped |
+| tag-mismatch | deliberately fails using a mismatched suffix | all four pass | skipped | skipped |
+
+`rehearsal-result` asserts these outcomes and writes a reviewable job summary. The two negative scenarios intentionally leave the overall workflow failed; a successful result assertion confirms the expected failure gate. Record all three run URLs and their `headSha` before relying on the gate for a release. The release CLI's exact-tag acceptance and mismatch/missing-tag rejection are also covered by `test/release.test.ts`; use `node scripts/check-release.ts v0.2.0` on Node 24 for a local check.
 
 ## Identity cutover evidence
 
@@ -53,7 +84,7 @@ Complete these steps after the GitHub rename and issue #5, close to the intended
 
 1. Review policy/runtime changes against the versioning contract. Update package.json and lockfile versions together; the first new-name release is planned as `0.2.0` with tag `v0.2.0`.
 2. Run `npm run check`, review generated assets and inspect `npm pack --dry-run`. `npm run test:package` runs packed module/declaration inspection alone without installing a consumer or invoking a lint engine.
-3. Complete #5 and verify the full supported matrix gates publication for the exact tag. Only after explicit release authorization, commit the reviewed release and create/push its matching version tag.
+3. Verify the non-publishing gate rehearsals for the reviewed workflow. Complete npm bootstrap and verify the exact trusted-publisher binding described above. Only after explicit release authorization, commit the reviewed release and create/push its matching version tag. The tag workflow reruns all four validation jobs for that exact commit before publishing; prior branch or rehearsal runs cannot replace it.
 4. Verify the GitHub publish job, public npm name/version/access, provenance repository/commit, and registry availability. A configured workflow or packed artifact alone does not establish publication.
 
 Ordinary branch pushes never publish. Tags must match package.json's version. After `1.0`, tighter defaults and raised runtime requirements are major changes; optional additions are minor and nonbreaking fixes are patch changes.

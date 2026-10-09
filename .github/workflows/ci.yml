@@ -1,28 +1,61 @@
 name: Validate
 on:
   push:
+    branches: ['**']
   pull_request:
+  workflow_call:
+    inputs:
+      inject-failure:
+        description: Fail one matrix job during a non-publishing release rehearsal
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   check:
+    name: Node ${{ matrix.node }} / TypeScript ${{ matrix.typescript }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node: ['22.13.0', '24']
         typescript: ['5.9.3', '6.0.3']
-        eslint: ['10.4.0', '10.12.0']
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
           cache: npm
       - run: npm ci
-      - run: npm run check
-      - run: npm run test:consumer
+      - name: Select the declaration and build compiler
+        run: npm install --no-save --package-lock=false "typescript@$TYPESCRIPT_VERSION"
         env:
-          TEST_TYPESCRIPT_VERSION: ${{ matrix.typescript }}
-          TEST_ESLINT_VERSION: ${{ matrix.eslint }}
+          TYPESCRIPT_VERSION: ${{ matrix.typescript }}
+      - name: Report the installed boundary versions
+        env:
+          TYPESCRIPT_VERSION: ${{ matrix.typescript }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const manifest = JSON.parse(readFileSync('package.json', 'utf8'));
+          const expected = {
+            typescript: process.env.TYPESCRIPT_VERSION,
+            oxlint: manifest.peerDependencies.oxlint,
+            'oxlint-tsgolint': manifest.dependencies['oxlint-tsgolint'],
+          };
+          for (const [name, version] of Object.entries(expected)) {
+            const installed = JSON.parse(readFileSync(`node_modules/${name}/package.json`, 'utf8')).version;
+            assert.equal(installed, version);
+            console.log(`${name}: ${installed}`);
+          }
+          JS
+      # The typed engine embeds its own compiler; the matrix changes only tsc.
+      # typescript-eslint's <6.1.0 peer ceiling blocks stable TypeScript 7.0.2.
+      - run: npm run check
+      - name: Inject a matrix failure for the release rehearsal
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.inject-failure && matrix.node == '22.13.0' && matrix.typescript == '5.9.3' }}
+        run: exit 1

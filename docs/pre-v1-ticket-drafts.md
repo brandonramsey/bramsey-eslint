@@ -6,6 +6,8 @@ The plan covers actual engine migration, all maintained code in TypeScript, the 
 
 ## Summary
 
+During decomposition of issues #2 and #3 on October 8, 2026, the maintainer limited the package to configuration and bundled plugins, with Oxlint as a peer dependency, accepted unenforced disable-comment explanations as a configuration-only limitation, and narrowed tests to the public package surface. [ADR 0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md) supersedes runner, independent preflight, repeated-fix and consumer-harness obligations in the historical drafts and handoff. The maintainer approved the revised seven-child breakdown, published as issues #8–#14 with verified bodies, labels, parent links and seven native blocking relationships. The parent bodies/states and original drafts below have not been rewritten.
+
 During issue #1 validation on October 8, 2026, the maintainer approved warning and continuing for inferred TypeScript coverage rather than a hard setup error. [ADR 0015](adr/0015-warn-for-inferred-typescript-coverage.md) records that revision, and issue #1's live acceptance criterion has been updated. The original approved drafts below retain their historical wording.
 
 The maintainer also approved native parsing with package-aware globals and policy selection, recorded in [ADR 0016](adr/0016-use-native-parsing-with-package-aware-policy.md). Issue #1's configuration research and concrete [implementation proposal](research/oxlint-candidate/public-interface.md) are complete; production implementation and packed-package verification remain issue #2 work.
@@ -21,6 +23,8 @@ The maintainer also approved native parsing with package-aware globals and polic
 | [#7](https://github.com/brandonramsey/bramsey-eslint/issues/7) | Complete the v1 readiness review and record the release decision | 1, 2, 3, 4, 5, 6 | ready-for-human |
 
 ## Draft 1: Validate the Oxlint core policy with tsgolint, Stylistic, and simplified naming
+
+The drafts below retain the original seven-ticket plan. The proposed child breakdown following the configuration-only decision is recorded at the end of this document.
 
 Proposed triage: `ready-for-agent`.
 
@@ -179,3 +183,98 @@ Draft tickets 1, 2, 3, 4, 5, 6.
 - [GitHub repository rename behavior and updating local remotes](https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository).
 - [npm package identity and metadata](https://docs.npmjs.com/cli/configuring-npm/package-json/).
 - [npm trusted publisher configuration](https://docs.npmjs.com/trusted-publishers/).
+
+## Approved children of #2 and #3
+
+Status: approved and published on October 8, 2026. Section numbers below identify plan items; the table maps them to GitHub issues. All seven bodies, `ready-for-agent` labels, parent links and native blocking relationships were verified. Issue #1 is complete. ADR 0017 governs these tickets where the historical parent handoff mentions runner, preflight or consumer execution tests. The five #2 children cover the public package; the two #3 children finish maintained repository tooling. Parent bodies, titles and states remain unchanged. Permanent tests cover only public exports/declarations, settings, composition, plugin exports/specifiers, packaged metadata/assets and generated-example equivalence/drift; assume Oxlint and upstream plugins work. The dedicated consumer-harness ticket has been removed.
+
+| Plan item | GitHub issue | Parent | Blocked by |
+| --- | --- | --- | --- |
+| 1 | [#8: Ship the typed Oxlint configuration and packaged plugins](https://github.com/brandonramsey/bramsey-eslint/issues/8) | #2 | None |
+| 2 | [#9: Preserve workspace import resolution and compatibility policy](https://github.com/brandonramsey/bramsey-eslint/issues/9) | #2 | #8 |
+| 3 | [#10: Detect conflicting re-exports safely](https://github.com/brandonramsey/bramsey-eslint/issues/10) | #2 | #9 |
+| 4 | [#11: Warn when typed linting uses inferred compiler settings](https://github.com/brandonramsey/bramsey-eslint/issues/11) | #2 | #8 |
+| 5 | [#12: Verify public package contents and document support](https://github.com/brandonramsey/bramsey-eslint/issues/12) | #2 | #10, #11 |
+| 6 | [#13: Run repository configuration and contract tests in TypeScript](https://github.com/brandonramsey/bramsey-eslint/issues/13) | #3 | #2 |
+| 7 | [#14: Generate an editable Oxlint configuration example matching package defaults](https://github.com/brandonramsey/bramsey-eslint/issues/14) | #3 | #13 |
+
+### 1. Ship the typed Oxlint configuration and packaged plugins
+
+**Parent:** #2. **Blocked by:** None (can start immediately).
+
+**What to build:** Consumers import a native Oxlint default configuration or `createConfig`, with packaged Stylistic support and explicit native policy, and run their own peer-installed Oxlint.
+
+- [ ] Author maintained package implementation in strict TypeScript; generate executable ESM and public declarations, including native configuration and option types.
+- [ ] Declare Oxlint as a peer dependency and bundle oxlint-tsgolint and required plugin/provider packages. Establish an initial build and verify compiled plugin specifiers resolve from the package.
+- [ ] Preserve required native settings, typed rules, all 66 style settings, simplified naming, generated exclusions, test/declaration/syntax-only profiles, package-aware globals and final consumer override precedence. Explicitly retain the accepted no-inner-declarations option.
+- [ ] Canonicalize package-controlled roots and paths; honor dedicated extensions and explicit policy patterns without promising parser-mode switches. Reject unsupported configuration shapes.
+- [ ] Verify exports, assets and composition directly. Export no lint executable or execution helper; descriptions are an accepted unenforced limitation, while unused-directive errors and blanket-disable rejection remain configured.
+
+### 2. Preserve workspace import resolution and compatibility policy
+
+**Parent:** #2. **Blocked by:** #8.
+
+**What to build:** Consumers receive project-aware import checks and the retained compatibility checks through bundled plugins in ordinary Oxlint execution.
+
+- [ ] Discover conventional and custom resolver projects, select the nearest project per file, and preserve consumer resolver settings with a no-alias fallback. Explicit project patterns matching nothing fail visibly.
+- [ ] Handle independent roots, canonical/symlink inputs, conflicting workspace aliases and required declaration outputs without cross-project cache leakage.
+- [ ] Package the selected non-export import, Node runtime/deprecation/exit, polyfill, enum and CommonJS compatibility rules, preserving bridge context prototypes and services.
+- [ ] Verify the public configuration passes the intended resolver options/settings and exports the required plugin rules. Keep import resolver selection separate from typed-project membership; add no internal resolution or upstream diagnostic fixture suite.
+
+### 3. Detect conflicting re-exports safely
+
+**Parent:** #2. **Blocked by:** #9.
+
+**What to build:** The bundled policy plugin detects conflicting star-export names and safely handles cyclic or invalid export graphs through the selected project resolver.
+
+- [ ] Publish the scoped child-parser and guarded graph adaptation in strict TypeScript, preserving local export listeners and supporting TypeScript child extensions.
+- [ ] Preserve explicit-export precedence, repeated binding identity, namespace and type-only handling; cycles terminate and inspection/depth failures produce actionable diagnostics.
+- [ ] Verify the packaged plugin exports the intended rule and the public configuration enables it with required settings. Preserve research evidence separately; add no permanent graph or upstream diagnostic fixture suite.
+
+### 4. Warn when typed linting uses inferred compiler settings
+
+**Parent:** #2. **Blocked by:** #8.
+
+**What to build:** A bundled warning rule identifies non-exempt TypeScript receiving inferred coverage during consumer-owned Oxlint execution while typed safety checks remain enabled.
+
+- [ ] Validate project configuration before expanding metadata; discover inherited inputs, references including nonstandard filenames, and nearest/reference/ancestor selection consistent with the pinned typed engine.
+- [ ] Distinguish configured root membership from transitive program inclusion and from import resolver projects. Malformed configuration fails rather than becoming an inferred warning.
+- [ ] Scope caches by canonical root and lint lifecycle and refresh after relevant changes without a package runner. Existing research evidence supplies the implementation rationale; add no compiler-program or internal lifecycle test suite.
+- [ ] Configure warnings and declaration/syntax-only exemptions; leave warning-failure flags and overrides to consumers. Assert plugin exports and public warning/exemption settings directly, without testing typed-engine diagnostics.
+
+### 5. Verify public package contents and document support
+
+**Parent:** #2. **Blocked by:** #10, #11 (#10 already requires #9).
+
+**What to build:** The published package exposes its promised configuration, types and plugin assets with the correct core peer and bundled dependencies, and documents how consumers use it.
+
+- [ ] Check clean builds, built public imports/declarations, packed export targets/assets, plugin specifiers and dependency metadata directly. Remove the consumer execution harness; do not install a temporary consumer or invoke Oxlint as a test.
+- [ ] Establish supported Node, Oxlint, tsgolint and TypeScript boundaries from published compatibility and existing research evidence; typecheck the public API with the newest mutually supported stable compiler and report any single upgrade-blocking family. Keep consumer TypeScript and tsgolint's embedded compiler contracts distinct; add no lint-engine compatibility fixture suite.
+- [ ] Remove obsolete dependencies while retaining required bridge providers; verify or replace unstable provider entry points. Plugins must not require separate consumer installation.
+- [ ] Update current reference outputs, consumer examples, glossary/design/interface documentation and supersession links. Document consumer-owned invocation and path alignment, native parser limits, unenforced descriptions and observed multi-pass fixes.
+- [ ] Preserve historical ADRs, research evidence and intentional format fixtures. Identity cutover and release workflows remain separate existing tickets.
+
+### 6. Run repository configuration and contract tests in TypeScript
+
+**Parent:** #3. **Blocked by:** Existing issue #2.
+
+**What to build:** Developers run strictly checked TypeScript configuration and package-contract tests from a clean checkout without a circular build dependency.
+
+- [ ] Convert maintained executable repository configuration and tests to TypeScript; include them in strict checking and provide a supported clean-checkout bootstrap/execution path.
+- [ ] Replace legacy ESLint-specific per-rule tests with direct public-export/declaration, required-setting, metadata/asset and composition assertions. Remove the consumer execution harness; add no discovery/resolution/graph/lifecycle, runner, preflight or upstream behavior suites.
+- [ ] Preserve intentional JavaScript/CommonJS/declaration fixtures and declarative JSON/YAML. Historical research probes remain migration evidence, not maintained production tooling or ordinary tests.
+- [ ] Verify clean build, repository self-lint, typecheck and public-contract test commands; include all maintained tooling in strict checking. The reference command is completed in the generated-example ticket (#14). Check generated executable configuration for drift if serialization is required, and update development instructions to remove the consumer-harness command. GitHub Actions and publishing changes remain existing issue #5's responsibility.
+
+### 7. Generate an editable Oxlint configuration example matching package defaults
+
+**Parent:** #3. **Blocked by:** #13.
+
+**What to build:** Consumers can drop in a generated, complete Oxlint configuration example and tweak explicit rule settings. Before edits, the example reproduces the package's defaults and changes no effective policy. Developers generate and verify it using strictly checked TypeScript tooling.
+
+- [ ] Convert the reference generator to TypeScript and adapt inventory/resolution to native owners and packaged bridge exports.
+- [ ] Include disabled rules, configured severity/options and all reference profiles; retain declaration/test/syntax-only distinctions without expanding omitted internal defaults.
+- [ ] Generate a usable editable example file, not only inventory snapshots. Use public package exports and consumer-derived paths, preserving bundled-plugin loading and profile overrides without repository/fixture-specific roots.
+- [ ] Verify the unedited example's effective rules, options and profile settings match the normal package configuration. Document how users change explicit entries while retaining default plugin setup.
+- [ ] Produce deterministic committed outputs and a drift command that fails for stale inventory, settings or summary. Distinguish configured policy from runtime coverage warnings and accepted unenforced descriptions.
+- [ ] Preserve generated consumer-format examples in their appropriate formats; avoid executing a per-rule probe suite to generate references.
+- [ ] Verify the complete documented development check after conversion, including generation drift, using only the public-surface test scope in ADR 0017.

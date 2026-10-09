@@ -4,6 +4,8 @@ The next pre-v1 implementation will use Oxlint with oxlint-tsgolint and Stylisti
 
 ## Consequences
 
+- [ADR 0017](0017-publish-configuration-and-plugins-without-a-runner.md) supersedes the runner/preflight requirement below: publish configuration and bundled plugins with Oxlint as a peer dependency, let consumers own execution, and accept unenforced disable-comment explanations as a configuration-only limitation.
+
 - [ADR 0015](0015-warn-for-inferred-typescript-coverage.md) revises the planned typed-coverage behavior: warn and continue for inferred projects while retaining typed safety checks and explicit syntax-only exceptions.
 
 - [ADR 0016](0016-use-native-parsing-with-package-aware-policy.md) accepts native parsing and scope analysis while retaining package-aware Node globals and policy selections; file-pattern options do not force parser mode.

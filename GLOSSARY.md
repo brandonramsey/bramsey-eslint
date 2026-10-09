@@ -9,7 +9,7 @@ The common linting expectations intended for all projects supported by this pack
 _Avoid_: Framework rules
 
 **Rule reference**:
-The exhaustive inventory of rules available from the selected lint engine and the plugins supplied by this package, including disabled rules and their policy settings. Current committed ESLint snapshots are historical; the native Oxlint inventory is tracked in #14.
+The exhaustive inventory of rules available from the selected lint engine and the plugins supplied by this package, including disabled rules and their policy settings.
 _Avoid_: Enabled-rule list
 
 **Reference profile**:

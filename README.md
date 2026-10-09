@@ -90,7 +90,7 @@ The JavaScript bridge and scoped child parser have documented limits. Research o
 
 ## References and development
 
-The [reference index](examples/README.md) currently labels the exhaustive ESLint snapshots as historical. They do not describe or compose with the native Oxlint configuration. Native inventory and a complete generated editable example belong to #14. The basic consumer example already uses the current public default export.
+Copy the [complete editable example](examples/complete-config.mjs) to your project root as `oxlint.config.mjs` to customize explicit rule settings while retaining default plugin loading and consumer-derived paths. Its unedited configuration matches the package defaults. Edit base entries in `rules` and profile-specific entries in the named maps; pass factory options to the final `createExample` call. The [reference index](examples/README.md) explains composition and lists every available native and packaged bridge rule, including disabled rules, across all 14 reference profiles. The basic consumer example remains the shortest default setup.
 
 The [design](docs/design.md), [policy](docs/rule-policy.md) and [ADRs](docs/adr) record current decisions and superseded contracts. Historical research remains evidence. After `1.0`, newly enforced rules, stricter defaults and raised runtime requirements require major releases.
 
@@ -99,17 +99,19 @@ npm ci
 npm run check
 ```
 
-The check builds and strictly typechecks package sources, repository configuration and contract tests, self-lints with Oxlint/tsgolint and the bundled plugins, tests public configuration and packed modules/declarations/assets, and checks historical reference drift. Tests install no consumer and invoke no lint engine. `npm run test:package` runs packed inspection alone.
+The check builds and strictly typechecks package sources, repository configuration, the reference generator and contract tests, self-lints with Oxlint/tsgolint and the bundled plugins, tests public configuration and packed modules/declarations/assets, and checks native inventory, profile, editable-example and summary drift. Tests install no consumer and invoke no lint engine. `npm run test:package` runs packed inspection alone.
 
-`npm run build:tools` first builds the public package, then compiles `oxlint.config.ts` and `test/*.test.ts` into ignored `.tooling/` output. It copies the compiled configuration to ignored `oxlint.config.js` at the repository root so Oxlint's file patterns stay rooted correctly. Commands rebuild this output each time; no committed serialized configuration can drift. This path runs JavaScript on the full supported Node range, including 22.13, without native TypeScript loading. Run commands from the repository root:
+`npm run build:tools` first builds the public package, then compiles `oxlint.config.ts`, `scripts/*.ts` and `test/*.test.ts` into ignored `.tooling/` output. It copies the compiled configuration to ignored `oxlint.config.js` at the repository root so Oxlint's file patterns stay rooted correctly. Commands rebuild this output each time. This path runs JavaScript on the full supported Node range, including 22.13, without native TypeScript loading. Run commands from the repository root:
 
 ```fish
 npm run typecheck
 npm run lint
 npm test
 npm run test:package
+npm run references
+npm run references:check
 ```
 
-Intentional format fixtures and generated consumer examples retain their formats. Historical research and the isolated legacy ESLint reference generator are excluded from current strict checking and self-lint; generator conversion and native inventory belong to #14. Existing release workflows are historical pending #5; see [release setup and history](docs/releasing.md).
+Intentional format fixtures and generated consumer examples retain their formats. The TypeScript generator uses pinned inventory metadata and public configuration/plugin exports without running per-rule probes. Generated `.mjs` consumer assets are checked for drift rather than reformatted by self-lint. Historical research and the unused isolated legacy ESLint policy remain outside current strict checking and self-lint. Existing release workflows are historical pending #5; see [release setup and history](docs/releasing.md).
 
 Licensed under [ISC](LICENSE).

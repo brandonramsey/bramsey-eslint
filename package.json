@@ -40,8 +40,8 @@
     "test": "npm run build:tools && node --test .tooling/test/*.test.js",
     "lint": "npm run build:tools && oxlint --config oxlint.config.js .",
     "typecheck": "npm run build && tsc --noEmit",
-    "references": "node scripts/generate-reference.js",
-    "references:check": "node scripts/generate-reference.js --check",
+    "references": "npm run build:tools && node .tooling/scripts/generate-reference.js",
+    "references:check": "npm run build:tools && node .tooling/scripts/generate-reference.js --check",
     "test:package": "npm run build:tools && node --test .tooling/test/package.test.js",
     "test:consumer": "npm run test:package",
     "check": "npm run typecheck && npm run lint && npm test && npm run references:check",
@@ -76,6 +76,7 @@
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@types/node": "24.19.1",
     "oxlint": "1.87.0",
+    "picomatch": "4.0.7",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.1"
   },

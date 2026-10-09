@@ -57,7 +57,7 @@ await test('packed public modules, declarations, dependencies and plugin specifi
     for (const prefix of ['src/', 'test/', 'scripts/']) {
       assert.equal([...contents].some((path) => path.startsWith(prefix)), false, `Development files leaked from ${prefix}`);
     }
-    for (const path of ['README.md', 'LICENSE', 'CHANGELOG.md', 'GLOSSARY.md', 'docs/oxlint-configuration.md', 'docs/support.md', 'examples/basic-config.mjs', 'examples/README.md']) {
+    for (const path of ['README.md', 'LICENSE', 'CHANGELOG.md', 'GLOSSARY.md', 'docs/oxlint-configuration.md', 'docs/support.md', 'examples/basic-config.mjs', 'examples/complete-config.mjs', 'examples/README.md']) {
       assert.ok(contents.has(path), `Missing consumer asset ${path}`);
     }
     for (const entry of Object.values(manifest.exports)) {
@@ -74,6 +74,17 @@ await test('packed public modules, declarations, dependencies and plugin specifi
     const publicModule: typeof PublicModule = await import(pathToFileURL(join(packageRoot, rootExport.import)).href);
     assert.deepEqual(Object.keys(publicModule).sort(), ['createConfig', 'default']);
     assert.deepEqual(publicModule.default, publicModule.createConfig());
+    const { default: example }: { default: PublicModule.OxlintConfig } = await import(pathToFileURL(join(packageRoot, 'examples/complete-config.mjs')).href);
+    assert.deepEqual({ ...example, rules: undefined }, { ...publicModule.default, rules: undefined }, 'Packed example loads packed plugins and consumer-derived settings');
+    assert.ok(example.rules);
+    for (const [id, setting] of Object.entries(publicModule.default.rules ?? {})) {
+      assert.deepEqual(example.rules[id], setting, `Packed example changed ${id}`);
+    }
+    for (const [id, setting] of Object.entries(example.rules)) {
+      if (publicModule.default.rules?.[id] === undefined) {
+        assert.equal(setting, 'off', `Packed example enabled ${id}`);
+      }
+    }
     const config = publicModule.createConfig({ projectRoot: repository });
     assert.ok(config.jsPlugins);
     assert.ok(config.rules);

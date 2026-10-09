@@ -1,4 +1,10 @@
+import { ResolverFactory } from 'unrs-resolver';
+
+import type { TypeScriptResolverOptions } from 'eslint-import-resolver-typescript';
 import type { OxlintOverride } from 'oxlint';
+
+/** Project discovery is package-owned; native tsconfig overrides are unsupported. */
+export type ResolverOptions = Omit<TypeScriptResolverOptions, 'tsconfig'>;
 
 export type ConfigOptions = {
   /** Absolute project root, canonicalized before discovery; defaults to cwd. */
@@ -10,6 +16,8 @@ export type ConfigOptions = {
   tests?: boolean;
   /** Extend generated/build/dependency exclusions. */
   ignores?: string[];
+  /** Resolver project patterns relative to projectRoot, plus provider options. */
+  resolverOptions?: ResolverOptions;
   /** Select CommonJS globals/policy for ambiguous extensions, not parser mode. */
   commonjsFiles?: string[];
   /** Select module globals/policy; wins overlaps with commonjsFiles. */
@@ -18,8 +26,50 @@ export type ConfigOptions = {
   overrides?: OxlintOverride[];
 };
 
-const optionKeys = new Set(['projectRoot', 'syntaxOnlyFiles', 'testFiles', 'tests', 'ignores', 'commonjsFiles', 'moduleFiles', 'overrides']);
+const optionKeys = new Set(['projectRoot', 'syntaxOnlyFiles', 'testFiles', 'tests', 'ignores', 'resolverOptions', 'commonjsFiles', 'moduleFiles', 'overrides']);
 const overrideKeys = new Set(['files', 'excludeFiles', 'rules', 'globals', 'env', 'plugins', 'jsPlugins']);
+const resolverKeys = new Set(['project', 'alwaysTryTypes', 'bun', 'noWarnOnMultipleProjects', 'alias', 'aliasFields', 'conditionNames', 'enforceExtension', 'exportsFields', 'importsFields', 'extensionAlias', 'extensions', 'fallback', 'fullySpecified', 'mainFields', 'mainFiles', 'modules', 'resolveToContext', 'preferRelative', 'preferAbsolute', 'restrictions', 'roots', 'symlinks', 'nodePath', 'builtinModules', 'moduleType', 'allowPackageExportsInDirectoryResolve']);
+
+function serializableResolverEntry(_key: string, entry: unknown): unknown {
+  if (typeof entry === 'function' || typeof entry === 'symbol' || typeof entry === 'bigint' || (typeof entry === 'number' && !Number.isFinite(entry))) {
+    throw new TypeError('Resolver options must be serializable.');
+  }
+  return entry;
+}
+
+function resolverProject(value: unknown): void {
+  if (value === undefined) {
+    return;
+  }
+  patterns(typeof value === 'string' ? [value] : value, 'resolverOptions.project');
+  if (Array.isArray(value) && value.length === 0) {
+    throw new TypeError('resolverOptions.project must not be empty.');
+  }
+}
+
+function resolver(value: unknown): void {
+  if (value === undefined) {
+    return;
+  }
+  if (!object(value)) {
+    throw new TypeError('resolverOptions must be an object.');
+  }
+  knownFields(value, resolverKeys, 'resolverOptions');
+  resolverProject(value.project);
+  for (const key of ['alwaysTryTypes', 'bun', 'noWarnOnMultipleProjects']) {
+    if (value[key] !== undefined && typeof value[key] !== 'boolean') {
+      throw new TypeError(`resolverOptions.${key} must be a boolean.`);
+    }
+  }
+  // Native option validation covers the provider's nested mappings and flags.
+  try {
+    JSON.stringify(value, serializableResolverEntry);
+    new ResolverFactory(value);
+  }
+  catch (error) {
+    throw new TypeError('Invalid resolverOptions.', { cause: error });
+  }
+}
 
 function object(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -106,4 +156,5 @@ export function validateOptions(value: unknown): asserts value is ConfigOptions 
     throw new TypeError('tests must be a boolean.');
   }
   overrides(value.overrides);
+  resolver(value.resolverOptions);
 }

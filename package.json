@@ -12,6 +12,10 @@
     "./plugins/style": {
       "types": "./dist/plugins/style.d.ts",
       "import": "./dist/plugins/style.js"
+    },
+    "./plugins/policy": {
+      "types": "./dist/plugins/policy.d.ts",
+      "import": "./dist/plugins/policy.js"
     }
   },
   "files": [
@@ -56,16 +60,17 @@
     "globals": "17.13.0",
     "oxlint-tsgolint": "7.0.2003",
     "tinyglobby": "0.2.17",
-    "eslint": "10.12.0"
+    "eslint": "10.12.0",
+    "eslint-import-resolver-typescript": "4.4.5",
+    "eslint-plugin-import-x": "4.17.1",
+    "eslint-plugin-n": "18.4.1",
+    "eslint-plugin-unicorn": "77.0.0",
+    "unrs-resolver": "1.12.2"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@types/node": "24.19.1",
     "@types/picomatch": "4.0.3",
-    "eslint-import-resolver-typescript": "4.4.5",
-    "eslint-plugin-import-x": "4.17.1",
-    "eslint-plugin-n": "18.4.1",
-    "eslint-plugin-unicorn": "77.0.0",
     "oxlint": "1.87.0",
     "type-fest": "5.10.0",
     "typescript": "6.0.3",

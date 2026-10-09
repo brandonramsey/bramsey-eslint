@@ -6,6 +6,61 @@ import { createConfig } from '@brandonramsey/eslint';
 
 const root = fileURLToPath(new URL('./fixtures/project', import.meta.url));
 
+test('resolver options are rooted, discover workspace projects and retain consumer settings', () => {
+  const policy = createConfig({ projectRoot: root, resolverOptions: { extensions: ['.custom'], alwaysTryTypes: false } });
+  assert.deepEqual(policy.settings.policy, {
+    projectRoot: root,
+    resolverOptions: {
+      alwaysTryTypes: false,
+      extensions: ['.custom'],
+      project: [`${root}/packages/one/tsconfig.json`, `${root}/packages/two/tsconfig.json`, `${root}/tsconfig.json`],
+    },
+  });
+  assert.deepEqual(policy.settings.n, { version: '>=24.0.0' });
+  assert.deepEqual(policy.settings['import-x/extensions'], ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts']);
+});
+
+test('explicit resolver projects accept custom filenames and reject empty matches and malformed options', () => {
+  const policy = createConfig({ projectRoot: root, resolverOptions: { project: 'packages/one/tsconfig.app.json' } });
+  assert.deepEqual(policy.settings.policy.resolverOptions.project, [`${root}/packages/one/tsconfig.app.json`]);
+  for (const resolverOptions of [null, [], { project: [] }, { project: [''] }, { project: ['missing.json'] }, { project: ['tsconfig.json', 'missing.json'] }, { tsconfig: 'auto' }, { alwaysTryTypes: 'yes' }, { unexpected: true }, { extensions: [42] }]) {
+    assert.throws(() => createConfig({ projectRoot: root, resolverOptions }), /resolver/i);
+  }
+});
+
+test('independent roots expose only their own resolver projects and an empty fallback list', () => {
+  const workspace = createConfig({ projectRoot: `${root}/packages/one` });
+  assert.deepEqual(workspace.settings.policy, {
+    projectRoot: `${root}/packages/one`,
+    resolverOptions: { alwaysTryTypes: true, project: [`${root}/packages/one/tsconfig.json`] },
+  });
+  const withoutProject = createConfig({ projectRoot: `${root}/src` });
+  assert.deepEqual(withoutProject.settings.policy, {
+    projectRoot: `${root}/src`,
+    resolverOptions: { alwaysTryTypes: true, project: [] },
+  });
+});
+
+test('bundled compatibility plugin exports configured import, runtime, polyfill and CommonJS rules', async () => {
+  const { default: plugin } = await import('@brandonramsey/eslint/plugins/policy');
+  const policy = createConfig({ projectRoot: root });
+  const required = ['no-dupe-args', 'no-octal', 'no-unresolved', 'no-useless-path-segments', 'no-extraneous-dependencies', 'order', 'no-deprecated-api', 'node-builtins', 'es-builtins', 'no-process-exit', 'prefer-node-protocol', 'no-unnecessary-polyfills'];
+  assert.deepEqual(Object.keys(plugin.rules).sort(), [...required, 'no-restricted-syntax'].sort());
+  for (const name of required) {
+    assert.equal(typeof plugin.rules[name].create, 'function');
+    assert.equal(Array.isArray(policy.rules[`policy/${name}`]) ? policy.rules[`policy/${name}`][0] : policy.rules[`policy/${name}`], 'error');
+  }
+  assert.deepEqual(policy.rules['policy/no-unresolved'], ['error', { commonjs: true, caseSensitive: true }]);
+  assert.deepEqual(policy.rules['policy/no-extraneous-dependencies'], ['error', { devDependencies: true }]);
+  const syntax = policy.overrides.find((entry) => entry.rules?.['eslint/id-match']);
+  assert.equal(syntax.rules['policy/no-dupe-args'], 'off');
+  assert.deepEqual(syntax.rules['policy/no-restricted-syntax'], ['error', { selector: 'TSEnumDeclaration', message: 'Use a union or const object instead of an enum.' }]);
+  const declaration = policy.overrides.find((entry) => entry.rules?.['typescript/no-namespace'] === 'off');
+  for (const name of ['no-restricted-syntax', 'no-octal', 'no-deprecated-api', 'node-builtins', 'es-builtins', 'no-process-exit', 'prefer-node-protocol', 'no-unnecessary-polyfills']) {
+    assert.equal(declaration.rules[`policy/${name}`], 'off');
+  }
+});
+
 test('factory rejects unsupported and malformed native override shapes', () => {
   assert.throws(() => createConfig({ projectRoot: root, overrides: [{ files: ['**/*.ts'], rules: [] }] }), /override.rules/);
 });

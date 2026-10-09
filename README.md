@@ -1,6 +1,6 @@
 # @brandonramsey/eslint
 
-This checkout now exports a compiled native Oxlint configuration and bundled Stylistic plugin. See [the current configuration interface](docs/oxlint-configuration.md). Migration work continues in #9–#14; the sections below describe the published ESLint `0.1.0` release until the documentation migration in #12. The `test:consumer` command now inspects the packed package directly, without installing a consumer or running a lint engine.
+This checkout now exports a compiled native Oxlint configuration with bundled Stylistic and compatibility plugins and workspace import resolution. See [the current configuration interface](docs/oxlint-configuration.md). Migration work continues in #10–#14; the sections below describe the published ESLint `0.1.0` release until the documentation migration in #12. The `test:consumer` command now inspects the packed package directly, without installing a consumer or running a lint engine.
 
 A strict, opinionated ESLint configuration for framework-neutral Node TypeScript projects, including JavaScript, JSX, TSX, and handwritten declarations. ESLint owns formatting. Parsers, plugins, and import resolution are installed automatically with this package.
 

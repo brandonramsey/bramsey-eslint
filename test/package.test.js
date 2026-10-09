@@ -19,11 +19,15 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
     assert.equal(unpack.status, 0, unpack.stderr);
     const packageRoot = realpathSync(join(directory, 'package'));
     const manifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'));
-    assert.deepEqual(Object.keys(manifest.exports), ['.', './plugins/style']);
+    assert.deepEqual(Object.keys(manifest.exports), ['.', './plugins/style', './plugins/policy']);
     assert.deepEqual(manifest.peerDependencies, { oxlint: '1.87.0' });
     assert.equal(manifest.dependencies['oxlint-tsgolint'], '7.0.2003');
     assert.equal(manifest.dependencies['@stylistic/eslint-plugin'], '5.10.0');
     assert.equal(manifest.dependencies.eslint, '10.12.0');
+    for (const [name, version] of Object.entries({ 'eslint-import-resolver-typescript': '4.4.5', 'eslint-plugin-import-x': '4.17.1', 'eslint-plugin-n': '18.4.1', 'eslint-plugin-unicorn': '77.0.0', 'unrs-resolver': '1.12.2' })) {
+      assert.equal(manifest.dependencies[name], version);
+      assert.equal(manifest.devDependencies[name], undefined);
+    }
     assert.equal(manifest.bin, undefined);
     assert.equal([...contents].some((path) => path.startsWith('src/')), false);
     for (const entry of Object.values(manifest.exports)) {
@@ -35,14 +39,15 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
     const publicModule = await import(pathToFileURL(join(packageRoot, 'dist/index.js')).href);
     assert.deepEqual(Object.keys(publicModule).sort(), ['createConfig', 'default']);
     const config = publicModule.createConfig({ projectRoot: repository });
-    assert.equal(config.jsPlugins.length, 1);
-    const [plugin] = config.jsPlugins;
-    assert.ok(plugin.specifier.startsWith(`${packageRoot}/`));
-    assert.ok(existsSync(plugin.specifier));
-    const { default: bundled } = await import(pathToFileURL(plugin.specifier).href);
-    for (const id of Object.keys(config.rules).filter((name) => name.startsWith(`${plugin.name}/`))) {
-      assert.equal(typeof bundled.rules[id.slice(plugin.name.length + 1)]?.create, 'function', `Missing rule ${id}`);
-    }
+    assert.deepEqual(config.jsPlugins.map((plugin) => plugin.name), ['style', 'policy']);
+    await Promise.all(config.jsPlugins.map(async (plugin) => {
+      assert.ok(plugin.specifier.startsWith(`${packageRoot}/`));
+      assert.ok(existsSync(plugin.specifier));
+      const { default: bundled } = await import(pathToFileURL(plugin.specifier).href);
+      for (const id of Object.keys(config.rules).filter((name) => name.startsWith(`${plugin.name}/`))) {
+        assert.equal(typeof bundled.rules[id.slice(plugin.name.length + 1)]?.create, 'function', `Missing rule ${id}`);
+      }
+    }));
   }
   finally {
     rmSync(directory, { recursive: true, force: true });

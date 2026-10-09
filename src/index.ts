@@ -6,6 +6,8 @@ import globals from 'globals';
 import { globSync } from 'tinyglobby';
 
 import { validateOptions } from './options.js';
+import { generated } from './patterns.js';
+import { resolverOptions } from './resolver.js';
 import { baseRules, declarationRules, syntaxRules, testRules, typedRules } from './rules.js';
 
 import type { ConfigOptions } from './options.js';
@@ -13,12 +15,11 @@ import type { OxlintConfig, OxlintGlobals, OxlintOverride } from 'oxlint';
 
 export type { OxlintConfig, OxlintOverride } from 'oxlint';
 
-export type { ConfigOptions } from './options.js';
+export type { ConfigOptions, ResolverOptions } from './options.js';
 
 const typescriptFiles = ['**/*.{ts,tsx,mts,cts}'];
 const declarations = ['**/*.d.{ts,mts,cts}'];
 const standardTests = ['**/*.{test,spec}.{js,jsx,mjs,cjs,ts,tsx,mts,cts}', '**/__tests__/**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}'];
-const generated = ['**/node_modules/**', '**/dist/**', '**/build/**', '**/coverage/**', '**/.git/**'];
 
 function moduleGlobals(commonjs: boolean): OxlintGlobals {
   if (commonjs) {
@@ -82,10 +83,15 @@ export function createConfig(options: ConfigOptions = {}): OxlintConfig {
   return {
     categories: { correctness: 'off' },
     plugins: ['typescript', 'import', 'node', 'unicorn'],
-    jsPlugins: [{ name: 'style', specifier: realpathSync(fileURLToPath(new URL('./plugins/style.js', import.meta.url))) }],
+    jsPlugins: ['style', 'policy'].map((name) => ({ name, specifier: realpathSync(fileURLToPath(new URL(`./plugins/${name}.js`, import.meta.url))) })),
     env: { builtin: true },
     globals: moduleGlobals(false),
     options: { typeAware: true, reportUnusedDisableDirectives: 'error' },
+    settings: {
+      policy: { projectRoot, resolverOptions: resolverOptions(projectRoot, options.resolverOptions) },
+      n: { version: '>=24.0.0' },
+      'import-x/extensions': ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts'],
+    },
     rules: structuredClone(baseRules),
     ignorePatterns: [...generated, ...options.ignores ?? []],
     overrides,

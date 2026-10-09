@@ -1,6 +1,7 @@
 import config, { createConfig } from '@brandonramsey/eslint';
 
-import type { ConfigOptions, OxlintConfig, OxlintOverride } from '@brandonramsey/eslint';
+import type { ConfigOptions, OxlintConfig, OxlintOverride, ResolverOptions } from '@brandonramsey/eslint';
+import type policy from '@brandonramsey/eslint/plugins/policy';
 import type style from '@brandonramsey/eslint/plugins/style';
 
 const override: OxlintOverride = { files: ['fixtures/**'], rules: { 'typescript/no-explicit-any': 'off' } };
@@ -11,8 +12,16 @@ const options: ConfigOptions = {
   tests: false,
   commonjsFiles: ['legacy/**/*.js'],
   moduleFiles: ['modern/**/*.ts'],
+  resolverOptions: { project: ['packages/*/tsconfig.app.json'], extensions: ['.ts', '.custom'], alwaysTryTypes: false },
   overrides: [override],
 };
 
 export const configurations: OxlintConfig[] = [config, createConfig(options)];
 export type StylePlugin = typeof style;
+export type PolicyPlugin = typeof policy;
+
+export const resolver: ResolverOptions = { conditionNames: ['types', 'node'], extensionAlias: { '.js': ['.ts', '.js'] } };
+// @ts-expect-error -- The package controls project selection; native tsconfig auto-selection is unsupported.
+export const automaticResolver: ResolverOptions = { tsconfig: 'auto' };
+// @ts-expect-error -- Null options are not supported.
+export const invalidOptions: ConfigOptions = { resolverOptions: null };

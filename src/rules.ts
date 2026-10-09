@@ -2,6 +2,50 @@ import type { OxlintConfig } from 'oxlint';
 
 // Explicit policy from the validated candidate; no upstream presets.
 export const baseRules = {
+  'policy/no-dupe-args': 'error',
+  'policy/no-octal': 'error',
+  'policy/no-unresolved': [
+    'error',
+    {
+      commonjs: true,
+      caseSensitive: true,
+    },
+  ],
+  'policy/no-useless-path-segments': 'error',
+  'policy/no-extraneous-dependencies': [
+    'error',
+    {
+      devDependencies: true,
+    },
+  ],
+  'policy/order': [
+    'error',
+    {
+      groups: [
+        'builtin',
+        'external',
+        'internal',
+        'parent',
+        'sibling',
+        'index',
+        'object',
+        'type',
+      ],
+      'newlines-between': 'always',
+      alphabetize: {
+        order: 'asc',
+        caseInsensitive: true,
+      },
+      named: true,
+      warnOnUnassignedImports: false,
+    },
+  ],
+  'policy/no-deprecated-api': 'error',
+  'policy/node-builtins': 'error',
+  'policy/es-builtins': 'error',
+  'policy/no-process-exit': 'error',
+  'policy/prefer-node-protocol': 'error',
+  'policy/no-unnecessary-polyfills': 'error',
   'eslint/constructor-super': 'error',
   'eslint/for-direction': 'error',
   'eslint/getter-return': 'error',
@@ -585,6 +629,14 @@ export const baseRules = {
 } satisfies NonNullable<OxlintConfig['rules']>;
 
 export const syntaxRules = {
+  'policy/no-dupe-args': 'off',
+  'policy/no-restricted-syntax': [
+    'error',
+    {
+      selector: 'TSEnumDeclaration',
+      message: 'Use a union or const object instead of an enum.',
+    },
+  ],
   'eslint/constructor-super': 'off',
   'eslint/getter-return': 'off',
   'eslint/no-class-assign': 'off',
@@ -831,6 +883,15 @@ export const typedRules = {
 } satisfies NonNullable<OxlintConfig['rules']>;
 
 export const declarationRules = {
+  'policy/no-dupe-args': 'off',
+  'policy/no-octal': 'off',
+  'policy/no-deprecated-api': 'off',
+  'policy/node-builtins': 'off',
+  'policy/es-builtins': 'off',
+  'policy/no-process-exit': 'off',
+  'policy/prefer-node-protocol': 'off',
+  'policy/no-unnecessary-polyfills': 'off',
+  'policy/no-restricted-syntax': 'off',
   'eslint/constructor-super': 'off',
   'eslint/for-direction': 'off',
   'eslint/getter-return': 'off',

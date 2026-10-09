@@ -4,6 +4,8 @@ Issues #8 and #9 establish the TypeScript package, native configuration and bund
 
 Create `oxlint.config.ts` in the consuming project root:
 
+Use Node 22.18+ or 24+ for TypeScript configuration execution. On earlier supported Node 22, save the [basic JavaScript example](../examples/basic-config.mjs) as `oxlint.config.mjs` and pass its path explicitly. See [runtime, compiler and provider boundaries](support.md).
+
 ```ts
 import { createConfig } from '@brandonramsey/eslint';
 
@@ -55,7 +57,7 @@ Import resolution is separate from typed-engine project membership. These option
 
 The `policy` plugin enables unresolved imports (including CommonJS), redundant import paths, extraneous dependencies and import ordering. It also retains Node 24 runtime/deprecation/exit checks, Node-protocol preference, unnecessary-polyfill rejection, enum rejection, and the duplicate-argument/octal checks needed for non-strict CommonJS. Declarations retain import checks but disable runtime checks and allow ambient enums; TypeScript disables the duplicate-argument bridge check. The bridge preserves the context prototype and source services. Its three ESLint core rule providers use the pinned `eslint/use-at-your-own-risk` entry point; packed-module checks verify those rule exports, and dependency upgrades must recheck them.
 
-## Remaining migration work
+## Export inspection
 
 The `policy/export` rule retains import-x's local export checks and adds guarded star-export inspection through the selected project resolver. Explicit exports override stars; repeated routes to the same underlying binding, namespace exports and static type-only exports are supported. Default exports are excluded from stars. Canonical module/name guards terminate cycles, and inspection failures or limits (512 binding-resolution steps and 10000 inspected modules per file) produce an error on a star-export statement with the failing path or corrective action.
 
@@ -63,6 +65,6 @@ Child inspection uses the bundled `oxc-parser@0.153.0` adapter for JavaScript an
 
 This foundation does not complete parent #2 or the release migration. Issue #11's custom coverage warning is withdrawn under ADR 0018; native typed-project coverage is accepted. Disable-comment explanations remain unenforced.
 
-Public contract tests import built and unpacked modules and inspect exports, declarations, metadata, settings, composition and plugin specifiers. They install no temporary consumer and execute no lint engine. Repository self-lint and historical reference generation temporarily use the isolated `scripts/legacy-eslint` policy; those development modules are outside the packed package. TypeScript tooling and Oxlint self-lint conversion belong to #13, and native reference/example generation to #14. Current exhaustive reference outputs remain historical ESLint outputs until that work completes; #12 reconciles the remaining documentation and support boundaries. The `test:consumer` command is retained as a compatibility name for direct packed-package inspection.
+Public contract tests import built and unpacked modules, compile the public API fixture against packed declarations, and inspect exports, metadata, settings, composition, example equivalence and plugin specifiers. They install no temporary consumer and execute no lint engine. Repository self-lint and historical reference generation temporarily use the isolated `scripts/legacy-eslint` policy; those development modules are outside the packed package. TypeScript tooling and Oxlint self-lint conversion belong to #13, and native reference/example generation to #14. Current exhaustive outputs are explicitly marked as historical ESLint references. `test:package` runs direct packed-package inspection; `test:consumer` remains a compatibility alias for existing workflow callers.
 
 Observed overlapping Stylistic fixes required multiple invocations in the research candidate. Consumers manage repeat fixing; one invocation is not promised to reach the former ESLint output, and no universal convergence bound is claimed.

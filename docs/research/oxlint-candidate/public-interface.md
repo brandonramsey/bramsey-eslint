@@ -1,5 +1,7 @@
 # Proposed Oxlint-native package interface
 
+Historical proposal: the implemented configuration/plugin interface and accepted coverage behavior are now documented in [the current interface](../../oxlint-configuration.md) and [support boundaries](../../support.md). The proposal and evidence below remain unchanged; identity cutover, repository tooling and native generated examples remain separate tickets.
+
 Proposal for [issue #2](https://github.com/brandonramsey/bramsey-eslint/issues/2), based on [candidate validation](README.md) and the [47 configuration checks](configuration-results.json). The implementation and published package remain unchanged. Coverage discovery, nearest-project resolution and canonical paths now have bounded executable prototypes. Native parser-mode compatibility follows [ADR 0016](../../adr/0016-use-native-parsing-with-package-aware-policy.md); production configuration and plugin packaging remain implementation work. [ADR 0017](../../adr/0017-publish-configuration-and-plugins-without-a-runner.md) records the approved configuration-only boundary and accepted disable-description limitation.
 
 Scope update, October 8, 2026: [ADR 0018](../../adr/0018-use-native-typed-project-coverage.md) withdraws the custom inferred-coverage warning and independent compiler inspection. Coverage prototypes remain historical evidence; native Oxlint and tsgolint behavior is accepted.

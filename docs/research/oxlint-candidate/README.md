@@ -1,5 +1,7 @@
 # Oxlint candidate validation
 
+Historical experiment: this checkout now exports native configuration and bundled plugins. Read [the implemented interface](../../oxlint-configuration.md) and [support boundaries](../../support.md) for current obligations; the recorded probes, outcomes and original implementation-status statements below are preserved as evidence.
+
 Coverage scope update, October 8, 2026: [ADR 0018](../../adr/0018-use-native-typed-project-coverage.md) accepts native Oxlint/tsgolint behavior and withdraws the custom coverage warning and compiler-inspection process. The recorded coverage probes below are historical evidence and must not be implemented as package requirements.
 
 Scope revision, October 8, 2026: [ADR 0017](../../adr/0017-publish-configuration-and-plugins-without-a-runner.md) limits the package to configuration and bundled plugins, with Oxlint as a peer dependency. Runner/preflight/fix-loop requirements and broader permanent-test recommendations below describe the earlier proposal and are superseded; unenforced disable-comment explanations are an accepted limitation. Permanent tests cover only the public package surface and generated-example equivalence/drift, with no consumer execution harness or lint-engine behavior tests. The recorded experiments remain historical evidence. The current implementation proposal is [public-interface.md](public-interface.md).

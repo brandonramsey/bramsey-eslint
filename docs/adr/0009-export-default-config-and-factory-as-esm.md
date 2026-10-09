@@ -1,5 +1,7 @@
 # Export a default config array and named factory as ESM
 
+The implemented interface in [ADR 0014](0014-migrate-to-oxlint-and-lint-identities.md) and [ADR 0017](0017-publish-configuration-and-plugins-without-a-runner.md) supersedes the flat-array arrangement below. The default is one native Oxlint object; `createConfig` appends native overrides. ESM publication and ESM/CommonJS application support remain. See the [current interface](../oxlint-configuration.md). The original first-release decision is historical.
+
 The package will expose an ESM default flat-config array for simple projects and a named `createConfig` factory for project roots, syntax-only file patterns, and import-resolution options. Consumers can append ordinary ESLint overrides. A default array keeps initial adoption concise, while the factory supplies the customization needed by monorepos without requiring consumers to assemble parsers or plugins themselves.
 
 Examples use `eslint.config.mjs` so loading the consumer configuration does not require an extra TypeScript config-loader dependency. A CommonJS package entry is outside the first-release interface.

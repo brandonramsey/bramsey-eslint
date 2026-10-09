@@ -4,6 +4,8 @@ These semantic policy choices have been approved during the design interview. Im
 
 ## Coverage
 
+The current implementation maps this policy to native Oxlint/tsgolint plus bundled Stylistic and the policy plugin. Native naming uses simplified declaration-level `id-match` rather than typescript-eslint's selector-based convention. The provider table below records the original ESLint ownership; see the [current interface](oxlint-configuration.md) for the implemented owners and the [historical reference index](../examples/README.md) for the original settings. Native rule inventory is tracked in #14. ADRs [0017](adr/0017-publish-configuration-and-plugins-without-a-runner.md) and [0018](adr/0018-use-native-typed-project-coverage.md) supersede the original compiler/description obligations below.
+
 | Source | Purpose |
 | --- | --- |
 | ESLint core | General JavaScript correctness and quality |
@@ -110,13 +112,13 @@ Keep `forEach` and `reduce` available. Permit nested helper locality, mutating a
 
 ## Tests
 
-Automatically apply a built-in relaxed profile to standard `*.test.*`, `*.spec.*`, and `__tests__` patterns. Permit custom patterns for fixtures. Typed tests must still belong to a TypeScript project unless explicitly designated syntax-only.
+Automatically apply a built-in relaxed profile to standard `*.test.*`, `*.spec.*`, and `__tests__` patterns. Permit custom patterns for fixtures. Typed test selection uses native Oxlint/tsgolint project or inferred settings unless explicitly designated syntax-only; no custom coverage warning or independent compiler inspection is supplied.
 
 Relax exported return annotations, filename naming, non-null assertions, unsafe type assertions, explicit `any`, and corresponding unsafe-value checks in tests. Keep formatting, import checks, and other typed correctness checks. Numeric structural limits are disabled in the test profile. Exact rule identifiers for the relaxed checks will be documented in the generated reference.
 
 ## Severity and exceptions
 
-All enabled rules report errors. Permit narrow consumer configuration overrides and inline disable comments with descriptions. Require descriptions through the packaged ESLint comments plugin and report unused disable directives as errors.
+All enabled rules report errors. Permit narrow consumer configuration overrides and inline disable comments. Descriptions remain recommended but unenforced under ADR 0017; the comments plugin is development-only. Retain configured unused-disable errors and blanket-disable rejection. Consumers own invocation and repeated fixes; no one-pass convergence is promised.
 
 ## Structural limits
 

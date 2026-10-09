@@ -1,5 +1,7 @@
 # Release setup
 
+The setup and first-release evidence below describe the historical ESLint `0.1.0` release. The current checkout exports Oxlint configuration; its support contract is in [support boundaries](support.md). Identity cutover (#4) and release workflow migration (#5) remain separate tickets. Existing GitHub Actions still carry the old ESLint/TypeScript matrix; its environment variables no longer select a temporary consumer. Do not treat it as evidence for an Oxlint runtime matrix. Use `npm run check` and `npm run test:package` for current public package verification; `test:consumer` is only a compatibility alias. The unchanged publication procedure below is historical pending that workflow work.
+
 The intended public package is `@brandonramsey/eslint`, version `0.1.0`, from the public GitHub repository `bramsey-eslint`. Registry availability does not establish scope ownership or publishing permission.
 
 ## One-time setup

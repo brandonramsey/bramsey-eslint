@@ -1,108 +1,104 @@
 # @brandonramsey/eslint
 
-This checkout now exports a compiled native Oxlint configuration with bundled Stylistic and compatibility plugins and workspace import resolution. See [the current configuration interface](docs/oxlint-configuration.md). Migration work continues in #10–#14; the sections below describe the published ESLint `0.1.0` release until the documentation migration in #12. The `test:consumer` command now inspects the packed package directly, without installing a consumer or running a lint engine.
+A strict, opinionated Oxlint configuration for framework-neutral Node TypeScript projects, including their JavaScript, JSX, TSX and handwritten declarations. The package exports one native configuration object, a `createConfig` factory, public types and bundled style/policy plugins. Consumers own lint execution and fixing.
 
-A strict, opinionated ESLint configuration for framework-neutral Node TypeScript projects, including JavaScript, JSX, TSX, and handwritten declarations. ESLint owns formatting. Parsers, plugins, and import resolution are installed automatically with this package.
-
-The initial version is `0.1.0`. The policy is being validated before `1.0`; review upgrades before adopting them.
+This checkout implements the Oxlint migration. The published `0.1.0` release used ESLint; these instructions apply to the next package build. The identity cutover to `@brandonramsey/lint` and the release workflows remain separate work in #4/#5. The policy is being validated before `1.0`; review upgrades before adopting them.
 
 ## Install
 
-Your TypeScript project already supplies its compiler. Install only this package and ESLint as additional lint dependencies:
+Install the configuration package and its exact Oxlint peer:
 
 ```fish
-npm install --save-dev @brandonramsey/eslint eslint
+npm install --save-dev @brandonramsey/eslint oxlint@1.87.0
 ```
+
+The package supplies `oxlint-tsgolint@7.0.2003`, Stylistic and all required compatibility providers. They require no separate consumer installation. ESLint is a bundled rule provider, while the exported configuration uses Oxlint.
 
 Requirements:
 
-- ESLint `^10.4.0`, flat config only.
-- TypeScript `>=5.9.0 <6.1.0`, supplied by the project.
-- Node `^22.13.0 || >=24.0.0` to run linting.
-- Application compatibility targets Node **24+**, independently of the linting runtime.
-- Supported tsconfigs enable `strict: true` and `noUncheckedIndexedAccess: true`. Run `tsc` separately; linting does not replace compiler diagnostics or validate every compiler option.
+- Node `^22.13.0 || >=24.0.0` for the package and its bundled providers. TypeScript config execution requires Node 22.18+ or 24+; use an explicit `.mjs` config on earlier supported Node 22.
+- Oxlint exactly `1.87.0`. Dependency upgrades require policy and public contract review.
+- Application APIs target Node **24+**, independently of the linting runtime.
+- Checking the public declarations requires TypeScript 5.9+ through their bundled provider types; verification uses 6.0.3.
+- Supported projects use `strict: true` and `noUncheckedIndexedAccess: true`. Run the project's compiler separately for diagnostics.
 
-Standalone JavaScript projects and browser/framework presets are outside the first-release support promise.
+The consumer's TypeScript compiler is separate from tsgolint's embedded TypeScript 7.0.2 target. Public types/builds are checked with TypeScript 6.0.3, the newest stable compiler supported by the retained repository toolchain; typescript-eslint is the upgrade-blocking family. See [support boundaries and evidence](docs/support.md).
 
-## Configure
+Standalone JavaScript projects and browser/framework presets remain outside the support promise.
 
-Create `eslint.config.mjs` at the project root:
+## Configure and run
 
-```js
+Create `oxlint.config.mts` at the project root:
+
+```ts
 import config from '@brandonramsey/eslint';
 
 export default config;
 ```
 
-The default uses the working directory as the project root. Run ESLint from that root. For an explicit root, files outside tsconfig, or monorepo customization:
+The default uses cwd as `projectRoot`. Run from that root and select the config explicitly:
 
-```js
-import { fileURLToPath } from 'node:url';
+```fish
+npx oxlint --config oxlint.config.mts .
+npx oxlint --config oxlint.config.mts --fix .
+```
 
+For an explicit root, syntax-only files, fixtures and workspace resolution:
+
+```ts
 import { createConfig } from '@brandonramsey/eslint';
 
 export default createConfig({
-  projectRoot: fileURLToPath(new URL('.', import.meta.url)),
-  syntaxOnlyFiles: ['eslint.config.ts', 'tools/**/*.ts'],
+  projectRoot: import.meta.dirname,
+  syntaxOnlyFiles: ['tools/**/*.ts'],
   testFiles: ['fixtures/**/*.{ts,tsx}'],
   ignores: ['generated/**'],
-  // For nonstandard compiler configuration filenames:
-  // resolverOptions: { project: ['packages/*/tsconfig.app.json'] },
+  resolverOptions: { project: ['tsconfig.json', 'packages/*/tsconfig.app.json'] },
+  overrides: [
+    {
+      files: ['src/integration/**/*.ts'],
+      rules: { 'typescript/no-unsafe-type-assertion': 'off' },
+    },
+  ],
 });
 ```
 
-Patterns are relative to the ESLint configuration's base directory. Keep that directory aligned with `projectRoot`. Imports use the nearest discovered tsconfig and its references; import resolution can be customized with `resolverOptions`. Type checking uses TypeScript project service and each file's nearest tsconfig. Unexpectedly excluded TypeScript files fail rather than silently losing typed checks. Resolver options customize imports, not project-service membership.
+Keep cwd, the config directory, selected paths and `projectRoot` aligned. Patterns are relative to the config directory; import project patterns resolve from the canonical project root. Resolver options configure imports, not tsgolint project membership. Native overrides are appended last. See [all options and composition rules](docs/oxlint-configuration.md).
 
-The package infers module mode for `.js`, `.jsx`, `.ts`, and `.tsx` from the nearest discovered package boundary's `type` field. `.mjs`/`.mts` always use ESM; `.cjs`/`.cts` always use CommonJS. Override ambiguous files with `moduleFiles` or `commonjsFiles`. The package itself is ESM; consuming applications can use either module system.
+On supported Node 22 before 22.18, use the [basic `.mjs` example](examples/basic-config.mjs), save it as `oxlint.config.mjs` and pass `--config oxlint.config.mjs`. Oxlint does not auto-discover that filename.
 
-Ordinary ESLint overrides can be appended:
+Native Oxlint/tsgolint owns project selection and inferred programs. Files outside configured projects can receive inferred settings; this package emits no custom coverage warning or independent compiler preflight. Explicit syntax-only patterns and handwritten declarations disable the configured typed rules. Import discovery and project references retain their separate resolver contract.
 
-```js
-import config from '@brandonramsey/eslint';
+Nearest package boundaries and dedicated file extensions select Node globals. `moduleFiles` and `commonjsFiles` can customize policy for ambiguous extensions, but cannot force native parser or scope mode. The package itself is ESM; consuming applications may use ESM or CommonJS.
 
-export default [
-  ...config,
-  {
-    files: ['src/integration/**/*.ts'],
-    rules: { '@typescript-eslint/no-unsafe-type-assertion': 'off' },
-  },
-];
-```
+## Policy and limitations
 
-## Policy
+All enabled rules are errors. Production policy bans explicit `any`, non-null assertions, enums and `@ts-ignore`; requires explained `@ts-expect-error`, separate type imports, type aliases, exported return annotations, handled promises and explicit primitive truthiness/coercion. Native `id-match` supplies simplified declaration naming; it does not reproduce the former selector-based naming convention. The policy retains kebab-case filenames, sorted imports, Node protocols, complexity 10, nesting 4 and parameters 4.
 
-All enabled rules are errors. The production policy bans explicit `any`, non-null assertions, enums, and `@ts-ignore`; requires explained `@ts-expect-error`, separate type imports, type aliases, exported return annotations, handled promises, and explicit primitive truthiness/coercion. It enforces camelCase bindings, PascalCase types, kebab-case filenames, sorted imports, Node protocols, complexity 10, nesting 4, and parameters 4. External property names are exempt.
+Stylistic owns formatting: two spaces, single quotes with escaping exceptions, semicolons, multiline trailing commas, braces, arrow parentheses, LF and double-quoted JSX attributes. No Oxfmt or hard line-length limit is added. Familiar abbreviations, null, forEach/reduce, array mutation and synchronous CLI APIs remain available. Prefer `process.exitCode`; intentional `process.exit` requires a narrow inline exception.
 
-Formatting uses two spaces, single quotes with escaping exceptions, semicolons, multiline trailing commas, mandatory braces and arrow parentheses, LF, and double-quoted JSX attributes. There is no hard line-length limit. Common abbreviations, null, forEach/reduce, array mutation, and synchronous CLI APIs remain available. Immediate process termination requires an explained exception; prefer `process.exitCode`.
+Standard `*.test.*`, `*.spec.*` and `__tests__` files receive a relaxed profile. It permits fixture `any`/unsafe operations, non-null assertions, inferred exported returns and arbitrary filenames; structural limits are off. Formatting, imports and promise checks remain. Use `testFiles` for fixtures or `tests: false` to retain production settings. `.d.ts`, `.d.mts` and `.d.cts` use syntax-only declaration settings permitting interfaces, namespaces, ambient enums and required global `var`, while retaining imports, formatting and the `any` ban. Generated output and dependency directories are ignored; extend exclusions through `ignores`.
 
-Standard `*.test.*`, `*.spec.*`, and `__tests__` files automatically receive a relaxed test profile. It permits `any`, unsafe fixture operations, non-null assertions, inferred exported returns, and arbitrary filenames; structural limits are off. Formatting, import checks, and other typed correctness checks remain. Use `testFiles` for fixtures, or `tests: false` to retain the production policy in tests. Typed tests still belong to a tsconfig unless explicitly syntax-only.
-
-Handwritten `.d.ts`, `.d.mts`, and `.d.cts` files receive syntax-only checks. Interfaces, namespaces, ambient enums, and global `var` are permitted; formatting, imports, and the `any` ban remain. Generated `dist`, `build`, `coverage`, and dependency directories are ignored. Identify other generated files through `ignores`.
-
-Inline disable directives require descriptions, and unused disables are errors:
+Disable-comment descriptions are recommended but **unenforced** under [ADR 0017](docs/adr/0017-publish-configuration-and-plugins-without-a-runner.md). Unused directives are errors and blanket disables are rejected:
 
 ```js
-// eslint-disable-next-line n/no-process-exit -- Immediate termination is required after this fatal startup failure.
+// oxlint-disable-next-line policy/no-process-exit -- Immediate termination is required after this fatal startup failure.
 process.exit(1);
 ```
 
-The rule verifies that an explanation is present; reviewers assess its adequacy.
+The JavaScript bridge and scoped child parser have documented limits. Research observed overlapping Stylistic fixes requiring multiple invocations; one `--fix` pass is not promised to reproduce the former ESLint output. Consumers manage repeat fixing, warning flags and exit handling. The package publishes no lint executable or execution helper. See [support limits](docs/support.md).
 
-## Every rule and default
+## References and development
 
-See the [generated profile index](examples/README.md) and its executable modules. Every profile lists every available ESLint core and shipped-plugin rule, including disabled and deprecated rules, with normalized configured severity and options. Rule-internal defaults not emitted by ESLint are not expanded. Consumer overrides can change these settings.
+The [reference index](examples/README.md) currently labels the exhaustive ESLint snapshots as historical. They do not describe or compose with the native Oxlint configuration. Native inventory and a complete generated editable example belong to #14. The basic consumer example already uses the current public default export.
 
-The [design](docs/design.md), [explicit policy](docs/rule-policy.md), and [decision records](docs/adr) document the choices. Upstream dependencies are pinned; upgrades require reviewing policy/reference changes. After `1.0`, newly enforced rules, stricter defaults, and raised runtime requirements require major releases. Upgrades to consumer-owned ESLint or TypeScript can independently affect diagnostics.
-
-## Development and release
+The [design](docs/design.md), [policy](docs/rule-policy.md) and [ADRs](docs/adr) record current decisions and superseded contracts. Historical research remains evidence. After `1.0`, newly enforced rules, stricter defaults and raised runtime requirements require major releases.
 
 ```fish
 npm ci
-npm run references
 npm run check
-npm run test:consumer
 ```
 
-CI verifies Node 22.13 and 24, valid/invalid behavior, profile differences, monorepo resolution, generated-reference drift, and a packed consumer installing only the package, ESLint, and TypeScript directly. The publishing workflow validates explicit version tags and uses npm trusted publishing. See [release setup](docs/releasing.md) for the one-time account configuration and tag procedure.
+The check builds and typechecks the public API, self-lints the repository, tests public configuration and packed modules/declarations/assets, and checks reference drift. Tests install no consumer and invoke no lint engine. `test:package` runs packed inspection alone; `test:consumer` remains an alias for existing workflow callers. Self-lint and reference generation temporarily use isolated development-only ESLint tooling until #13/#14. Existing release workflows are historical pending #5; see [release setup and history](docs/releasing.md).
 
 Licensed under [ISC](LICENSE).

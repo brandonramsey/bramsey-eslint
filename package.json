@@ -42,7 +42,8 @@
     "typecheck": "npm run build && tsc --noEmit",
     "references": "node scripts/generate-reference.js",
     "references:check": "node scripts/generate-reference.js --check",
-    "test:consumer": "npm run build && node --test test/package.test.js",
+    "test:package": "npm run build && node --test test/package.test.js",
+    "test:consumer": "npm run test:package",
     "check": "npm run typecheck && npm run lint && npm test && npm run references:check",
     "prepublishOnly": "npm run check",
     "build": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\" && tsc -p tsconfig.build.json",
@@ -57,6 +58,7 @@
   ],
   "dependencies": {
     "@stylistic/eslint-plugin": "5.10.0",
+    "@types/picomatch": "4.0.3",
     "eslint": "10.12.0",
     "eslint-import-resolver-typescript": "4.4.5",
     "eslint-plugin-import-x": "4.17.1",
@@ -66,14 +68,13 @@
     "oxc-parser": "0.153.0",
     "oxlint-tsgolint": "7.0.2003",
     "tinyglobby": "0.2.17",
+    "type-fest": "5.10.0",
     "unrs-resolver": "1.12.2"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@types/node": "24.19.1",
-    "@types/picomatch": "4.0.3",
     "oxlint": "1.87.0",
-    "type-fest": "5.10.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.1"
   },

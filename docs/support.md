@@ -1,0 +1,37 @@
+# Package support boundaries
+
+This describes the Oxlint implementation in this checkout as of October 8, 2026. The published `@brandonramsey/eslint@0.1.0` release used ESLint; its historical verification does not establish an Oxlint release. Identity cutover and release workflow changes remain #4 and #5.
+
+## Runtime and compiler contracts
+
+| Contract | Supported boundary | Evidence |
+| --- | --- | --- |
+| Package Node runtime | `^22.13.0 || >=24.0.0` | Bundled [ESLint 10.12.0](https://raw.githubusercontent.com/eslint/eslint/v10.12.0/package.json) and [Node provider 18.4.1](https://raw.githubusercontent.com/eslint-community/eslint-plugin-n/v18.4.1/package.json) both require `^20.19.0 || ^22.13.0 || >=24`; Unicorn 77 requires Node 22+. The package retains its narrower existing boundary. |
+| TypeScript configuration execution | Node 22.18+ within the supported 22 line, or 24+ | [Oxlint configuration guide](https://oxc.rs/docs/guide/usage/linter/config). On earlier supported Node 22, use an explicit `.mjs` config instead. |
+| Oxlint peer | Exactly `1.87.0` | [Tagged package manifest](https://raw.githubusercontent.com/oxc-project/oxc/oxlint_v1.87.0/npm/oxlint/package.json) requires tsgolint `>=7.0.2003`. Broader peer ranges are not claimed. |
+| Bundled typed engine | `oxlint-tsgolint@7.0.2003` | [Tagged versioning and architecture](https://raw.githubusercontent.com/oxc-project/tsgolint/v7.0.2003/README.md) target TypeScript 7.0.2 through embedded typescript-go. The installed manifest declares no separate Node engine range. |
+| Public declaration/build compiler | Provider minimum TypeScript `>=5.9`; verified at `6.0.3` | Bundled [type-fest 5.10.0](https://raw.githubusercontent.com/sindresorhus/type-fest/v5.10.0/readme.md) requires TypeScript 5.9+ and strict ESM checking. Strict builds and the public API fixture, including packed declarations, use 6.0.3 with `skipLibCheck: false`. No compiler-version fixture matrix is added. |
+| Consumer compiler | Consumer-owned, separate from tsgolint | There is no TypeScript peer or bundled JavaScript compiler. Run the application's own compiler for diagnostics; installing another compiler does not change tsgolint's embedded revision. |
+| Application Node APIs | Node `>=24.0.0` | The public configuration's Node provider setting; independent of the lint tool's runtime. |
+
+TypeScript's [stable registry metadata](https://registry.npmjs.org/typescript/latest) currently reports 7.0.2. The single family blocking an upgrade of the retained repository toolchain is **typescript-eslint**: its [published support](https://typescript-eslint.io/users/dependency-versions/) and installed 8.71.1 peer contracts require `>=4.8.4 <6.1.0`. TypeScript 6.0.3 is the newest stable compiler within that intersection. It checks this package's public declarations; it is not the typed engine's compiler. Removing legacy repository lint/reference tooling belongs to #13/#14. Consumer TypeScript 7.0.2 is aligned with the typed engine's stated target, as recorded in the [candidate research](research/oxlint-candidate-upstream.md); this is not a claim that every compiler setting or diagnostic is identical.
+
+The local verification runtime is Node 24.21.0. The minimum Node boundary above is derived from published and installed dependency contracts, not a new execution matrix. Native binaries and their supported platforms remain upstream responsibilities.
+
+## Dependency and provider boundary
+
+Oxlint is the only core peer. Required providers are ordinary package dependencies: Stylistic, ESLint, import-x, its TypeScript resolver, the Node and Unicorn plugins, globals, tinyglobby, UnRS, oxc-parser, and tsgolint. Consumers do not install these separately. `type-fest` is also supplied because the resolver's public declaration graph reaches `eslint-import-context/lib/types.d.ts`, which imports it without declaring that dependency. `@types/picomatch` is supplied for the `fdir` declarations reached through tinyglobby; removing it makes strict compilation fail. Both were previously development-only. The comments plugin and typescript-eslint remain development-only for the temporary legacy tools, outside the packed source/tooling boundary; removing those remaining development providers belongs to #13/#14.
+
+The three core bridge providers (`no-dupe-args`, `no-octal`, `no-restricted-syntax`) still use `eslint/use-at-your-own-risk`. ESLint 10.12.0 exports that path but documents it as unsupported, and exposes no stable runtime rule-module replacement. Keep the exact pin: importing the packed policy plugin verifies that all three providers exist and export rule functions. This verifies availability, not future API stability or engine behavior. Required provider changes must pass these package checks before upgrading.
+
+## Accepted engine behavior
+
+Native Oxlint/tsgolint selects projects, references and inferred programs. Excluded TypeScript files can receive inferred settings; the package neither rejects them for lacking configured coverage nor emits a custom coverage warning. Declaration and explicit syntax-only patterns disable the configured typed rules. Import-resolver project discovery is independent of native typed selection. See [ADR 0018](adr/0018-use-native-typed-project-coverage.md).
+
+The main parser and scope analysis are native. Package boundaries and `commonjsFiles`/`moduleFiles` select globals and policy, not parser mode. The bundled child parser is limited to export inspection. Disable-comment explanations are recommended but unenforced; unused-directive errors and blanket-disable rejection remain configured. Research observed overlapping fixes needing multiple Oxlint invocations. Consumers own repeat fixing, invocation paths and exit handling; no one-pass or universal convergence bound is promised. See the [configuration interface](oxlint-configuration.md) and [recorded candidate results](research/oxlint-candidate/README.md).
+
+## What verification establishes
+
+`npm run build` removes prior output and compiles strict ESM/declarations. Public tests import built and unpacked modules, inspect export targets and required assets, validate rule settings/composition and plugin specifiers, and compile the public API fixture directly against packed declaration targets. They install nothing and launch no lint engine. Packed modules resolve providers from the repository's installed dependencies; dependency metadata assertions cover required direct providers, but this is not a claim of a fresh registry installation.
+
+`npm run references:check` currently checks the historical ESLint snapshots. Their index explicitly marks them as historical; native inventory and a generated editable Oxlint example remain #14. Intentional format fixtures, research probes and prior ADR text remain evidence. Repository self-lint remains a development check.

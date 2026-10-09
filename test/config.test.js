@@ -6,6 +6,12 @@ import { createConfig } from '@brandonramsey/eslint';
 
 const root = fileURLToPath(new URL('./fixtures/project', import.meta.url));
 
+test('the basic consumer example preserves the public default configuration', async () => {
+  const { default: config } = await import('@brandonramsey/eslint');
+  const { default: example } = await import('../examples/basic-config.mjs');
+  assert.deepEqual(example, config);
+});
+
 test('resolver options are rooted, discover workspace projects and retain consumer settings', () => {
   const policy = createConfig({ projectRoot: root, resolverOptions: { extensions: ['.custom'], alwaysTryTypes: false } });
   assert.deepEqual(policy.settings.policy, {

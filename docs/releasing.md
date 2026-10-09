@@ -35,6 +35,19 @@ gh run view RUN_ID --json headSha,conclusion,jobs,url
 
 `rehearsal-result` asserts these outcomes and writes a reviewable job summary. The two negative scenarios intentionally leave the overall workflow failed; a successful result assertion confirms the expected failure gate. Record all three run URLs and their `headSha` before relying on the gate for a release. The release CLI's exact-tag acceptance and mismatch/missing-tag rejection are also covered by `test/release.test.ts`; use `node scripts/check-release.ts v0.2.0` on Node 24 for a local check.
 
+### Recorded gate evidence
+
+Verified on October 8, 2026 against reviewed workflow commit [`965039d973ccf7dbed8814868c25fe4ce7655207`](https://github.com/brandonramsey/lint/commit/965039d973ccf7dbed8814868c25fe4ce7655207), on `codex/5-release-gate`. All runs below report that exact `headSha`.
+
+| Run | Observed result |
+| --- | --- |
+| [Branch CI](https://github.com/brandonramsey/lint/actions/runs/37884094575) | Full four-job matrix passed. |
+| [Success rehearsal](https://github.com/brandonramsey/lint/actions/runs/37884207483) | Version guard, all four matrix jobs, release-ready and result assertion passed; publish skipped. |
+| [Matrix-failure rehearsal](https://github.com/brandonramsey/lint/actions/runs/37884209987) | Only the deliberate failure step in Node 22.13.0 / TS 5.9.3 failed; the other three matrix jobs and version guard passed. Gate and publish skipped; result assertion passed. |
+| [Tag-mismatch rehearsal](https://github.com/brandonramsey/lint/actions/runs/37884212640) | Version guard failed at the tag check; all four matrix jobs passed. Gate and publish skipped; result assertion passed. |
+
+Local typechecking, self-lint, all 21 tests, reference drift checks and actionlint 1.7.12 also passed. These runs establish gate behavior for the recorded commit. Every authorized version-tag release must rerun the matrix for its own SHA. npm bootstrap and the new package's trusted-publisher account binding remain unverified maintainer prerequisites.
+
 ## Identity cutover evidence
 
 Checks on October 8, 2026:

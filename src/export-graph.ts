@@ -56,12 +56,13 @@ export function createExportGraphRule(localRule: Rule.RuleModule, resolver: Retu
     create(context) {
       const parser = createExportParser();
       // import-x prioritizes alternate parsers/parserPath over languageOptions.parser.
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- Preserve Oxlint context services, adapting only the child-parser interface expected by import-x.
+      /* oxlint-disable typescript/no-unsafe-type-assertion -- Preserve Oxlint context services, adapting only the child-parser interface expected by import-x. */
       const adapted = Object.create(context, {
         parserPath: { value: undefined },
         languageOptions: { value: { ...context.languageOptions, parser } },
         settings: { value: { ...context.settings, 'import-x/parsers': undefined } },
       }) as Parameters<typeof ExportMap.parse>[2];
+      /* oxlint-enable typescript/no-unsafe-type-assertion */
       const modules = new Map<string, Module | null>();
       function load(path: string, content?: string): Module | null {
         const canonical = realpathSync(path);

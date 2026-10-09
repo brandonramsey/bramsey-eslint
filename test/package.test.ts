@@ -5,20 +5,35 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const repository = fileURLToPath(new URL('../', import.meta.url));
+import type * as PublicModule from '@brandonramsey/eslint';
 
-test('packed public modules, declarations, dependencies and plugin specifiers are self-contained', async () => {
+type PackedArtifact = { filename: string; files: Array<{ path: string }> };
+type PackageManifest = {
+  name: string;
+  exports: Record<string, { types: string; import: string }>;
+  engines: { node: string };
+  peerDependencies: Record<string, string>;
+  dependencies: Record<string, string | undefined>;
+  devDependencies: Record<string, string | undefined>;
+  bin?: unknown;
+};
+
+const repository = fileURLToPath(new URL('../../', import.meta.url));
+
+await test('packed public modules, declarations, dependencies and plugin specifiers are self-contained', async () => {
   // Unpack inside node_modules so bundled providers resolve normally; install nothing.
   const directory = mkdtempSync(join(repository, 'node_modules/.lint-package-contract-'));
   try {
     const pack = spawnSync('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', directory, '--cache', join(directory, 'cache')], { cwd: repository, encoding: 'utf8' });
     assert.equal(pack.status, 0, pack.stderr);
-    const [artifact] = JSON.parse(pack.stdout);
+    const artifacts: PackedArtifact[] = JSON.parse(pack.stdout);
+    const [artifact] = artifacts;
+    assert.ok(artifact);
     const contents = new Set(artifact.files.map((file) => file.path));
     const unpack = spawnSync('tar', ['-xzf', join(directory, artifact.filename), '-C', directory], { encoding: 'utf8' });
     assert.equal(unpack.status, 0, unpack.stderr);
     const packageRoot = realpathSync(join(directory, 'package'));
-    const manifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'));
+    const manifest: PackageManifest = JSON.parse(readFileSync(join(packageRoot, 'package.json'), 'utf8'));
     assert.deepEqual(Object.keys(manifest.exports), ['.', './plugins/style', './plugins/policy']);
     assert.deepEqual(manifest.peerDependencies, { oxlint: '1.87.0' });
     assert.equal(manifest.engines.node, '^22.13.0 || >=24.0.0');
@@ -54,21 +69,33 @@ test('packed public modules, declarations, dependencies and plugin specifiers ar
     const compiledAssets = ['index', 'options', 'patterns', 'resolver', 'rules', 'export-parser', 'export-graph', 'plugins/style', 'plugins/policy']
       .flatMap((name) => [`dist/${name}.js`, `dist/${name}.d.ts`]).sort();
     assert.deepEqual([...contents].filter((path) => path.startsWith('dist/')).sort(), compiledAssets, 'Only configuration and plugin assets are published');
-    const publicModule = await import(pathToFileURL(join(packageRoot, manifest.exports['.'].import)).href);
+    const rootExport = manifest.exports['.'];
+    assert.ok(rootExport);
+    const publicModule: typeof PublicModule = await import(pathToFileURL(join(packageRoot, rootExport.import)).href);
     assert.deepEqual(Object.keys(publicModule).sort(), ['createConfig', 'default']);
     assert.deepEqual(publicModule.default, publicModule.createConfig());
     const config = publicModule.createConfig({ projectRoot: repository });
-    assert.deepEqual(config.jsPlugins.map((plugin) => plugin.name), ['style', 'policy']);
+    assert.ok(config.jsPlugins);
+    assert.ok(config.rules);
+    assert.ok(config.settings);
+    assert.deepEqual(config.jsPlugins.map((plugin) => {
+      assert.equal(typeof plugin, 'object');
+      assert.ok(typeof plugin !== 'string');
+      return plugin.name;
+    }), ['style', 'policy']);
     await Promise.all(config.jsPlugins.map(async (plugin) => {
-      assert.equal(plugin.specifier, join(packageRoot, manifest.exports[`./plugins/${plugin.name}`].import));
+      assert.ok(typeof plugin !== 'string');
+      const entry = manifest.exports[`./plugins/${plugin.name}`];
+      assert.ok(entry);
+      assert.equal(plugin.specifier, join(packageRoot, entry.import));
       assert.ok(existsSync(plugin.specifier));
       const { default: bundled } = await import(pathToFileURL(plugin.specifier).href);
       if (plugin.name === 'policy') {
         assert.equal(typeof bundled.rules.export.create, 'function');
-        assert.equal(config.rules['policy/export'], 'error');
-        assert.deepEqual(config.settings['import-x/extensions'], ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts']);
+        assert.equal(config.rules?.['policy/export'], 'error');
+        assert.deepEqual(config.settings?.['import-x/extensions'], ['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx', '.mts', '.cts']);
       }
-      for (const id of Object.keys(config.rules).filter((name) => name.startsWith(`${plugin.name}/`))) {
+      for (const id of Object.keys(config.rules ?? {}).filter((name) => name.startsWith(`${plugin.name}/`))) {
         assert.equal(typeof bundled.rules[id.slice(plugin.name.length + 1)]?.create, 'function', `Missing rule ${id}`);
       }
     }));

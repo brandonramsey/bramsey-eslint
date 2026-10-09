@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "noEmitOnError": true,
+    "rootDir": ".",
+    "outDir": ".tooling"
+  },
+  "include": [
+    "test/*.test.ts",
+    "oxlint.config.ts"
+  ]
+}

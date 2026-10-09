@@ -58,10 +58,11 @@ function bridge(rule: Rule.RuleModule, imports: boolean, exports: boolean): Rule
       const options = policySettings(context.settings.policy);
       const resolver = createProjectResolver(options.projectRoot, options.resolverOptions);
       // Preserve inherited getters, source services and methods supplied by Oxlint.
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- Object.create preserves the complete rule context prototype; only settings is replaced.
+      /* oxlint-disable typescript/no-unsafe-type-assertion -- Object.create preserves the complete rule context prototype; only settings is replaced. */
       const adapted = Object.create(context, {
         settings: { value: { ...context.settings, 'import-x/resolver-next': [resolver] }, enumerable: true },
       }) as Rule.RuleContext;
+      /* oxlint-enable typescript/no-unsafe-type-assertion */
       return (exports ? createExportGraphRule(rule, resolver) : rule).create(adapted);
     },
   };

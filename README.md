@@ -99,6 +99,17 @@ npm ci
 npm run check
 ```
 
-The check builds and typechecks the public API, self-lints the repository, tests public configuration and packed modules/declarations/assets, and checks reference drift. Tests install no consumer and invoke no lint engine. `test:package` runs packed inspection alone; `test:consumer` remains an alias for existing workflow callers. Self-lint and reference generation temporarily use isolated development-only ESLint tooling until #13/#14. Existing release workflows are historical pending #5; see [release setup and history](docs/releasing.md).
+The check builds and strictly typechecks package sources, repository configuration and contract tests, self-lints with Oxlint/tsgolint and the bundled plugins, tests public configuration and packed modules/declarations/assets, and checks historical reference drift. Tests install no consumer and invoke no lint engine. `npm run test:package` runs packed inspection alone.
+
+`npm run build:tools` first builds the public package, then compiles `oxlint.config.ts` and `test/*.test.ts` into ignored `.tooling/` output. It copies the compiled configuration to ignored `oxlint.config.js` at the repository root so Oxlint's file patterns stay rooted correctly. Commands rebuild this output each time; no committed serialized configuration can drift. This path runs JavaScript on the full supported Node range, including 22.13, without native TypeScript loading. Run commands from the repository root:
+
+```fish
+npm run typecheck
+npm run lint
+npm test
+npm run test:package
+```
+
+Intentional format fixtures and generated consumer examples retain their formats. Historical research and the isolated legacy ESLint reference generator are excluded from current strict checking and self-lint; generator conversion and native inventory belong to #14. Existing release workflows are historical pending #5; see [release setup and history](docs/releasing.md).
 
 Licensed under [ISC](LICENSE).

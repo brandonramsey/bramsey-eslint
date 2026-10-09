@@ -1,6 +1,6 @@
 # Shared lint policy design
 
-Status: this checkout implements native Oxlint configuration and bundled plugins under the existing `@brandonramsey/eslint` identity. The published ESLint `0.1.0` release is historical. Identity cutover (#4), release workflows (#5), repository TypeScript tooling (#13), and native reference generation (#14) remain separate work.
+Status: this checkout implements native Oxlint configuration and bundled plugins under the existing `@brandonramsey/eslint` identity, with strictly checked TypeScript repository configuration and public-contract tests. The published ESLint `0.1.0` release is historical. Identity cutover (#4), release workflows (#5), and native reference generation (#14) remain separate work.
 
 ## Goal and public boundary
 
@@ -25,5 +25,7 @@ The compiled ESM default is one `OxlintConfig` object. `createConfig` accepts ex
 ## Verification boundary
 
 Tests cover public exports/declarations, configured rules/options, factory composition/validation, plugin exports/specifiers, dependency metadata, packed assets and example equivalence/drift. They inspect built and unpacked modules directly, without installing a consumer or executing Oxlint. Assume upstream engines and rules work; research fixtures are historical evidence, not a permanent upstream behavior suite. Self-lint remains a development check.
+
+Repository commands build the public package before compiling TypeScript configuration and tests to local JavaScript. The compiled Oxlint configuration is placed at the repository root to preserve relative pattern semantics; tests execute from `.tooling/test/` and locate fixtures/assets in the source checkout. Strict checking includes package sources, maintained repository configuration, contract tests and the public API fixture. Historical reference tooling remains isolated until #14.
 
 TypeScript 6.0.3 checks the build and public declarations with full library checking. The retained typescript-eslint family blocks a toolchain upgrade to stable TypeScript 7.0.2; tsgolint separately embeds a compiler targeting 7.0.2. Runtime support is derived from published dependency contracts, and local verification uses Node 24.21.0. No new engine/compiler compatibility matrix is claimed. See [support boundaries](support.md) for pins, evidence and limitations.
